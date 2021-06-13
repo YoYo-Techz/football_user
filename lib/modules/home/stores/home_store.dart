@@ -36,27 +36,17 @@ abstract class _HomeStoreBase with Store {
       {Function? onSuccess, void Function(ExceptionMessage)? onFailed}) async {
     try {
       isLoading = true;
-      await _repo.loadTeams().then((value) async {
-        teams = value;
-        await _repo.loadMatchs().then((valuev) async {
-          matchs = valuev;
-          await _repo.loadLeagues().then((league) async {
-            leagues = league;
-          });
-        });
-      });
+      teams = await _repo.loadTeams();
       isLoading = false;
       if (onSuccess != null) onSuccess();
     } on SocketException {
       teams = await _repo.loadTeams();
-      matchs = await _repo.loadMatchs();
-      leagues = await _repo.loadLeagues();
+
       isLoading = false;
       errorMessage = "No internet";
     } catch (e) {
       teams = await _repo.loadTeams();
-      matchs = await _repo.loadMatchs();
-      leagues = await _repo.loadLeagues();
+
       isLoading = false;
       errorMessage = e.toString();
     }
@@ -69,9 +59,7 @@ abstract class _HomeStoreBase with Store {
     try {
       isLoading = true;
 
-      await _repo.loadLeagues().then((league) async {
-        leagues = league;
-      });
+      leagues = await _repo.loadLeagues();
 
       isLoading = false;
       if (onSuccess != null) onSuccess();
@@ -91,9 +79,7 @@ abstract class _HomeStoreBase with Store {
       {Function? onSuccess, void Function(ExceptionMessage)? onFailed}) async {
     try {
       isLoading = true;
-      await _repo.loadMatchs().then((valuev) async {
-        matchs = valuev;
-      });
+      matchs = await _repo.loadMatchs();
       isLoading = false;
       if (onSuccess != null) onSuccess();
     } on SocketException {

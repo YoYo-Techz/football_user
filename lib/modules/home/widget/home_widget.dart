@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:myfootball/modules/home/fragment/home_fragment.dart';
+import 'package:myfootball/modules/home/fragment/match_fragment.dart';
+import 'package:myfootball/modules/home/fragment/new_fragment.dart';
 import 'package:myfootball/modules/home/stores/home_store.dart';
 
 class HomeWidget extends StatefulWidget {
@@ -10,73 +13,57 @@ class HomeWidget extends StatefulWidget {
   _HomeWidgetState createState() => _HomeWidgetState();
 }
 
-class _HomeWidgetState extends State<HomeWidget> {
-  HomeStore _homeStoreStore = Modular.get<HomeStore>();
-
+class _HomeWidgetState extends State<HomeWidget>
+    with TickerProviderStateMixin<HomeWidget> {
+  int _currentIndex = 0;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    _homeStoreStore.loadLeagues();
   }
+
+  List<Widget> _fragment = [
+    HomeFragment(),
+    MatchFragment(),
+    NewsFragmet(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Football"),
+      body: SafeArea(
+        top: false,
+        child: IndexedStack(
+          index: _currentIndex,
+          children: _fragment
         ),
-        body: _storelist());
-  }
-
-  Widget _storelist() {
-    return Observer(builder: (context) {
-      if (_homeStoreStore.isLoading) {
-        return Center(
-          child: CircularProgressIndicator(
-            valueColor: new AlwaysStoppedAnimation<Color>(Colors.blue),
-          ),
-        );
-      }
-
-      if (_homeStoreStore.teams!.data.isEmpty) {
-        return Column(
-          children: [
-            Expanded(
-              child: Text(
-                "Empty",
-                style: TextStyle(
-                  fontFamily: 'pyidaungsu',
-                ),
-              ),
-            ),
-            _homeStoreStore.errorMessage != null
-                ? Padding(
-                    padding: EdgeInsets.only(left: 20.0, right: 20, bottom: 70),
-                    child: Text(
-                      _homeStoreStore.errorMessage!,
-                      style: TextStyle(color: Colors.red),
-                    ),
-                  )
-                : SizedBox()
-          ],
-        );
-      }
-
-      return ListView.builder(
-        itemCount: _homeStoreStore.teams!.data.length,
-        itemBuilder: (context, i) {
-          return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListTile(
-                leading: Icon(Icons.play_arrow),
-                title: Text(_homeStoreStore.teams!.data[i].name),
-                subtitle: Text(
-                  _homeStoreStore.teams!.data[i].id.toString(),
-                ),
-              ));
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (int index) {
+          setState(() {
+            _currentIndex = index;
+          });
         },
-      );
-    });
+        items: allDestinations.map((Destination destination) {
+          return BottomNavigationBarItem(
+              icon: Icon(destination.icon),
+              backgroundColor: destination.color,
+              title: Text(destination.title));
+        }).toList(),
+      ),
+    );
   }
 }
+
+class Destination {
+  const Destination(this.title, this.icon, this.color);
+  final String title;
+  final IconData icon;
+  final MaterialColor color;
+}
+
+const List<Destination> allDestinations = <Destination>[
+  Destination('Home', Icons.home, Colors.teal),
+  Destination('Leagues', Icons.campaign, Colors.cyan),
+  Destination('News', Icons.feed, Colors.orange),
+];
