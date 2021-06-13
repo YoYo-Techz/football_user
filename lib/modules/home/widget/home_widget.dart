@@ -17,7 +17,7 @@ class _HomeWidgetState extends State<HomeWidget> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _homeStoreStore.loadhome();
+    _homeStoreStore.loadLeagues();
   }
 
   @override

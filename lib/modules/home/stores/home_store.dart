@@ -32,7 +32,7 @@ abstract class _HomeStoreBase with Store {
   Leagues? leagues;
 
   @action
-  Future loadhome(
+  Future loadTeams(
       {Function? onSuccess, void Function(ExceptionMessage)? onFailed}) async {
     try {
       isLoading = true;
@@ -61,5 +61,50 @@ abstract class _HomeStoreBase with Store {
       errorMessage = e.toString();
     }
     //
+  }
+
+  @action
+  Future loadLeagues(
+      {Function? onSuccess, void Function(ExceptionMessage)? onFailed}) async {
+    try {
+      isLoading = true;
+
+      await _repo.loadLeagues().then((league) async {
+        leagues = league;
+      });
+
+      isLoading = false;
+      if (onSuccess != null) onSuccess();
+    } on SocketException {
+      leagues = await _repo.loadLeagues();
+      isLoading = false;
+      errorMessage = "No internet";
+    } catch (e) {
+      leagues = await _repo.loadLeagues();
+      isLoading = false;
+      errorMessage = e.toString();
+    }
+  }
+
+  @action
+  Future loadMatchs(
+      {Function? onSuccess, void Function(ExceptionMessage)? onFailed}) async {
+    try {
+      isLoading = true;
+      await _repo.loadMatchs().then((valuev) async {
+        matchs = valuev;
+      });
+      isLoading = false;
+      if (onSuccess != null) onSuccess();
+    } on SocketException {
+      matchs = await _repo.loadMatchs();
+
+      isLoading = false;
+      errorMessage = "No internet";
+    } catch (e) {
+      matchs = await _repo.loadMatchs();
+      isLoading = false;
+      errorMessage = e.toString();
+    }
   }
 }

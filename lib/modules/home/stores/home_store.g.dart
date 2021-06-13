@@ -84,13 +84,31 @@ mixin _$HomeStore on _HomeStoreBase, Store {
     });
   }
 
-  final _$loadhomeAsyncAction = AsyncAction('_HomeStoreBase.loadhome');
+  final _$loadTeamsAsyncAction = AsyncAction('_HomeStoreBase.loadTeams');
 
   @override
-  Future<dynamic> loadhome(
+  Future<dynamic> loadTeams(
       {Function? onSuccess, void Function(ExceptionMessage)? onFailed}) {
-    return _$loadhomeAsyncAction
-        .run(() => super.loadhome(onSuccess: onSuccess, onFailed: onFailed));
+    return _$loadTeamsAsyncAction
+        .run(() => super.loadTeams(onSuccess: onSuccess, onFailed: onFailed));
+  }
+
+  final _$loadLeaguesAsyncAction = AsyncAction('_HomeStoreBase.loadLeagues');
+
+  @override
+  Future<dynamic> loadLeagues(
+      {Function? onSuccess, void Function(ExceptionMessage)? onFailed}) {
+    return _$loadLeaguesAsyncAction
+        .run(() => super.loadLeagues(onSuccess: onSuccess, onFailed: onFailed));
+  }
+
+  final _$loadMatchsAsyncAction = AsyncAction('_HomeStoreBase.loadMatchs');
+
+  @override
+  Future<dynamic> loadMatchs(
+      {Function? onSuccess, void Function(ExceptionMessage)? onFailed}) {
+    return _$loadMatchsAsyncAction
+        .run(() => super.loadMatchs(onSuccess: onSuccess, onFailed: onFailed));
   }
 
   @override
