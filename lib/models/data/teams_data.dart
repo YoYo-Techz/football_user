@@ -14,11 +14,11 @@ abstract class TeamsData implements Built<TeamsData, TeamsDataBuilder> {
   factory TeamsData([updates(TeamsDataBuilder b)]) = _$TeamsData;
 
   @BuiltValueField(wireName: 'id')
-  int get id;
+  int? get id;
   @BuiltValueField(wireName: 'name')
-  String get name;
+  String? get name;
   @BuiltValueField(wireName: 'img')
-  String get img;
+  String? get img;
   String toJson() {
     return json.encode(serializers.serializeWith(TeamsData.serializer, this));
   }

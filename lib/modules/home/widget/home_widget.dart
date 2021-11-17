@@ -48,7 +48,7 @@ class _HomeWidgetState extends State<HomeWidget>
           return BottomNavigationBarItem(
               icon: Icon(destination.icon),
               backgroundColor: destination.color,
-              title: Text(destination.title));
+              label: destination.title);
         }).toList(),
       ),
     );
@@ -64,6 +64,6 @@ class Destination {
 
 const List<Destination> allDestinations = <Destination>[
   Destination('Home', Icons.home, Colors.teal),
-  Destination('Leagues', Icons.campaign, Colors.cyan),
+  Destination('Match', Icons.campaign, Colors.cyan),
   Destination('News', Icons.feed, Colors.orange),
 ];

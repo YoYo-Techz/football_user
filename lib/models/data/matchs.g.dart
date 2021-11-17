@@ -17,39 +17,83 @@ class _$MatchsSerializer implements StructuredSerializer<Matchs> {
   @override
   Iterable<Object?> serialize(Serializers serializers, Matchs object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'id',
-      serializers.serialize(object.id, specifiedType: const FullType(int)),
-      'team_one',
-      serializers.serialize(object.teamOne,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(TeamsData)])),
-      'team_two',
-      serializers.serialize(object.teamTwo,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(TeamsData)])),
-      'league',
-      serializers.serialize(object.league, specifiedType: const FullType(int)),
-      'status',
-      serializers.serialize(object.status,
-          specifiedType: const FullType(String)),
-      'score',
-      serializers.serialize(object.score,
-          specifiedType: const FullType(String)),
-      'time',
-      serializers.serialize(object.time, specifiedType: const FullType(String)),
-      'date',
-      serializers.serialize(object.date, specifiedType: const FullType(String)),
-      'url',
-      serializers.serialize(object.url, specifiedType: const FullType(String)),
-      'created_at',
-      serializers.serialize(object.createdAt,
-          specifiedType: const FullType(String)),
-      'updated_at',
-      serializers.serialize(object.updatedAt,
-          specifiedType: const FullType(String)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.id;
+    if (value != null) {
+      result
+        ..add('id')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    value = object.teamOne;
+    if (value != null) {
+      result
+        ..add('team_one')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(TeamsData)));
+    }
+    value = object.teamTwo;
+    if (value != null) {
+      result
+        ..add('team_two')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(TeamsData)));
+    }
+    value = object.league;
+    if (value != null) {
+      result
+        ..add('league')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    value = object.status;
+    if (value != null) {
+      result
+        ..add('status')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.score;
+    if (value != null) {
+      result
+        ..add('score')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.time;
+    if (value != null) {
+      result
+        ..add('time')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.date;
+    if (value != null) {
+      result
+        ..add('date')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.url;
+    if (value != null) {
+      result
+        ..add('url')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.createdAt;
+    if (value != null) {
+      result
+        ..add('created_at')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.updatedAt;
+    if (value != null) {
+      result
+        ..add('updated_at')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -70,15 +114,11 @@ class _$MatchsSerializer implements StructuredSerializer<Matchs> {
           break;
         case 'team_one':
           result.teamOne.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(TeamsData)]))!
-              as BuiltList<Object>);
+              specifiedType: const FullType(TeamsData))! as TeamsData);
           break;
         case 'team_two':
           result.teamTwo.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(TeamsData)]))!
-              as BuiltList<Object>);
+              specifiedType: const FullType(TeamsData))! as TeamsData);
           break;
         case 'league':
           result.league = serializers.deserialize(value,
@@ -121,56 +161,44 @@ class _$MatchsSerializer implements StructuredSerializer<Matchs> {
 
 class _$Matchs extends Matchs {
   @override
-  final int id;
+  final int? id;
   @override
-  final BuiltList<TeamsData> teamOne;
+  final TeamsData? teamOne;
   @override
-  final BuiltList<TeamsData> teamTwo;
+  final TeamsData? teamTwo;
   @override
-  final int league;
+  final int? league;
   @override
-  final String status;
+  final String? status;
   @override
-  final String score;
+  final String? score;
   @override
-  final String time;
+  final String? time;
   @override
-  final String date;
+  final String? date;
   @override
-  final String url;
+  final String? url;
   @override
-  final String createdAt;
+  final String? createdAt;
   @override
-  final String updatedAt;
+  final String? updatedAt;
 
   factory _$Matchs([void Function(MatchsBuilder)? updates]) =>
       (new MatchsBuilder()..update(updates)).build();
 
   _$Matchs._(
-      {required this.id,
-      required this.teamOne,
-      required this.teamTwo,
-      required this.league,
-      required this.status,
-      required this.score,
-      required this.time,
-      required this.date,
-      required this.url,
-      required this.createdAt,
-      required this.updatedAt})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(id, 'Matchs', 'id');
-    BuiltValueNullFieldError.checkNotNull(teamOne, 'Matchs', 'teamOne');
-    BuiltValueNullFieldError.checkNotNull(teamTwo, 'Matchs', 'teamTwo');
-    BuiltValueNullFieldError.checkNotNull(league, 'Matchs', 'league');
-    BuiltValueNullFieldError.checkNotNull(status, 'Matchs', 'status');
-    BuiltValueNullFieldError.checkNotNull(score, 'Matchs', 'score');
-    BuiltValueNullFieldError.checkNotNull(time, 'Matchs', 'time');
-    BuiltValueNullFieldError.checkNotNull(date, 'Matchs', 'date');
-    BuiltValueNullFieldError.checkNotNull(url, 'Matchs', 'url');
-    BuiltValueNullFieldError.checkNotNull(createdAt, 'Matchs', 'createdAt');
-    BuiltValueNullFieldError.checkNotNull(updatedAt, 'Matchs', 'updatedAt');
-  }
+      {this.id,
+      this.teamOne,
+      this.teamTwo,
+      this.league,
+      this.status,
+      this.score,
+      this.time,
+      this.date,
+      this.url,
+      this.createdAt,
+      this.updatedAt})
+      : super._();
 
   @override
   Matchs rebuild(void Function(MatchsBuilder) updates) =>
@@ -245,15 +273,13 @@ class MatchsBuilder implements Builder<Matchs, MatchsBuilder> {
   int? get id => _$this._id;
   set id(int? id) => _$this._id = id;
 
-  ListBuilder<TeamsData>? _teamOne;
-  ListBuilder<TeamsData> get teamOne =>
-      _$this._teamOne ??= new ListBuilder<TeamsData>();
-  set teamOne(ListBuilder<TeamsData>? teamOne) => _$this._teamOne = teamOne;
+  TeamsDataBuilder? _teamOne;
+  TeamsDataBuilder get teamOne => _$this._teamOne ??= new TeamsDataBuilder();
+  set teamOne(TeamsDataBuilder? teamOne) => _$this._teamOne = teamOne;
 
-  ListBuilder<TeamsData>? _teamTwo;
-  ListBuilder<TeamsData> get teamTwo =>
-      _$this._teamTwo ??= new ListBuilder<TeamsData>();
-  set teamTwo(ListBuilder<TeamsData>? teamTwo) => _$this._teamTwo = teamTwo;
+  TeamsDataBuilder? _teamTwo;
+  TeamsDataBuilder get teamTwo => _$this._teamTwo ??= new TeamsDataBuilder();
+  set teamTwo(TeamsDataBuilder? teamTwo) => _$this._teamTwo = teamTwo;
 
   int? _league;
   int? get league => _$this._league;
@@ -293,8 +319,8 @@ class MatchsBuilder implements Builder<Matchs, MatchsBuilder> {
     final $v = _$v;
     if ($v != null) {
       _id = $v.id;
-      _teamOne = $v.teamOne.toBuilder();
-      _teamTwo = $v.teamTwo.toBuilder();
+      _teamOne = $v.teamOne?.toBuilder();
+      _teamTwo = $v.teamTwo?.toBuilder();
       _league = $v.league;
       _status = $v.status;
       _score = $v.score;
@@ -325,31 +351,24 @@ class MatchsBuilder implements Builder<Matchs, MatchsBuilder> {
     try {
       _$result = _$v ??
           new _$Matchs._(
-              id: BuiltValueNullFieldError.checkNotNull(id, 'Matchs', 'id'),
-              teamOne: teamOne.build(),
-              teamTwo: teamTwo.build(),
-              league: BuiltValueNullFieldError.checkNotNull(
-                  league, 'Matchs', 'league'),
-              status: BuiltValueNullFieldError.checkNotNull(
-                  status, 'Matchs', 'status'),
-              score: BuiltValueNullFieldError.checkNotNull(
-                  score, 'Matchs', 'score'),
-              time:
-                  BuiltValueNullFieldError.checkNotNull(time, 'Matchs', 'time'),
-              date:
-                  BuiltValueNullFieldError.checkNotNull(date, 'Matchs', 'date'),
-              url: BuiltValueNullFieldError.checkNotNull(url, 'Matchs', 'url'),
-              createdAt: BuiltValueNullFieldError.checkNotNull(
-                  createdAt, 'Matchs', 'createdAt'),
-              updatedAt: BuiltValueNullFieldError.checkNotNull(
-                  updatedAt, 'Matchs', 'updatedAt'));
+              id: id,
+              teamOne: _teamOne?.build(),
+              teamTwo: _teamTwo?.build(),
+              league: league,
+              status: status,
+              score: score,
+              time: time,
+              date: date,
+              url: url,
+              createdAt: createdAt,
+              updatedAt: updatedAt);
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'teamOne';
-        teamOne.build();
+        _teamOne?.build();
         _$failedField = 'teamTwo';
-        teamTwo.build();
+        _teamTwo?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'Matchs', _$failedField, e.toString());

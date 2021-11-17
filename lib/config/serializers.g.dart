@@ -21,12 +21,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
           () => new ListBuilder<Matchs>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(TeamsData)]),
-          () => new ListBuilder<TeamsData>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(TeamsData)]),
-          () => new ListBuilder<TeamsData>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(TeamsData)]),
           () => new ListBuilder<TeamsData>()))
     .build();
 

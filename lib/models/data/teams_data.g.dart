@@ -17,15 +17,28 @@ class _$TeamsDataSerializer implements StructuredSerializer<TeamsData> {
   @override
   Iterable<Object?> serialize(Serializers serializers, TeamsData object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'id',
-      serializers.serialize(object.id, specifiedType: const FullType(int)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
-      'img',
-      serializers.serialize(object.img, specifiedType: const FullType(String)),
-    ];
-
+    final result = <Object?>[];
+    Object? value;
+    value = object.id;
+    if (value != null) {
+      result
+        ..add('id')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.img;
+    if (value != null) {
+      result
+        ..add('img')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -61,21 +74,16 @@ class _$TeamsDataSerializer implements StructuredSerializer<TeamsData> {
 
 class _$TeamsData extends TeamsData {
   @override
-  final int id;
+  final int? id;
   @override
-  final String name;
+  final String? name;
   @override
-  final String img;
+  final String? img;
 
   factory _$TeamsData([void Function(TeamsDataBuilder)? updates]) =>
       (new TeamsDataBuilder()..update(updates)).build();
 
-  _$TeamsData._({required this.id, required this.name, required this.img})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(id, 'TeamsData', 'id');
-    BuiltValueNullFieldError.checkNotNull(name, 'TeamsData', 'name');
-    BuiltValueNullFieldError.checkNotNull(img, 'TeamsData', 'img');
-  }
+  _$TeamsData._({this.id, this.name, this.img}) : super._();
 
   @override
   TeamsData rebuild(void Function(TeamsDataBuilder) updates) =>
@@ -149,13 +157,7 @@ class TeamsDataBuilder implements Builder<TeamsData, TeamsDataBuilder> {
 
   @override
   _$TeamsData build() {
-    final _$result = _$v ??
-        new _$TeamsData._(
-            id: BuiltValueNullFieldError.checkNotNull(id, 'TeamsData', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, 'TeamsData', 'name'),
-            img:
-                BuiltValueNullFieldError.checkNotNull(img, 'TeamsData', 'img'));
+    final _$result = _$v ?? new _$TeamsData._(id: id, name: name, img: img);
     replace(_$result);
     return _$result;
   }
