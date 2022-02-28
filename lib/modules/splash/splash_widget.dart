@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:myfootball/modules/home/home_module.dart';
+import 'package:myfootball/modules/home/home_route.dart';
+import 'package:myfootball/utils/rotue_utils.dart';
 
 class SplashWidget extends StatefulWidget {
   SplashWidget({Key? key}) : super(key: key);
@@ -9,9 +12,21 @@ class SplashWidget extends StatefulWidget {
 
 class _SplashWidgetState extends State<SplashWidget> {
   @override
+  void initState() {
+    super.initState();
+    nextPage();
+  }
+
+  void nextPage() {
+    Future.delayed(Duration(seconds: 2), () {
+      RouteUtils.changeRoute<HomeModule>(HomeRoute.root,isReplace: true);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-       body: null,
+      body: null,
     );
   }
 }

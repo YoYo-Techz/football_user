@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:logger/logger.dart';
+import 'package:myfootball/modules/splash/splash_widget.dart';
 import 'package:myfootball/services/api_service.dart';
 
 import 'app_routes.dart';
@@ -23,6 +24,7 @@ class AppModule extends Module {
   // Provide all the routes for your module
   @override
   final List<ModularRoute> routes = [
+    ChildRoute(AppRoutes.root, child: (context, args) => SplashWidget()),
     ModuleRoute(
       AppRoutes.home,
       module: HomeModule(),
