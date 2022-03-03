@@ -2,6 +2,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:myfootball/models/data/leagues.dart';
 import 'package:myfootball/models/data/matches.dart';
 import 'package:myfootball/models/data/teams.dart';
+import 'package:myfootball/models/response/channel_response.dart';
 import 'package:myfootball/services/api_service.dart';
 
 import 'home_repo.dart';
@@ -30,6 +31,13 @@ class HomeRepositoryImpl implements HomeRepository {
   @override
   Future<Matches> loadMatchs() async{
    var response = await _apiService.matchs();
+    var data = response.body;
+    return data!;
+  }
+
+  @override
+  Future<ChannelResponse> loadChannel() async{
+   var response = await _apiService.channel();
     var data = response.body;
     return data!;
   }

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_modular/flutter_modular.dart';
+import 'package:myfootball/modules/home/fragment/channel_fragment.dart';
 import 'package:myfootball/modules/home/fragment/home_fragment.dart';
 import 'package:myfootball/modules/home/fragment/match_fragment.dart';
 import 'package:myfootball/modules/home/fragment/new_fragment.dart';
-import 'package:myfootball/modules/home/stores/home_store.dart';
 
 class HomeWidget extends StatefulWidget {
   HomeWidget({Key? key}) : super(key: key);
@@ -24,12 +22,14 @@ class _HomeWidgetState extends State<HomeWidget>
   List<Widget> _fragment = [
     HomeFragment(),
     MatchFragment(),
-    NewsFragmet(),
+    // NewsFragmet(),
+    ChannelFragment()
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        
       body: SafeArea(
         top: false,
         child: IndexedStack(
@@ -65,5 +65,6 @@ class Destination {
 const List<Destination> allDestinations = <Destination>[
   Destination('Home', Icons.home, Colors.teal),
   Destination('Match', Icons.campaign, Colors.cyan),
-  Destination('News', Icons.feed, Colors.orange),
+  // Destination('News', Icons.feed, Colors.orange),
+  Destination('Channel', Icons.tv, Colors.orange),
 ];

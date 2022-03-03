@@ -15,16 +15,17 @@ class _HomeFragmentState extends State<HomeFragment> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    _homeStoreStore.loadLeagues();
+    _homeStoreStore.loadLeagues(onFailed: (exceptionMessage) {
+      //
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Football"),
+          title: Text("CM Sport"),
         ),
         body: _storelist());
   }
@@ -39,7 +40,7 @@ class _HomeFragmentState extends State<HomeFragment> {
         );
       }
 
-      if (_homeStoreStore.leagues!.data.isEmpty) {
+      if (_homeStoreStore.leaguelist.isEmpty) {
         return Column(
           children: [
             Expanded(
@@ -61,12 +62,13 @@ class _HomeFragmentState extends State<HomeFragment> {
       }
 
       return ListView.builder(
-        itemCount: _homeStoreStore.leagues!.data.length,
+        itemCount: _homeStoreStore.leaguelist.length,
         itemBuilder: (context, i) {
           return Card(
-              child: ListTile(
-            title: Text(_homeStoreStore.leagues!.data[i].name),
-          ));
+            child: ListTile(
+              title: Text(_homeStoreStore.leaguelist[i].name),
+            ),
+          );
         },
       );
     });

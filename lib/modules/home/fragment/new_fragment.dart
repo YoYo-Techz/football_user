@@ -11,7 +11,9 @@ class _NewsFragmetState extends State<NewsFragmet> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("News"),),
+     appBar: AppBar(
+        title: Text("CM Sport"),
+      ),
        body: Column(children: [
          //
        ],),

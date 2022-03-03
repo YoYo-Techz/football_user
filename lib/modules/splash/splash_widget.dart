@@ -19,14 +19,25 @@ class _SplashWidgetState extends State<SplashWidget> {
 
   void nextPage() {
     Future.delayed(Duration(seconds: 2), () {
-      RouteUtils.changeRoute<HomeModule>(HomeRoute.root,isReplace: true);
+      RouteUtils.changeRoute<HomeModule>(HomeRoute.root, isReplace: true);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: null,
+      body: Stack(
+        children: [
+          Align(
+            alignment: Alignment.center,
+            child: Image.asset(
+              "assets/logo/icon.png",
+              width: 165,
+              height: 165,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

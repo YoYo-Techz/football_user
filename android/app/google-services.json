@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "988419062069",
+    "project_id": "cmsport-dec55",
+    "storage_bucket": "cmsport-dec55.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988419062069:android:82d48f7f1e60a04f2a347c",
+        "android_client_info": {
+          "package_name": "com.cm.sport"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "988419062069-ge94ubjg6u8g4aoav9vklbfr280323im.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDM3YY2rVQ1-TgAtkVOHexMWN9NH36ZP7I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "988419062069-ge94ubjg6u8g4aoav9vklbfr280323im.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

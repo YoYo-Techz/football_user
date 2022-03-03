@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:myfootball/app_routes.dart';
 import 'package:myfootball/modules/home/home_module.dart';
+import 'package:myfootball/modules/home/home_route.dart';
+import 'package:myfootball/modules/player/player_module.dart';
 
 class RouteUtils {
   static void _goNextPage(
@@ -47,6 +49,9 @@ class RouteUtils {
     switch (M) {
       case HomeModule:
         tempRoute = AppRoutes.home;
+        break;
+       case PlayerModule:
+        tempRoute = AppRoutes.home + HomeRoute.player;
         break;
     }
     _goNextPage(

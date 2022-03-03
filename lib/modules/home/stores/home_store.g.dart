@@ -39,48 +39,63 @@ mixin _$HomeStore on _HomeStoreBase, Store {
     });
   }
 
-  final _$teamsAtom = Atom(name: '_HomeStoreBase.teams');
+  final _$leaguelistAtom = Atom(name: '_HomeStoreBase.leaguelist');
 
   @override
-  Teams? get teams {
-    _$teamsAtom.reportRead();
-    return super.teams;
+  ObservableList<League> get leaguelist {
+    _$leaguelistAtom.reportRead();
+    return super.leaguelist;
   }
 
   @override
-  set teams(Teams? value) {
-    _$teamsAtom.reportWrite(value, super.teams, () {
-      super.teams = value;
+  set leaguelist(ObservableList<League> value) {
+    _$leaguelistAtom.reportWrite(value, super.leaguelist, () {
+      super.leaguelist = value;
     });
   }
 
-  final _$matchsAtom = Atom(name: '_HomeStoreBase.matchs');
+  final _$matchsListAtom = Atom(name: '_HomeStoreBase.matchsList');
 
   @override
-  Matches? get matchs {
-    _$matchsAtom.reportRead();
-    return super.matchs;
+  ObservableList<Matchs> get matchsList {
+    _$matchsListAtom.reportRead();
+    return super.matchsList;
   }
 
   @override
-  set matchs(Matches? value) {
-    _$matchsAtom.reportWrite(value, super.matchs, () {
-      super.matchs = value;
+  set matchsList(ObservableList<Matchs> value) {
+    _$matchsListAtom.reportWrite(value, super.matchsList, () {
+      super.matchsList = value;
     });
   }
 
-  final _$leaguesAtom = Atom(name: '_HomeStoreBase.leagues');
+  final _$teamdatalistAtom = Atom(name: '_HomeStoreBase.teamdatalist');
 
   @override
-  Leagues? get leagues {
-    _$leaguesAtom.reportRead();
-    return super.leagues;
+  ObservableList<TeamsData> get teamdatalist {
+    _$teamdatalistAtom.reportRead();
+    return super.teamdatalist;
   }
 
   @override
-  set leagues(Leagues? value) {
-    _$leaguesAtom.reportWrite(value, super.leagues, () {
-      super.leagues = value;
+  set teamdatalist(ObservableList<TeamsData> value) {
+    _$teamdatalistAtom.reportWrite(value, super.teamdatalist, () {
+      super.teamdatalist = value;
+    });
+  }
+
+  final _$channellistAtom = Atom(name: '_HomeStoreBase.channellist');
+
+  @override
+  ObservableList<Channel> get channellist {
+    _$channellistAtom.reportRead();
+    return super.channellist;
+  }
+
+  @override
+  set channellist(ObservableList<Channel> value) {
+    _$channellistAtom.reportWrite(value, super.channellist, () {
+      super.channellist = value;
     });
   }
 
@@ -88,7 +103,8 @@ mixin _$HomeStore on _HomeStoreBase, Store {
 
   @override
   Future<dynamic> loadTeams(
-      {Function? onSuccess, void Function(ExceptionMessage)? onFailed}) {
+      {Function? onSuccess,
+      required void Function(ExceptionMessage) onFailed}) {
     return _$loadTeamsAsyncAction
         .run(() => super.loadTeams(onSuccess: onSuccess, onFailed: onFailed));
   }
@@ -97,7 +113,8 @@ mixin _$HomeStore on _HomeStoreBase, Store {
 
   @override
   Future<dynamic> loadLeagues(
-      {Function? onSuccess, void Function(ExceptionMessage)? onFailed}) {
+      {Function? onSuccess,
+      required void Function(ExceptionMessage) onFailed}) {
     return _$loadLeaguesAsyncAction
         .run(() => super.loadLeagues(onSuccess: onSuccess, onFailed: onFailed));
   }
@@ -105,10 +122,15 @@ mixin _$HomeStore on _HomeStoreBase, Store {
   final _$loadMatchsAsyncAction = AsyncAction('_HomeStoreBase.loadMatchs');
 
   @override
-  Future<dynamic> loadMatchs(
-      {Function? onSuccess, void Function(ExceptionMessage)? onFailed}) {
-    return _$loadMatchsAsyncAction
-        .run(() => super.loadMatchs(onSuccess: onSuccess, onFailed: onFailed));
+  Future<dynamic> loadMatchs() {
+    return _$loadMatchsAsyncAction.run(() => super.loadMatchs());
+  }
+
+  final _$loadChannelsAsyncAction = AsyncAction('_HomeStoreBase.loadChannels');
+
+  @override
+  Future<dynamic> loadChannels() {
+    return _$loadChannelsAsyncAction.run(() => super.loadChannels());
   }
 
   @override
@@ -116,9 +138,10 @@ mixin _$HomeStore on _HomeStoreBase, Store {
     return '''
 isLoading: ${isLoading},
 errorMessage: ${errorMessage},
-teams: ${teams},
-matchs: ${matchs},
-leagues: ${leagues}
+leaguelist: ${leaguelist},
+matchsList: ${matchsList},
+teamdatalist: ${teamdatalist},
+channellist: ${channellist}
     ''';
   }
 }
