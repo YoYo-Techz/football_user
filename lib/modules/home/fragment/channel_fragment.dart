@@ -19,7 +19,6 @@ class _ChannelFragmentState extends State<ChannelFragment> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _homeStore.loadChannels();
   }
@@ -27,10 +26,11 @@ class _ChannelFragmentState extends State<ChannelFragment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("CM Sport"),
-        ),
-        body: _storelist());
+      appBar: AppBar(
+        title: Text("CM Sport"),
+      ),
+      body: _storelist(),
+    );
   }
 
   Widget _storelist() {

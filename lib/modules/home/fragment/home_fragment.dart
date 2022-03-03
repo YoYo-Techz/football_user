@@ -16,9 +16,7 @@ class _HomeFragmentState extends State<HomeFragment> {
   @override
   void initState() {
     super.initState();
-    _homeStoreStore.loadLeagues(onFailed: (exceptionMessage) {
-      //
-    });
+    _homeStoreStore.loadLeagues();
   }
 
   @override

@@ -102,21 +102,17 @@ mixin _$HomeStore on _HomeStoreBase, Store {
   final _$loadTeamsAsyncAction = AsyncAction('_HomeStoreBase.loadTeams');
 
   @override
-  Future<dynamic> loadTeams(
-      {Function? onSuccess,
-      required void Function(ExceptionMessage) onFailed}) {
+  Future<dynamic> loadTeams({Function? onSuccess}) {
     return _$loadTeamsAsyncAction
-        .run(() => super.loadTeams(onSuccess: onSuccess, onFailed: onFailed));
+        .run(() => super.loadTeams(onSuccess: onSuccess));
   }
 
   final _$loadLeaguesAsyncAction = AsyncAction('_HomeStoreBase.loadLeagues');
 
   @override
-  Future<dynamic> loadLeagues(
-      {Function? onSuccess,
-      required void Function(ExceptionMessage) onFailed}) {
+  Future<dynamic> loadLeagues({Function? onSuccess}) {
     return _$loadLeaguesAsyncAction
-        .run(() => super.loadLeagues(onSuccess: onSuccess, onFailed: onFailed));
+        .run(() => super.loadLeagues(onSuccess: onSuccess));
   }
 
   final _$loadMatchsAsyncAction = AsyncAction('_HomeStoreBase.loadMatchs');

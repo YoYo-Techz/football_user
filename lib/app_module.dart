@@ -1,3 +1,6 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:logger/logger.dart';
 import 'package:myfootball/modules/splash/splash_widget.dart';
@@ -14,6 +17,9 @@ class AppModule extends Module {
   @override
   final List<Bind> binds = [
     Bind((i) => Logger(printer: PrettyPrinter(methodCount: 0))),
+    Bind((i) => FirebaseRemoteConfig.instance),
+    Bind((i) => FirebaseCrashlytics.instance),
+    Bind((i) => FirebaseAnalytics.instance),
     Bind((i) => APIClient()),
     Bind((i) => APIService.create(i.get<APIClient>())),
     Bind((i) => HomeRepositoryImpl.instance),

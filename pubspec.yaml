@@ -37,6 +37,12 @@ dependencies:
   cupertino_icons: ^1.0.2
   octicons_icon: ^0.0.2
   better_player: ^0.0.81
+  firebase_messaging: ^11.2.8
+  firebase_analytics: ^9.1.2
+  firebase_crashlytics: ^2.5.3
+  firebase_remote_config: ^2.0.2
+  cloud_functions: ^3.2.9
+  firebase_core: ^1.13.1
  
 
 dev_dependencies:

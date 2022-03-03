@@ -41,8 +41,7 @@ abstract class _HomeStoreBase with Store {
 
   @action
   Future loadTeams(
-      {Function? onSuccess,
-      required void Function(ExceptionMessage) onFailed}) async {
+      {Function? onSuccess,}) async {
     try {
       isLoading = true;
       teamdatalist.clear();
@@ -67,7 +66,7 @@ abstract class _HomeStoreBase with Store {
   @action
   Future loadLeagues(
       {Function? onSuccess,
-      required void Function(ExceptionMessage) onFailed}) async {
+    }) async {
     try {
       isLoading = true;
       errorMessage = null;
