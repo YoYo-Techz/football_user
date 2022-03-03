@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:myfootball/modules/auth/auth_module.dart';
+import 'package:myfootball/modules/auth/auth_route.dart';
 import 'package:myfootball/modules/home/home_module.dart';
 import 'package:myfootball/modules/home/home_route.dart';
 import 'package:myfootball/utils/rotue_utils.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashWidget extends StatefulWidget {
   SplashWidget({Key? key}) : super(key: key);
@@ -14,12 +17,29 @@ class _SplashWidgetState extends State<SplashWidget> {
   @override
   void initState() {
     super.initState();
-    nextPage();
+    checkRoute();
   }
 
-  void nextPage() {
+  checkRoute() async {
+    final prefs = await SharedPreferences.getInstance();
+    final bool? login = prefs.getBool('login');
+    print("Login $login");
+    if (login == true) {
+      homePage();
+    } else {
+      authPage();
+    }
+  }
+
+  void homePage() {
     Future.delayed(Duration(seconds: 2), () {
       RouteUtils.changeRoute<HomeModule>(HomeRoute.root, isReplace: true);
+    });
+  }
+
+  void authPage() {
+    Future.delayed(Duration(seconds: 2), () {
+      RouteUtils.changeRoute<AuthModule>(AuthRoute.root, isReplace: true);
     });
   }
 

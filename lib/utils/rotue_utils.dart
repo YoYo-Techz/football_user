@@ -5,6 +5,8 @@ import 'package:myfootball/modules/home/home_module.dart';
 import 'package:myfootball/modules/home/home_route.dart';
 import 'package:myfootball/modules/player/player_module.dart';
 
+import '../modules/auth/auth_module.dart';
+
 class RouteUtils {
   static void _goNextPage(
       {required String routeName,
@@ -47,6 +49,9 @@ class RouteUtils {
     // assert(M);
     String tempRoute = "";
     switch (M) {
+       case AuthModule:
+        tempRoute = AppRoutes.auth;
+        break;
       case HomeModule:
         tempRoute = AppRoutes.home;
         break;
