@@ -44,6 +44,8 @@ dependencies:
   cloud_functions: ^3.2.9
   firebase_core: ^1.13.1
   shared_preferences: ^2.0.13
+  url_launcher: ^6.0.20
+  package_info: ^2.0.2
  
 
 dev_dependencies:

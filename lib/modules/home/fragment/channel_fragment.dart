@@ -6,6 +6,7 @@ import 'package:myfootball/modules/home/stores/home_store.dart';
 import 'package:myfootball/modules/player/player_module.dart';
 import 'package:myfootball/modules/player/player_route.dart';
 import 'package:myfootball/utils/rotue_utils.dart';
+import 'package:myfootball/version_check/version_check.dart';
 
 class ChannelFragment extends StatefulWidget {
   ChannelFragment({Key? key}) : super(key: key);
@@ -20,7 +21,9 @@ class _ChannelFragmentState extends State<ChannelFragment> {
   @override
   void initState() {
     super.initState();
+   
     _homeStore.loadChannels();
+
   }
 
   @override
@@ -76,13 +79,13 @@ class _ChannelFragmentState extends State<ChannelFragment> {
             },
             child: Card(
               child: Container(
-                padding: EdgeInsets.all(5),
+                padding: EdgeInsets.all(4),
                 child: Row(
                   children: [
                     Image.network(
                       Config.basefootballUrl + _homeStore.channellist[i].img!,
-                      width: 75,
-                      height: 75,
+                      width: 68,
+                      height: 68,
                       fit: BoxFit.fill,
                     ),
                     SizedBox(

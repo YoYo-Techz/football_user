@@ -69,6 +69,36 @@ mixin _$HomeStore on _HomeStoreBase, Store {
     });
   }
 
+  final _$todaymatchsListAtom = Atom(name: '_HomeStoreBase.todaymatchsList');
+
+  @override
+  ObservableList<Matchs> get todaymatchsList {
+    _$todaymatchsListAtom.reportRead();
+    return super.todaymatchsList;
+  }
+
+  @override
+  set todaymatchsList(ObservableList<Matchs> value) {
+    _$todaymatchsListAtom.reportWrite(value, super.todaymatchsList, () {
+      super.todaymatchsList = value;
+    });
+  }
+
+  final _$livematchsListAtom = Atom(name: '_HomeStoreBase.livematchsList');
+
+  @override
+  ObservableList<Matchs> get livematchsList {
+    _$livematchsListAtom.reportRead();
+    return super.livematchsList;
+  }
+
+  @override
+  set livematchsList(ObservableList<Matchs> value) {
+    _$livematchsListAtom.reportWrite(value, super.livematchsList, () {
+      super.livematchsList = value;
+    });
+  }
+
   final _$teamdatalistAtom = Atom(name: '_HomeStoreBase.teamdatalist');
 
   @override
@@ -97,6 +127,112 @@ mixin _$HomeStore on _HomeStoreBase, Store {
     _$channellistAtom.reportWrite(value, super.channellist, () {
       super.channellist = value;
     });
+  }
+
+  final _$versionCheckAtom = Atom(name: '_HomeStoreBase.versionCheck');
+
+  @override
+  VersionCheck? get versionCheck {
+    _$versionCheckAtom.reportRead();
+    return super.versionCheck;
+  }
+
+  @override
+  set versionCheck(VersionCheck? value) {
+    _$versionCheckAtom.reportWrite(value, super.versionCheck, () {
+      super.versionCheck = value;
+    });
+  }
+
+  final _$enforcedVersionRawAtom =
+      Atom(name: '_HomeStoreBase.enforcedVersionRaw');
+
+  @override
+  String? get enforcedVersionRaw {
+    _$enforcedVersionRawAtom.reportRead();
+    return super.enforcedVersionRaw;
+  }
+
+  @override
+  set enforcedVersionRaw(String? value) {
+    _$enforcedVersionRawAtom.reportWrite(value, super.enforcedVersionRaw, () {
+      super.enforcedVersionRaw = value;
+    });
+  }
+
+  final _$currentVersionRawAtom =
+      Atom(name: '_HomeStoreBase.currentVersionRaw');
+
+  @override
+  String? get currentVersionRaw {
+    _$currentVersionRawAtom.reportRead();
+    return super.currentVersionRaw;
+  }
+
+  @override
+  set currentVersionRaw(String? value) {
+    _$currentVersionRawAtom.reportWrite(value, super.currentVersionRaw, () {
+      super.currentVersionRaw = value;
+    });
+  }
+
+  final _$isForceAtom = Atom(name: '_HomeStoreBase.isForce');
+
+  @override
+  bool? get isForce {
+    _$isForceAtom.reportRead();
+    return super.isForce;
+  }
+
+  @override
+  set isForce(bool? value) {
+    _$isForceAtom.reportWrite(value, super.isForce, () {
+      super.isForce = value;
+    });
+  }
+
+  final _$releaseNoteAtom = Atom(name: '_HomeStoreBase.releaseNote');
+
+  @override
+  String? get releaseNote {
+    _$releaseNoteAtom.reportRead();
+    return super.releaseNote;
+  }
+
+  @override
+  set releaseNote(String? value) {
+    _$releaseNoteAtom.reportWrite(value, super.releaseNote, () {
+      super.releaseNote = value;
+    });
+  }
+
+  final _$forceUpdateAtom = Atom(name: '_HomeStoreBase.forceUpdate');
+
+  @override
+  bool get forceUpdate {
+    _$forceUpdateAtom.reportRead();
+    return super.forceUpdate;
+  }
+
+  @override
+  set forceUpdate(bool value) {
+    _$forceUpdateAtom.reportWrite(value, super.forceUpdate, () {
+      super.forceUpdate = value;
+    });
+  }
+
+  final _$initConfigAsyncAction = AsyncAction('_HomeStoreBase.initConfig');
+
+  @override
+  Future<void> initConfig() {
+    return _$initConfigAsyncAction.run(() => super.initConfig());
+  }
+
+  final _$updateConfigAsyncAction = AsyncAction('_HomeStoreBase.updateConfig');
+
+  @override
+  Future<dynamic> updateConfig() {
+    return _$updateConfigAsyncAction.run(() => super.updateConfig());
   }
 
   final _$loadTeamsAsyncAction = AsyncAction('_HomeStoreBase.loadTeams');
@@ -136,8 +272,16 @@ isLoading: ${isLoading},
 errorMessage: ${errorMessage},
 leaguelist: ${leaguelist},
 matchsList: ${matchsList},
+todaymatchsList: ${todaymatchsList},
+livematchsList: ${livematchsList},
 teamdatalist: ${teamdatalist},
-channellist: ${channellist}
+channellist: ${channellist},
+versionCheck: ${versionCheck},
+enforcedVersionRaw: ${enforcedVersionRaw},
+currentVersionRaw: ${currentVersionRaw},
+isForce: ${isForce},
+releaseNote: ${releaseNote},
+forceUpdate: ${forceUpdate}
     ''';
   }
 }

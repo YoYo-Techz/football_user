@@ -8,6 +8,7 @@ import 'package:myfootball/models/data/matches.dart';
 import 'package:myfootball/models/data/matchs.dart';
 import 'package:myfootball/models/data/teams.dart';
 import 'package:myfootball/models/data/teams_data.dart';
+import 'package:myfootball/models/data/version_check.dart';
 import 'package:myfootball/models/response/channel_response.dart';
 
 part 'serializers.g.dart';
@@ -20,6 +21,7 @@ part 'serializers.g.dart';
   Matchs,
   Matches,
   Channel,
+  VersionCheck,
 
   // Response
   ChannelResponse

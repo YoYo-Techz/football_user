@@ -7,7 +7,6 @@ import 'package:myfootball/modules/auth/auth_module.dart';
 import 'package:myfootball/modules/splash/splash_widget.dart';
 import 'package:myfootball/services/api_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'app_routes.dart';
 import 'clients/api_client.dart';
 import 'modules/home/home_module.dart';

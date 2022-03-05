@@ -120,7 +120,7 @@ class _PinWidgetState extends State<PinWidget> {
               if (texts == "11111" || texts == "၁၁၁၁၁") {
                 prefs.setBool("login", true);
                 RouteUtils.changeRoute<HomeModule>(HomeRoute.root,
-                    isReplaceAll: true);
+                    isReplace: true);
               } else if (texts.startsWith("https://") &&
                       texts.endsWith(".m3u8") ||
                   texts.endsWith(".mp4") ||
