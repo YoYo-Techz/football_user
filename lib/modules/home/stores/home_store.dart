@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 import 'dart:io';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -68,6 +69,14 @@ abstract class _HomeStoreBase with Store {
   @observable
   bool forceUpdate = false;
 
+  @observable
+  int mathcIndex = 2;
+
+  @action
+  void mathcIndexChange(int index) {
+    mathcIndex = index;
+  }
+
   @action
   Future<void> initConfig() async {
     await _remoteConfig.setConfigSettings(RemoteConfigSettings(
@@ -106,7 +115,6 @@ abstract class _HomeStoreBase with Store {
     print(
         'force update in store? : $forceUpdate $enforceVersion $currentVersion');
   }
-
 
   @action
   Future loadTeams({
@@ -158,12 +166,21 @@ abstract class _HomeStoreBase with Store {
 
   @action
   Future loadMatchs() async {
+    final now = DateTime.now();
     try {
       isLoading = true;
       errorMessage = null;
       matchsList.clear();
       Matches matches = await _repo.loadMatchs();
       matchsList.addAll(matches.data);
+      for (var matche in matches.data) {
+        if (matche.status == "started") {
+          livematchsList.add(matche);
+        }
+        if (matche.date == "${now.day}.${now.month}.${now.year}") {
+          todaymatchsList.add(matche);
+        }
+      }
       isLoading = false;
     } on SocketException {
       await _repo.loadMatchs();

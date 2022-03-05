@@ -221,6 +221,21 @@ mixin _$HomeStore on _HomeStoreBase, Store {
     });
   }
 
+  final _$mathcIndexAtom = Atom(name: '_HomeStoreBase.mathcIndex');
+
+  @override
+  int get mathcIndex {
+    _$mathcIndexAtom.reportRead();
+    return super.mathcIndex;
+  }
+
+  @override
+  set mathcIndex(int value) {
+    _$mathcIndexAtom.reportWrite(value, super.mathcIndex, () {
+      super.mathcIndex = value;
+    });
+  }
+
   final _$initConfigAsyncAction = AsyncAction('_HomeStoreBase.initConfig');
 
   @override
@@ -265,6 +280,20 @@ mixin _$HomeStore on _HomeStoreBase, Store {
     return _$loadChannelsAsyncAction.run(() => super.loadChannels());
   }
 
+  final _$_HomeStoreBaseActionController =
+      ActionController(name: '_HomeStoreBase');
+
+  @override
+  void mathcIndexChange(int index) {
+    final _$actionInfo = _$_HomeStoreBaseActionController.startAction(
+        name: '_HomeStoreBase.mathcIndexChange');
+    try {
+      return super.mathcIndexChange(index);
+    } finally {
+      _$_HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
@@ -281,7 +310,8 @@ enforcedVersionRaw: ${enforcedVersionRaw},
 currentVersionRaw: ${currentVersionRaw},
 isForce: ${isForce},
 releaseNote: ${releaseNote},
-forceUpdate: ${forceUpdate}
+forceUpdate: ${forceUpdate},
+mathcIndex: ${mathcIndex}
     ''';
   }
 }

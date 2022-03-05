@@ -69,271 +69,689 @@ class _MatchFragmentState extends State<MatchFragment> {
             margin: EdgeInsets.all(2),
             child: Row(
               children: [
-                Container(
-                  margin: EdgeInsets.all(5),
-                  padding:
-                      EdgeInsets.only(left: 8, right: 8, top: 5, bottom: 5),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: Colors.red.shade50,
-                  ),
-                  child: Row(
+                GestureDetector(
+                  onTap: (() {
+                    _homeStoreStore.mathcIndexChange(0);
+                  }),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.live_tv, color: Colors.red),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text("Live",
-                          style: TextStyle(
-                            color: Colors.red.shade900,
-                          )),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.all(5),
-                  padding:
-                      EdgeInsets.only(left: 8, right: 8, top: 5, bottom: 5),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: Colors.blue,
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(Icons.today, color: Colors.white),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text("Today", style: TextStyle(color: Colors.white)),
-                    ],
-                  ),
-                ),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(top: 5, bottom: 2),
-                      padding:
-                          EdgeInsets.only(left: 8, right: 8, top: 5, bottom: 5),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        color: Colors.blue,
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(Icons.sports_football_rounded,
-                              color: Colors.white),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text("All Match",
-                              style: TextStyle(color: Colors.white)),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      height: 4,
-                      width: 100,
-                      decoration: BoxDecoration(
+                      Container(
+                        margin: EdgeInsets.all(5),
+                        padding: EdgeInsets.only(
+                            left: 8, right: 8, top: 5, bottom: 5),
+                        decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
-                          color: Colors.blue.shade200),
-                    )
-                  ],
+                          color: Colors.red.shade50,
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(Icons.live_tv, color: Colors.red),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text("Live",
+                                style: TextStyle(
+                                  color: Colors.red.shade900,
+                                )),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        height: 4,
+                        width: 75,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            color: (_homeStoreStore.mathcIndex == 0)
+                                ? Colors.red.shade200
+                                : Colors.transparent),
+                      )
+                    ],
+                  ),
+                ),
+                GestureDetector(
+                  onTap: (() {
+                    _homeStoreStore.mathcIndexChange(1);
+                  }),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(
+                          top: 5,
+                          bottom: 2,
+                        ),
+                        padding: EdgeInsets.only(
+                            left: 8, right: 8, top: 5, bottom: 5),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color: Colors.blue,
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(Icons.today, color: Colors.white),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text("Today",
+                                style: TextStyle(color: Colors.white)),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        height: 4,
+                        width: 85,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            color: (_homeStoreStore.mathcIndex == 1)
+                                ? Colors.blue.shade200
+                                : Colors.transparent),
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: 3,
+                ),
+                GestureDetector(
+                  onTap: (() {
+                    _homeStoreStore.mathcIndexChange(2);
+                  }),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(top: 5, bottom: 2),
+                        padding: EdgeInsets.only(
+                            left: 8, right: 8, top: 5, bottom: 5),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color: Colors.blue,
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(Icons.sports_football_rounded,
+                                color: Colors.white),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text("All Match",
+                                style: TextStyle(color: Colors.white)),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        height: 4,
+                        width: 100,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            color: (_homeStoreStore.mathcIndex == 2)
+                                ? Colors.blue.shade200
+                                : Colors.transparent),
+                      )
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: _homeStoreStore.matchsList.length,
-              itemBuilder: (context, i) {
-                // _homeStoreStore.matchs!.data[i].name
-                var data = _homeStoreStore.matchsList[i];
-                return GestureDetector(
-                  onTap: () {
-                    RouteUtils.changeRoute<PlayerModule>(PlayerRoute.root,
-                        args: data.url);
-                  },
-                  child: Card(
-                    elevation: 0,
-                    child: Container(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                  child: Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(5.0),
-                                    child: CircleAvatar(
-                                        backgroundColor: Colors.transparent,
-                                        child: Image.network(
-                                            Config.basefootballUrl +
-                                                _homeStoreStore.matchsList[i]
-                                                    .teamOne!.img!)),
-                                  ),
-                                  Text(
-                                    _homeStoreStore
-                                        .matchsList[i].teamOne!.name!,
-                                    maxLines: 1,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: Colors.grey[600],
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 15),
-                                  )
-                                ],
-                              )),
-                              Expanded(
-                                  child: Center(
-                                      child: Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text("VS"),
-                                  ),
-                                  (_homeStoreStore.matchsList[i].status !=
-                                          "idle")
-                                      ? Container(
-                                          padding: EdgeInsets.all(5),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            color: Colors.grey[200],
-                                          ),
-                                          child: Text(
-                                            _homeStoreStore
-                                                .matchsList[i].score!,
-                                            maxLines: 1,
-                                            style: TextStyle(
-                                                color: Colors.blue,
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 13),
-                                          ),
-                                        )
-                                      : Container()
-                                ],
-                              ))),
-                              Expanded(
-                                child: Column(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(5.0),
-                                      child: CircleAvatar(
-                                          backgroundColor: Colors.transparent,
-                                          child: (_homeStoreStore
-                                                      .matchsList[i].teamTwo !=
-                                                  null)
-                                              ? Image.network(
-                                                  Config.basefootballUrl +
-                                                      _homeStoreStore
-                                                          .matchsList[i]
-                                                          .teamTwo!
-                                                          .img!)
-                                              : Icon(Icons.play_arrow)),
-                                    ),
-                                    Text(
-                                      _homeStoreStore
-                                              .matchsList[i].teamTwo?.name ??
-                                          "hello",
-                                      maxLines: 1,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          color: Colors.grey[600],
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 15),
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                          Divider(),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Date : ${_homeStoreStore.matchsList[i].date}",
-                                    style: TextStyle(
-                                        color: Colors.grey[700],
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 14),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    "Time : ${_homeStoreStore.matchsList[i].time}",
-                                    style: TextStyle(
-                                        color: Colors.grey[700],
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 14),
-                                  )
-                                ],
-                              ),
-                              Container(
-                                padding: EdgeInsets.all(5),
-                                width: 130,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color:
-                                        (_homeStoreStore.matchsList[i].status ==
-                                                "idle")
-                                            ? Colors.green
-                                            : (_homeStoreStore
-                                                        .matchsList[i].status ==
-                                                    "started")
-                                                ? Colors.green
-                                                : Colors.grey[200]),
-                                child: (_homeStoreStore.matchsList[i].status ==
-                                        "idle")
-                                    ? Text(
-                                        "ပွဲစဥ်မစသေးပါ",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 13),
-                                      )
-                                    : (_homeStoreStore.matchsList[i].status ==
-                                            "started")
-                                        ? Text(
-                                            "ပွဲစဥ်စနေပါပြီ",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 13),
-                                          )
-                                        : Text(
-                                            "ပွဲစဥ်ပြီးဆုံးသွားပါပြီ",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                color: Colors.grey,
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 13),
-                                          ),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
+          //
+          (_homeStoreStore.mathcIndex == 0)
+              ? _liveMatch()
+              : (_homeStoreStore.mathcIndex == 1)
+                  ? _todayMatch()
+                  : _allMatch(),
         ],
       );
     });
+  }
+
+  Widget _allMatch() {
+    return Expanded(
+      child: ListView.builder(
+        itemCount: _homeStoreStore.matchsList.length,
+        itemBuilder: (context, i) {
+          // _homeStoreStore.matchs!.data[i].name
+          var data = _homeStoreStore.matchsList[i];
+          return GestureDetector(
+            onTap: () {
+              RouteUtils.changeRoute<PlayerModule>(PlayerRoute.root,
+                  args: data.url);
+            },
+            child: Card(
+              elevation: 0,
+              child: Container(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                            child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: CircleAvatar(
+                                  backgroundColor: Colors.transparent,
+                                  child: Image.network(Config.basefootballUrl +
+                                      _homeStoreStore
+                                          .matchsList[i].teamOne!.img!)),
+                            ),
+                            Text(
+                              _homeStoreStore.matchsList[i].teamOne!.name!,
+                              maxLines: 1,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.grey[600],
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 15),
+                            )
+                          ],
+                        )),
+                        Expanded(
+                            child: Center(
+                                child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text("VS"),
+                            ),
+                            (_homeStoreStore.matchsList[i].status != "idle")
+                                ? Container(
+                                    padding: EdgeInsets.all(5),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: Colors.grey[200],
+                                    ),
+                                    child: Text(
+                                      _homeStoreStore.matchsList[i].score!,
+                                      maxLines: 1,
+                                      style: TextStyle(
+                                          color: Colors.blue,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 13),
+                                    ),
+                                  )
+                                : Container()
+                          ],
+                        ))),
+                        Expanded(
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: CircleAvatar(
+                                    backgroundColor: Colors.transparent,
+                                    child: (_homeStoreStore
+                                                .matchsList[i].teamTwo !=
+                                            null)
+                                        ? Image.network(Config.basefootballUrl +
+                                            _homeStoreStore
+                                                .matchsList[i].teamTwo!.img!)
+                                        : Icon(Icons.play_arrow)),
+                              ),
+                              Text(
+                                _homeStoreStore.matchsList[i].teamTwo?.name ??
+                                    "hello",
+                                maxLines: 1,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.grey[600],
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 15),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    Divider(),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Date : ${_homeStoreStore.matchsList[i].date}",
+                              style: TextStyle(
+                                  color: Colors.grey[700],
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "Time : ${_homeStoreStore.matchsList[i].time}",
+                              style: TextStyle(
+                                  color: Colors.grey[700],
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14),
+                            )
+                          ],
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(5),
+                          width: 130,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color: (_homeStoreStore.matchsList[i].status ==
+                                      "idle")
+                                  ? Colors.green
+                                  : (_homeStoreStore.matchsList[i].status ==
+                                          "started")
+                                      ? Colors.green
+                                      : Colors.grey[200]),
+                          child:
+                              (_homeStoreStore.matchsList[i].status == "idle")
+                                  ? Text(
+                                      "ပွဲစဥ်မစသေးပါ",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 13),
+                                    )
+                                  : (_homeStoreStore.matchsList[i].status ==
+                                          "started")
+                                      ? Text(
+                                          "ပွဲစဥ်စနေပါပြီ",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 13),
+                                        )
+                                      : Text(
+                                          "ပွဲစဥ်ပြီးဆုံးသွားပါပြီ",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: Colors.grey,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 13),
+                                        ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _liveMatch() {
+    return Expanded(
+      child: ListView.builder(
+        itemCount: _homeStoreStore.livematchsList.length,
+        itemBuilder: (context, i) {
+          // _homeStoreStore.matchs!.data[i].name
+          var data = _homeStoreStore.livematchsList[i];
+          return GestureDetector(
+            onTap: () {
+              RouteUtils.changeRoute<PlayerModule>(PlayerRoute.root,
+                  args: data.url);
+            },
+            child: Card(
+              elevation: 0,
+              child: Container(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                            child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: CircleAvatar(
+                                  backgroundColor: Colors.transparent,
+                                  child: Image.network(Config.basefootballUrl +
+                                      _homeStoreStore
+                                          .livematchsList[i].teamOne!.img!)),
+                            ),
+                            Text(
+                              _homeStoreStore.livematchsList[i].teamOne!.name!,
+                              maxLines: 1,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.grey[600],
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 15),
+                            )
+                          ],
+                        )),
+                        Expanded(
+                            child: Center(
+                                child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text("VS"),
+                            ),
+                            (_homeStoreStore.livematchsList[i].status != "idle")
+                                ? Container(
+                                    padding: EdgeInsets.all(5),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: Colors.grey[200],
+                                    ),
+                                    child: Text(
+                                      _homeStoreStore.livematchsList[i].score!,
+                                      maxLines: 1,
+                                      style: TextStyle(
+                                          color: Colors.blue,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 13),
+                                    ),
+                                  )
+                                : Container()
+                          ],
+                        ))),
+                        Expanded(
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: CircleAvatar(
+                                    backgroundColor: Colors.transparent,
+                                    child: (_homeStoreStore
+                                                .livematchsList[i].teamTwo !=
+                                            null)
+                                        ? Image.network(Config.basefootballUrl +
+                                            _homeStoreStore.livematchsList[i]
+                                                .teamTwo!.img!)
+                                        : Icon(Icons.play_arrow)),
+                              ),
+                              Text(
+                                _homeStoreStore
+                                        .livematchsList[i].teamTwo?.name ??
+                                    "hello",
+                                maxLines: 1,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.grey[600],
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 15),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    Divider(),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Date : ${_homeStoreStore.livematchsList[i].date}",
+                              style: TextStyle(
+                                  color: Colors.grey[700],
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "Time : ${_homeStoreStore.livematchsList[i].time}",
+                              style: TextStyle(
+                                  color: Colors.grey[700],
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14),
+                            )
+                          ],
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(5),
+                          width: 130,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color: (_homeStoreStore
+                                          .livematchsList[i].status ==
+                                      "idle")
+                                  ? Colors.green
+                                  : (_homeStoreStore.livematchsList[i].status ==
+                                          "started")
+                                      ? Colors.green
+                                      : Colors.grey[200]),
+                          child: (_homeStoreStore.livematchsList[i].status ==
+                                  "idle")
+                              ? Text(
+                                  "ပွဲစဥ်မစသေးပါ",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 13),
+                                )
+                              : (_homeStoreStore.livematchsList[i].status ==
+                                      "started")
+                                  ? Text(
+                                      "ပွဲစဥ်စနေပါပြီ",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 13),
+                                    )
+                                  : Text(
+                                      "ပွဲစဥ်ပြီးဆုံးသွားပါပြီ",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: Colors.grey,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 13),
+                                    ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _todayMatch() {
+    return Expanded(
+      child: ListView.builder(
+        itemCount: _homeStoreStore.todaymatchsList.length,
+        itemBuilder: (context, i) {
+          // _homeStoreStore.matchs!.data[i].name
+          var data = _homeStoreStore.todaymatchsList[i];
+          return GestureDetector(
+            onTap: () {
+              RouteUtils.changeRoute<PlayerModule>(PlayerRoute.root,
+                  args: data.url);
+            },
+            child: Card(
+              elevation: 0,
+              child: Container(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                            child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: CircleAvatar(
+                                  backgroundColor: Colors.transparent,
+                                  child: Image.network(Config.basefootballUrl +
+                                      _homeStoreStore
+                                          .todaymatchsList[i].teamOne!.img!)),
+                            ),
+                            Text(
+                              _homeStoreStore.todaymatchsList[i].teamOne!.name!,
+                              maxLines: 1,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.grey[600],
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 15),
+                            )
+                          ],
+                        )),
+                        Expanded(
+                            child: Center(
+                                child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text("VS"),
+                            ),
+                            (_homeStoreStore.todaymatchsList[i].status !=
+                                    "idle")
+                                ? Container(
+                                    padding: EdgeInsets.all(5),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: Colors.grey[200],
+                                    ),
+                                    child: Text(
+                                      _homeStoreStore.todaymatchsList[i].score!,
+                                      maxLines: 1,
+                                      style: TextStyle(
+                                          color: Colors.blue,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 13),
+                                    ),
+                                  )
+                                : Container()
+                          ],
+                        ))),
+                        Expanded(
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: CircleAvatar(
+                                    backgroundColor: Colors.transparent,
+                                    child: (_homeStoreStore
+                                                .todaymatchsList[i].teamTwo !=
+                                            null)
+                                        ? Image.network(Config.basefootballUrl +
+                                            _homeStoreStore.todaymatchsList[i]
+                                                .teamTwo!.img!)
+                                        : Icon(Icons.play_arrow)),
+                              ),
+                              Text(
+                                _homeStoreStore
+                                        .todaymatchsList[i].teamTwo?.name ??
+                                    "hello",
+                                maxLines: 1,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.grey[600],
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 15),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    Divider(),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Date : ${_homeStoreStore.todaymatchsList[i].date}",
+                              style: TextStyle(
+                                  color: Colors.grey[700],
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "Time : ${_homeStoreStore.todaymatchsList[i].time}",
+                              style: TextStyle(
+                                  color: Colors.grey[700],
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14),
+                            )
+                          ],
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(5),
+                          width: 130,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color:
+                                  (_homeStoreStore.todaymatchsList[i].status ==
+                                          "idle")
+                                      ? Colors.green
+                                      : (_homeStoreStore
+                                                  .todaymatchsList[i].status ==
+                                              "started")
+                                          ? Colors.green
+                                          : Colors.grey[200]),
+                          child: (_homeStoreStore.todaymatchsList[i].status ==
+                                  "idle")
+                              ? Text(
+                                  "ပွဲစဥ်မစသေးပါ",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 13),
+                                )
+                              : (_homeStoreStore.todaymatchsList[i].status ==
+                                      "started")
+                                  ? Text(
+                                      "ပွဲစဥ်စနေပါပြီ",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 13),
+                                    )
+                                  : Text(
+                                      "ပွဲစဥ်ပြီးဆုံးသွားပါပြီ",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: Colors.grey,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 13),
+                                    ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
   }
 }
