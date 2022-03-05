@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:myfootball/constant/configs.dart';
+import 'package:myfootball/custom/scrollingtext.dart';
 import 'package:myfootball/modules/home/stores/home_store.dart';
 import 'package:myfootball/version_check/version_check.dart';
 
@@ -20,7 +21,7 @@ class _HomeFragmentState extends State<HomeFragment> {
     super.initState();
     _homeStore.loadLeagues();
     _homeStore.initConfig();
-  
+
     checkVersion();
   }
 
@@ -41,20 +42,9 @@ class _HomeFragmentState extends State<HomeFragment> {
         ),
         body: Column(
           children: [
-            AspectRatio(
-              aspectRatio: 16 / 8,
-              child: Container(
-                margin: EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade300,
-                  borderRadius: BorderRadius.circular(5),
-                  image: DecorationImage(
-                      image: AssetImage("assets/logo/cover_os.png"),
-                      fit: BoxFit.fill),
-                ),
-              ),
+            Expanded(
+              child: _storelist(),
             ),
-            Expanded(child: _storelist()),
           ],
         ));
   }
@@ -90,37 +80,71 @@ class _HomeFragmentState extends State<HomeFragment> {
         );
       }
 
-      return ListView.builder(
-        itemCount: _homeStore.leaguelist.length,
-        itemBuilder: (context, i) {
-          return Card(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Container(
-                    height: 50,
-                    width: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(3),
-                      image: DecorationImage(
-                        image: NetworkImage(Config.basefootballUrl +
-                            _homeStore.leaguelist[i].img),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Text(_homeStore.leaguelist[i].name),
-                ],
+      return SingleChildScrollView(
+        child: Column(
+          children: [
+            AspectRatio(
+              aspectRatio: 16 / 8,
+              child: Container(
+                margin: EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade300,
+                  borderRadius: BorderRadius.circular(5),
+                  image: DecorationImage(
+                      image: AssetImage("assets/logo/cover_os.png"),
+                      fit: BoxFit.fill),
+                ),
               ),
             ),
-          );
-        },
+            Container(
+              width: double.infinity,
+              height: 40,
+              margin: EdgeInsets.all(5),
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                  color: Colors.grey.shade300,
+                  borderRadius: BorderRadius.circular(5)),
+              child: ScrollingText(
+                text:
+                    " * CM Sport CM Sport CM Sport CM Sport CM Sport CM Sport CM Sport CM Sport CM Sport CM Sport *",
+                textStyle: TextStyle(fontSize: 15),
+              ),
+            ),
+            Column(
+              children: _homeStore.leaguelist
+                  .map(
+                    (element) => Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Container(
+                              height: 45,
+                              width: 45,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(3),
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                      Config.basefootballUrl + element.img),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(element.name),
+                          ],
+                        ),
+                      ),
+                    ),
+                  )
+                  .toList(),
+            ),
+          ],
+        ),
       );
     });
   }

@@ -84,12 +84,12 @@ class _ChannelFragmentState extends State<ChannelFragment> {
                   children: [
                     Image.network(
                       Config.basefootballUrl + _homeStore.channellist[i].img!,
-                      width: 68,
-                      height: 68,
+                      width: 50,
+                      height: 50,
                       fit: BoxFit.fill,
                     ),
                     SizedBox(
-                      width: 25,
+                      width: 20,
                     ),
                     Text(
                       _homeStore.channellist[i].name,

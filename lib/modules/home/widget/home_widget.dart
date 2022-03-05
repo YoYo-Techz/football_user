@@ -29,13 +29,9 @@ class _HomeWidgetState extends State<HomeWidget>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        
       body: SafeArea(
         top: false,
-        child: IndexedStack(
-          index: _currentIndex,
-          children: _fragment
-        ),
+        child: IndexedStack(index: _currentIndex, children: _fragment),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
@@ -46,7 +42,7 @@ class _HomeWidgetState extends State<HomeWidget>
         },
         items: allDestinations.map((Destination destination) {
           return BottomNavigationBarItem(
-              icon: Icon(destination.icon),
+              icon: destination.icon,
               backgroundColor: destination.color,
               label: destination.title);
         }).toList(),
@@ -58,13 +54,18 @@ class _HomeWidgetState extends State<HomeWidget>
 class Destination {
   const Destination(this.title, this.icon, this.color);
   final String title;
-  final IconData icon;
+  final Widget icon;
   final MaterialColor color;
 }
 
 const List<Destination> allDestinations = <Destination>[
-  Destination('Home', Icons.home, Colors.teal),
-  Destination('Match', Icons.campaign, Colors.cyan),
+  Destination('Home', Icon(Icons.home), Colors.teal),
+  Destination(
+      'Match',
+      ImageIcon(
+        AssetImage("assets/icon/match.png"),
+      ),
+      Colors.cyan),
   // Destination('News', Icons.feed, Colors.orange),
-  Destination('Channel', Icons.tv, Colors.orange),
+  Destination('Channel', Icon(Icons.tv), Colors.orange),
 ];
