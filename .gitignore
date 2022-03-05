@@ -46,3 +46,8 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Customers can add additional ignore patterns here.
+# See https://www.gitignore.io/ for more details.
+#
+IAP
