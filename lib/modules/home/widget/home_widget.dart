@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myfootball/modules/home/fragment/about_fragment.dart';
 import 'package:myfootball/modules/home/fragment/channel_fragment.dart';
 import 'package:myfootball/modules/home/fragment/home_fragment.dart';
 import 'package:myfootball/modules/home/fragment/match_fragment.dart';
@@ -23,7 +24,8 @@ class _HomeWidgetState extends State<HomeWidget>
     HomeFragment(),
     MatchFragment(),
     // NewsFragmet(),
-    ChannelFragment()
+    ChannelFragment(),
+    AboutFragment()
   ];
 
   @override
@@ -34,6 +36,7 @@ class _HomeWidgetState extends State<HomeWidget>
         child: IndexedStack(index: _currentIndex, children: _fragment),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
         onTap: (int index) {
           setState(() {
@@ -68,4 +71,5 @@ const List<Destination> allDestinations = <Destination>[
       Colors.cyan),
   // Destination('News', Icons.feed, Colors.orange),
   Destination('Channel', Icon(Icons.tv), Colors.orange),
+  Destination('About', Icon(Icons.info_outline), Colors.grey),
 ];

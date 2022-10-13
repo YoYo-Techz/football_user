@@ -15,6 +15,7 @@ class AppWidget extends StatelessWidget {
       title: 'CM sport',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        useMaterial3: true,
           primarySwatch: Colors.green,
           appBarTheme: appbarTheme,
           cardTheme: cardTheme),

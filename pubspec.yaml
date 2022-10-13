@@ -15,7 +15,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.00+1
+version: 1.0.0+1
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -24,9 +24,6 @@ dependencies:
   flutter:
     sdk: flutter
   http_interceptor:
-  flutter_mobx:
-  mobx:
-  flutter_modular:
   chopper:
   logger:
   built_value:
@@ -34,18 +31,23 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
-  octicons_icon: ^0.0.2
-  better_player: ^0.0.81
-  firebase_messaging: ^11.2.8
-  firebase_analytics: ^9.1.2
-  firebase_crashlytics: ^2.5.3
-  firebase_remote_config: ^2.0.2
-  cloud_functions: ^3.2.9
-  firebase_core: ^1.13.1
-  shared_preferences: ^2.0.13
-  url_launcher: ^6.0.20
+  better_player: ^0.0.83
+  shared_preferences: ^2.0.15
+  url_launcher: ^6.1.6
   package_info: ^2.0.2
+  octicons_icon: ^0.0.2
+  cupertino_icons: ^1.0.2
+  # Firebase
+  firebase_messaging: ^13.1.0
+  firebase_analytics: ^9.3.8
+  firebase_crashlytics: ^2.9.0
+  firebase_core: ^1.24.0
+  firebase_remote_config: ^2.0.20
+  # App Core
+  flutter_modular: ^5.0.3
+  flutter_mobx: ^2.0.6+4
+  mobx: ^2.1.1
+  lottie: ^1.4.2
  
 
 dev_dependencies:

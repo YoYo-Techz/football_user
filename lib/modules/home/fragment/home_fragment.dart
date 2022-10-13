@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:lottie/lottie.dart';
 import 'package:myfootball/constant/configs.dart';
 import 'package:myfootball/custom/scrollingtext.dart';
 import 'package:myfootball/modules/home/stores/home_store.dart';
@@ -53,8 +54,9 @@ class _HomeFragmentState extends State<HomeFragment> {
     return Observer(builder: (context) {
       if (_homeStore.isLoading) {
         return Center(
-          child: CircularProgressIndicator(
-            valueColor: new AlwaysStoppedAnimation<Color>(Colors.blue),
+          child: SizedBox(
+            height: 38,
+            child: Lottie.asset('assets/lottie/footbll.json'),
           ),
         );
       }
