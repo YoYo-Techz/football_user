@@ -17,7 +17,8 @@ class _SplashWidgetState extends State<SplashWidget> {
   @override
   void initState() {
     super.initState();
-    checkRoute();
+    // checkRoute();
+     homePage();
   }
 
   checkRoute() async {

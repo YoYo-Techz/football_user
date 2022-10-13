@@ -130,9 +130,7 @@ class _PinWidgetState extends State<PinWidget> {
               } else {
                 _phoneController.text = "";
                 _phoneFocus.unfocus();
-                Scaffold.of(context).showSnackBar(SnackBar(
-                  content: Text("Invalid Url"),
-                ));
+                Scaffold.of(context).showBottomSheet(((context) => Text("Invalid Url")));
               }
               // if (_phoneController.text.isEmpty) {
               //   return;
