@@ -10,6 +10,25 @@ class AboutFragment extends StatefulWidget {
 class _AboutFragmentState extends State<AboutFragment> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("About App"),
+        ),
+        body: Column(
+          children: [
+            ListTile(
+              title: Text("Version"),
+              subtitle: Text("1.0.0"),
+            ),
+            ListTile(
+              title: Text("Developer"),
+              subtitle: Text("YoYo Tech"),
+            ),
+            ListTile(
+              title: Text("Email"),
+              subtitle: Text("info@kohtut.me"),
+            )
+          ],
+        ));
   }
 }

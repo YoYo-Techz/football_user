@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>988419062069-095t0d67os22a0s6cc623fucttbjbvqn.apps.googleusercontent.com</string>
+	<string>81208274246-qopap89cehl5keq91pbbc3op955qbjph.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.988419062069-095t0d67os22a0s6cc623fucttbjbvqn</string>
+	<string>com.googleusercontent.apps.81208274246-qopap89cehl5keq91pbbc3op955qbjph</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDprNnSZN6bta3IvwdCcxkrwHOgGFUwQvM</string>
+	<string>AIzaSyDkTSeBiHIAgD1BibX9PLyfmmrqvk12INs</string>
 	<key>GCM_SENDER_ID</key>
-	<string>988419062069</string>
+	<string>81208274246</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.fball.myfootball</string>
 	<key>PROJECT_ID</key>
-	<string>cmsport-dec55</string>
+	<string>yoyo-football-sc</string>
 	<key>STORAGE_BUCKET</key>
-	<string>cmsport-dec55.appspot.com</string>
+	<string>yoyo-football-sc.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:988419062069:ios:c2e7790c068522972a347c</string>
+	<string>1:81208274246:ios:0206e64156dcf9801e0947</string>
 </dict>
 </plist>

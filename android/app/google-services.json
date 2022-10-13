@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "988419062069",
-    "project_id": "cmsport-dec55",
-    "storage_bucket": "cmsport-dec55.appspot.com"
+    "project_number": "81208274246",
+    "project_id": "yoyo-football-sc",
+    "storage_bucket": "yoyo-football-sc.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:988419062069:android:82d48f7f1e60a04f2a347c",
+        "mobilesdk_app_id": "1:81208274246:android:3cb85b2595eb5b241e0947",
         "android_client_info": {
           "package_name": "com.cm.sport"
         }
       },
       "oauth_client": [
         {
-          "client_id": "988419062069-ge94ubjg6u8g4aoav9vklbfr280323im.apps.googleusercontent.com",
+          "client_id": "81208274246-n7mc7rrlv685ie9q37o7vcnodmlbiad1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDM3YY2rVQ1-TgAtkVOHexMWN9NH36ZP7I"
+          "current_key": "AIzaSyBVawIVVU1YkessBUWig_j1JG8IenXSSVI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "988419062069-ge94ubjg6u8g4aoav9vklbfr280323im.apps.googleusercontent.com",
+              "client_id": "81208274246-n7mc7rrlv685ie9q37o7vcnodmlbiad1.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
