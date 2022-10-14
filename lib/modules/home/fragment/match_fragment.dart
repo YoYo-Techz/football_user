@@ -21,7 +21,7 @@ class _MatchFragmentState extends State<MatchFragment> {
   @override
   void initState() {
     super.initState();
-    _homeStoreStore.loadMatchs();
+   
   }
 
   @override
@@ -30,221 +30,221 @@ class _MatchFragmentState extends State<MatchFragment> {
         appBar: AppBar(
           title: Text("CM Sport"),
         ),
-        body: _storelist());
+        body: Container());
   }
 
-  Widget _storelist() {
-    return Observer(builder: (context) {
-      if (_homeStoreStore.isLoading) {
-        return Center(
-          child: CircularProgressIndicator(
-            valueColor: new AlwaysStoppedAnimation<Color>(Colors.blue),
-          ),
-        );
-      }
+  // Widget _storelist() {
+  //   return Observer(builder: (context) {
+  //     if (_homeStoreStore.isLoading) {
+  //       return Center(
+  //         child: CircularProgressIndicator(
+  //           valueColor: new AlwaysStoppedAnimation<Color>(Colors.blue),
+  //         ),
+  //       );
+  //     }
 
-      if (_homeStoreStore.matchsList.isEmpty) {
-        return Column(
-          children: [
-            Expanded(
-              child: Text(
-                "Empty",
-              ),
-            ),
-            _homeStoreStore.errorMessage != null
-                ? Padding(
-                    padding: EdgeInsets.only(left: 20.0, right: 20, bottom: 70),
-                    child: Text(
-                      _homeStoreStore.errorMessage!,
-                      style: TextStyle(color: Colors.red),
-                    ),
-                  )
-                : SizedBox()
-          ],
-        );
-      }
+  //     if (_homeStoreStore.matchsList.isEmpty) {
+  //       return Column(
+  //         children: [
+  //           Expanded(
+  //             child: Text(
+  //               "Empty",
+  //             ),
+  //           ),
+  //           _homeStoreStore.errorMessage != null
+  //               ? Padding(
+  //                   padding: EdgeInsets.only(left: 20.0, right: 20, bottom: 70),
+  //                   child: Text(
+  //                     _homeStoreStore.errorMessage!,
+  //                     style: TextStyle(color: Colors.red),
+  //                   ),
+  //                 )
+  //               : SizedBox()
+  //         ],
+  //       );
+  //     }
 
-      return Column(
-        children: [
-          Container(
-            margin: EdgeInsets.all(2),
-            child: Row(
-              children: [
-                GestureDetector(
-                  onTap: (() {
-                    _homeStoreStore.mathcIndexChange(0);
-                  }),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.all(5),
-                        padding: EdgeInsets.only(
-                            left: 8, right: 8, top: 5, bottom: 5),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: Colors.red.shade50,
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(Icons.live_tv, color: Colors.red),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Text("Live",
-                                style: TextStyle(
-                                  color: Colors.red.shade900,
-                                )),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        height: 4,
-                        width: 75,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: (_homeStoreStore.mathcIndex == 0)
-                                ? Colors.red.shade200
-                                : Colors.transparent),
-                      )
-                    ],
-                  ),
-                ),
-                GestureDetector(
-                  onTap: (() {
-                    _homeStoreStore.mathcIndexChange(1);
-                  }),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(
-                          top: 5,
-                          bottom: 2,
-                        ),
-                        padding: EdgeInsets.only(
-                            left: 8, right: 8, top: 5, bottom: 5),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: Colors.blue,
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(Icons.today, color: Colors.white),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Text("Today",
-                                style: TextStyle(color: Colors.white)),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        height: 4,
-                        width: 85,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: (_homeStoreStore.mathcIndex == 1)
-                                ? Colors.blue.shade200
-                                : Colors.transparent),
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: 3,
-                ),
-                GestureDetector(
-                  onTap: (() {
-                    _homeStoreStore.mathcIndexChange(2);
-                  }),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(top: 5, bottom: 2),
-                        padding: EdgeInsets.only(
-                            left: 8, right: 8, top: 5, bottom: 5),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: Colors.blue,
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(Icons.sports_football_rounded,
-                                color: Colors.white),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Text("All Match",
-                                style: TextStyle(color: Colors.white)),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        height: 4,
-                        width: 100,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: (_homeStoreStore.mathcIndex == 2)
-                                ? Colors.blue.shade200
-                                : Colors.transparent),
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          //
-          (_homeStoreStore.mathcIndex == 0)
-              ? _liveMatch()
-              : (_homeStoreStore.mathcIndex == 1)
-                  ? _todayMatch()
-                  : _allMatch(),
-        ],
-      );
-    });
-  }
+  //     return Column(
+  //       children: [
+  //         Container(
+  //           margin: EdgeInsets.all(2),
+  //           child: Row(
+  //             children: [
+  //               GestureDetector(
+  //                 onTap: (() {
+  //                   _homeStoreStore.mathcIndexChange(0);
+  //                 }),
+  //                 child: Column(
+  //                   mainAxisSize: MainAxisSize.min,
+  //                   children: [
+  //                     Container(
+  //                       margin: EdgeInsets.all(5),
+  //                       padding: EdgeInsets.only(
+  //                           left: 8, right: 8, top: 5, bottom: 5),
+  //                       decoration: BoxDecoration(
+  //                         borderRadius: BorderRadius.circular(5),
+  //                         color: Colors.red.shade50,
+  //                       ),
+  //                       child: Row(
+  //                         children: [
+  //                           Icon(Icons.live_tv, color: Colors.red),
+  //                           SizedBox(
+  //                             width: 5,
+  //                           ),
+  //                           Text("Live",
+  //                               style: TextStyle(
+  //                                 color: Colors.red.shade900,
+  //                               )),
+  //                         ],
+  //                       ),
+  //                     ),
+  //                     Container(
+  //                       height: 4,
+  //                       width: 75,
+  //                       decoration: BoxDecoration(
+  //                           borderRadius: BorderRadius.circular(5),
+  //                           color: (_homeStoreStore.mathcIndex == 0)
+  //                               ? Colors.red.shade200
+  //                               : Colors.transparent),
+  //                     )
+  //                   ],
+  //                 ),
+  //               ),
+  //               GestureDetector(
+  //                 onTap: (() {
+  //                   _homeStoreStore.mathcIndexChange(1);
+  //                 }),
+  //                 child: Column(
+  //                   mainAxisSize: MainAxisSize.min,
+  //                   children: [
+  //                     Container(
+  //                       margin: EdgeInsets.only(
+  //                         top: 5,
+  //                         bottom: 2,
+  //                       ),
+  //                       padding: EdgeInsets.only(
+  //                           left: 8, right: 8, top: 5, bottom: 5),
+  //                       decoration: BoxDecoration(
+  //                         borderRadius: BorderRadius.circular(5),
+  //                         color: Colors.blue,
+  //                       ),
+  //                       child: Row(
+  //                         children: [
+  //                           Icon(Icons.today, color: Colors.white),
+  //                           SizedBox(
+  //                             width: 5,
+  //                           ),
+  //                           Text("Today",
+  //                               style: TextStyle(color: Colors.white)),
+  //                         ],
+  //                       ),
+  //                     ),
+  //                     Container(
+  //                       height: 4,
+  //                       width: 85,
+  //                       decoration: BoxDecoration(
+  //                           borderRadius: BorderRadius.circular(5),
+  //                           color: (_homeStoreStore.mathcIndex == 1)
+  //                               ? Colors.blue.shade200
+  //                               : Colors.transparent),
+  //                     )
+  //                   ],
+  //                 ),
+  //               ),
+  //               SizedBox(
+  //                 width: 3,
+  //               ),
+  //               GestureDetector(
+  //                 onTap: (() {
+  //                   _homeStoreStore.mathcIndexChange(2);
+  //                 }),
+  //                 child: Column(
+  //                   mainAxisSize: MainAxisSize.min,
+  //                   children: [
+  //                     Container(
+  //                       margin: EdgeInsets.only(top: 5, bottom: 2),
+  //                       padding: EdgeInsets.only(
+  //                           left: 8, right: 8, top: 5, bottom: 5),
+  //                       decoration: BoxDecoration(
+  //                         borderRadius: BorderRadius.circular(5),
+  //                         color: Colors.blue,
+  //                       ),
+  //                       child: Row(
+  //                         children: [
+  //                           Icon(Icons.sports_football_rounded,
+  //                               color: Colors.white),
+  //                           SizedBox(
+  //                             width: 5,
+  //                           ),
+  //                           Text("All Match",
+  //                               style: TextStyle(color: Colors.white)),
+  //                         ],
+  //                       ),
+  //                     ),
+  //                     Container(
+  //                       height: 4,
+  //                       width: 100,
+  //                       decoration: BoxDecoration(
+  //                           borderRadius: BorderRadius.circular(5),
+  //                           color: (_homeStoreStore.mathcIndex == 2)
+  //                               ? Colors.blue.shade200
+  //                               : Colors.transparent),
+  //                     )
+  //                   ],
+  //                 ),
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //         //
+  //         (_homeStoreStore.mathcIndex == 0)
+  //             ? _liveMatch()
+  //             : (_homeStoreStore.mathcIndex == 1)
+  //                 ? _todayMatch()
+  //                 : _allMatch(),
+  //       ],
+  //     );
+  //   });
+  // }
 
-  Widget _allMatch() {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: _homeStoreStore.matchsList.length,
-        itemBuilder: (context, i) {
-          // _homeStoreStore.matchs!.data[i].name
-          var data = _homeStoreStore.matchsList[i];
-          return _mapItem(matchs: data);
-        },
-      ),
-    );
-  }
+  // Widget _allMatch() {
+  //   return Expanded(
+  //     child: ListView.builder(
+  //       itemCount: _homeStoreStore.matchsList.length,
+  //       itemBuilder: (context, i) {
+  //         // _homeStoreStore.matchs!.data[i].name
+  //         var data = _homeStoreStore.matchsList[i];
+  //         return _mapItem(matchs: data);
+  //       },
+  //     ),
+  //   );
+  // }
 
-  Widget _liveMatch() {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: _homeStoreStore.livematchsList.length,
-        itemBuilder: (context, i) {
-          // _homeStoreStore.matchs!.data[i].name
-          var data = _homeStoreStore.livematchsList[i];
-          return _mapItem(matchs: data);
-        },
-      ),
-    );
-  }
+  // Widget _liveMatch() {
+  //   return Expanded(
+  //     child: ListView.builder(
+  //       itemCount: _homeStoreStore.livematchsList.length,
+  //       itemBuilder: (context, i) {
+  //         // _homeStoreStore.matchs!.data[i].name
+  //         var data = _homeStoreStore.livematchsList[i];
+  //         return _mapItem(matchs: data);
+  //       },
+  //     ),
+  //   );
+  // }
 
-  Widget _todayMatch() {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: _homeStoreStore.todaymatchsList.length,
-        itemBuilder: (context, i) {
-          // _homeStoreStore.matchs!.data[i].name
-          var data = _homeStoreStore.todaymatchsList[i];
-          return _mapItem(matchs: data);
-        },
-      ),
-    );
-  }
+  // Widget _todayMatch() {
+  //   return Expanded(
+  //     child: ListView.builder(
+  //       itemCount: _homeStoreStore.todaymatchsList.length,
+  //       itemBuilder: (context, i) {
+  //         // _homeStoreStore.matchs!.data[i].name
+  //         var data = _homeStoreStore.todaymatchsList[i];
+  //         return _mapItem(matchs: data);
+  //       },
+  //     ),
+  //   );
+  // }
 
   Widget _mapItem({required Matchs matchs}) {
     return GestureDetector(
@@ -424,4 +424,5 @@ class _MatchFragmentState extends State<MatchFragment> {
       ),
     );
   }
+
 }

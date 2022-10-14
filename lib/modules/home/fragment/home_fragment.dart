@@ -20,7 +20,7 @@ class _HomeFragmentState extends State<HomeFragment> {
   @override
   void initState() {
     super.initState();
-    _homeStore.loadLeagues();
+    // _homeStore.loadLeagues();
     _homeStore.initConfig();
 
     checkVersion();
@@ -123,21 +123,21 @@ class _HomeFragmentState extends State<HomeFragment> {
                             SizedBox(
                               width: 5,
                             ),
-                            Container(
-                              height: 45,
-                              width: 45,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(3),
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                      Config.basefootballUrl + element.img),
-                                ),
-                              ),
-                            ),
+                            // Container(
+                            //   height: 45,
+                            //   width: 45,
+                            //   decoration: BoxDecoration(
+                            //     borderRadius: BorderRadius.circular(3),
+                            //     image: DecorationImage(
+                            //       image: NetworkImage(
+                            //           Config.basefootballUrl + element.country.),
+                            //     ),
+                            //   ),
+                            // ),
                             SizedBox(
                               width: 5,
                             ),
-                            Text(element.name),
+                            Text(element.name!),
                           ],
                         ),
                       ),

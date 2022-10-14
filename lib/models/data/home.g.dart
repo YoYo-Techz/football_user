@@ -1,21 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of league;
+part of home;
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<League> _$leagueSerializer = new _$LeagueSerializer();
+Serializer<Home> _$homeSerializer = new _$HomeSerializer();
 
-class _$LeagueSerializer implements StructuredSerializer<League> {
+class _$HomeSerializer implements StructuredSerializer<Home> {
   @override
-  final Iterable<Type> types = const [League, _$League];
+  final Iterable<Type> types = const [Home, _$Home];
   @override
-  final String wireName = 'League';
+  final String wireName = 'Home';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, League object,
+  Iterable<Object?> serialize(Serializers serializers, Home object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       'id',
@@ -26,6 +26,20 @@ class _$LeagueSerializer implements StructuredSerializer<League> {
     if (value != null) {
       result
         ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.nameMm;
+    if (value != null) {
+      result
+        ..add('name_mm')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.image;
+    if (value != null) {
+      result
+        ..add('image')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -40,9 +54,9 @@ class _$LeagueSerializer implements StructuredSerializer<League> {
   }
 
   @override
-  League deserialize(Serializers serializers, Iterable<Object?> serialized,
+  Home deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new LeagueBuilder();
+    final result = new HomeBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -58,6 +72,14 @@ class _$LeagueSerializer implements StructuredSerializer<League> {
           result.name = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'name_mm':
+          result.nameMm = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'image':
+          result.image = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'country':
           result.country.replace(serializers.deserialize(value,
               specifiedType: const FullType(Country))! as Country);
@@ -69,54 +91,66 @@ class _$LeagueSerializer implements StructuredSerializer<League> {
   }
 }
 
-class _$League extends League {
+class _$Home extends Home {
   @override
   final int id;
   @override
   final String? name;
   @override
+  final String? nameMm;
+  @override
+  final String? image;
+  @override
   final Country? country;
 
-  factory _$League([void Function(LeagueBuilder)? updates]) =>
-      (new LeagueBuilder()..update(updates)).build();
+  factory _$Home([void Function(HomeBuilder)? updates]) =>
+      (new HomeBuilder()..update(updates)).build();
 
-  _$League._({required this.id, this.name, this.country}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(id, 'League', 'id');
+  _$Home._({required this.id, this.name, this.nameMm, this.image, this.country})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(id, 'Home', 'id');
   }
 
   @override
-  League rebuild(void Function(LeagueBuilder) updates) =>
+  Home rebuild(void Function(HomeBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  LeagueBuilder toBuilder() => new LeagueBuilder()..replace(this);
+  HomeBuilder toBuilder() => new HomeBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is League &&
+    return other is Home &&
         id == other.id &&
         name == other.name &&
+        nameMm == other.nameMm &&
+        image == other.image &&
         country == other.country;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc($jc(0, id.hashCode), name.hashCode), country.hashCode));
+    return $jf($jc(
+        $jc($jc($jc($jc(0, id.hashCode), name.hashCode), nameMm.hashCode),
+            image.hashCode),
+        country.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('League')
+    return (newBuiltValueToStringHelper('Home')
           ..add('id', id)
           ..add('name', name)
+          ..add('nameMm', nameMm)
+          ..add('image', image)
           ..add('country', country))
         .toString();
   }
 }
 
-class LeagueBuilder implements Builder<League, LeagueBuilder> {
-  _$League? _$v;
+class HomeBuilder implements Builder<Home, HomeBuilder> {
+  _$Home? _$v;
 
   int? _id;
   int? get id => _$this._id;
@@ -126,17 +160,27 @@ class LeagueBuilder implements Builder<League, LeagueBuilder> {
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
 
+  String? _nameMm;
+  String? get nameMm => _$this._nameMm;
+  set nameMm(String? nameMm) => _$this._nameMm = nameMm;
+
+  String? _image;
+  String? get image => _$this._image;
+  set image(String? image) => _$this._image = image;
+
   CountryBuilder? _country;
   CountryBuilder get country => _$this._country ??= new CountryBuilder();
   set country(CountryBuilder? country) => _$this._country = country;
 
-  LeagueBuilder();
+  HomeBuilder();
 
-  LeagueBuilder get _$this {
+  HomeBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _id = $v.id;
       _name = $v.name;
+      _nameMm = $v.nameMm;
+      _image = $v.image;
       _country = $v.country?.toBuilder();
       _$v = null;
     }
@@ -144,24 +188,26 @@ class LeagueBuilder implements Builder<League, LeagueBuilder> {
   }
 
   @override
-  void replace(League other) {
+  void replace(Home other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$League;
+    _$v = other as _$Home;
   }
 
   @override
-  void update(void Function(LeagueBuilder)? updates) {
+  void update(void Function(HomeBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$League build() {
-    _$League _$result;
+  _$Home build() {
+    _$Home _$result;
     try {
       _$result = _$v ??
-          new _$League._(
-              id: BuiltValueNullFieldError.checkNotNull(id, 'League', 'id'),
+          new _$Home._(
+              id: BuiltValueNullFieldError.checkNotNull(id, 'Home', 'id'),
               name: name,
+              nameMm: nameMm,
+              image: image,
               country: _country?.build());
     } catch (_) {
       late String _$failedField;
@@ -170,7 +216,7 @@ class LeagueBuilder implements Builder<League, LeagueBuilder> {
         _country?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'League', _$failedField, e.toString());
+            'Home', _$failedField, e.toString());
       }
       rethrow;
     }

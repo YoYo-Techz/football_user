@@ -17,30 +17,10 @@ class _$APIService extends APIService {
   final definitionType = APIService;
 
   @override
-  Future<Response<Teams>> teams() {
-    final $url = '/api/teams';
-    final $request = Request('GET', $url, client.baseUrl);
-    return client.send<Teams, Teams>($request);
-  }
-
-  @override
-  Future<Response<Matches>> matchs() {
-    final $url = '/api/matches';
-    final $request = Request('GET', $url, client.baseUrl);
-    return client.send<Matches, Matches>($request);
-  }
-
-  @override
-  Future<Response<Leagues>> leagues() {
-    final $url = '/api/leagues';
-    final $request = Request('GET', $url, client.baseUrl);
-    return client.send<Leagues, Leagues>($request);
-  }
-
-  @override
-  Future<Response<ChannelResponse>> channel() {
-    final $url = '/api/channel';
-    final $request = Request('GET', $url, client.baseUrl);
-    return client.send<ChannelResponse, ChannelResponse>($request);
+  Future<Response<AllEventResponse>> getAllEvent() {
+    final $url = '/api/events';
+    final $request = Request('POST', $url, client.baseUrl);
+    return client.send<AllEventResponse, AllEventResponse>($request,
+        requestConverter: FormUrlEncodedConverter.requestFactory);
   }
 }

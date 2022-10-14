@@ -7,7 +7,7 @@ class APIInterceptor extends RequestInterceptor {
   FutureOr<Request> onRequest(Request request) {
     return request.copyWith(headers: {
       HttpHeaders.acceptHeader: "application/json",
-      "token": "1WVHaRpYf4Y7pQT08C13rnAK6R4BZlDjdSk23Wrm"
+      // "token": "1WVHaRpYf4Y7pQT08C13rnAK6R4BZlDjdSk23Wrm"
     });
   }
 }

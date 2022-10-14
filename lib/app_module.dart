@@ -4,6 +4,7 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:logger/logger.dart';
 import 'package:myfootball/modules/auth/auth_module.dart';
+import 'package:myfootball/modules/home/stores/event_store.dart';
 import 'package:myfootball/modules/splash/splash_widget.dart';
 import 'package:myfootball/services/api_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -26,6 +27,7 @@ class AppModule extends Module {
     Bind((i) => APIService.create(i.get<APIClient>())),
     Bind((i) => HomeRepositoryImpl.instance),
     Bind((i) => HomeStore()),
+    Bind((i) => EventStore()),
   ];
 
   // Provide all the routes for your module

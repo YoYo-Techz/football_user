@@ -1,4 +1,4 @@
-library league;
+library away;
 
 import 'dart:convert';
 
@@ -8,27 +8,31 @@ import 'package:built_value/serializer.dart';
 import 'package:myfootball/config/serializers.dart';
 import 'package:myfootball/models/data/country.dart';
 
-part 'league.g.dart';
+part 'away.g.dart';
 
-abstract class League implements Built<League, LeagueBuilder> {
-  League._();
+abstract class Away implements Built<Away, AwayBuilder> {
+  Away._();
 
-  factory League([updates(LeagueBuilder b)]) = _$League;
+  factory Away([updates(AwayBuilder b)]) = _$Away;
 
   @BuiltValueField(wireName: 'id')
   int get id;
   @BuiltValueField(wireName: 'name')
   String? get name;
+  @BuiltValueField(wireName: 'name_mm')
+  String? get nameMm;
+  @BuiltValueField(wireName: 'image')
+  String? get image;
   @BuiltValueField(wireName: 'country')
   Country? get country;
   String toJson() {
-    return json.encode(serializers.serializeWith(League.serializer, this));
+    return json.encode(serializers.serializeWith(Away.serializer, this));
   }
 
-  static League? fromJson(String jsonString) {
+  static Away? fromJson(String jsonString) {
     return serializers.deserializeWith(
-        League.serializer, json.decode(jsonString));
+        Away.serializer, json.decode(jsonString));
   }
 
-  static Serializer<League> get serializer => _$leagueSerializer;
+  static Serializer<Away> get serializer => _$awaySerializer;
 }

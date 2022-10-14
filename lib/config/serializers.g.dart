@@ -7,8 +7,14 @@ part of 'serializers.dart';
 // **************************************************************************
 
 Serializers _$serializers = (new Serializers().toBuilder()
+      ..add(AllEventResponse.serializer)
+      ..add(Away.serializer)
       ..add(Channel.serializer)
       ..add(ChannelResponse.serializer)
+      ..add(Country.serializer)
+      ..add(Event.serializer)
+      ..add(EventData.serializer)
+      ..add(Home.serializer)
       ..add(League.serializer)
       ..add(Leagues.serializer)
       ..add(Matches.serializer)
@@ -19,6 +25,12 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Channel)]),
           () => new ListBuilder<Channel>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(Event)]),
+          () => new ListBuilder<Event>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(EventData)]),
+          () => new ListBuilder<EventData>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(League)]),
           () => new ListBuilder<League>())

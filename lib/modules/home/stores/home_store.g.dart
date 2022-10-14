@@ -250,36 +250,6 @@ mixin _$HomeStore on _HomeStoreBase, Store {
     return _$updateConfigAsyncAction.run(() => super.updateConfig());
   }
 
-  final _$loadTeamsAsyncAction = AsyncAction('_HomeStoreBase.loadTeams');
-
-  @override
-  Future<dynamic> loadTeams({Function? onSuccess}) {
-    return _$loadTeamsAsyncAction
-        .run(() => super.loadTeams(onSuccess: onSuccess));
-  }
-
-  final _$loadLeaguesAsyncAction = AsyncAction('_HomeStoreBase.loadLeagues');
-
-  @override
-  Future<dynamic> loadLeagues({Function? onSuccess}) {
-    return _$loadLeaguesAsyncAction
-        .run(() => super.loadLeagues(onSuccess: onSuccess));
-  }
-
-  final _$loadMatchsAsyncAction = AsyncAction('_HomeStoreBase.loadMatchs');
-
-  @override
-  Future<dynamic> loadMatchs() {
-    return _$loadMatchsAsyncAction.run(() => super.loadMatchs());
-  }
-
-  final _$loadChannelsAsyncAction = AsyncAction('_HomeStoreBase.loadChannels');
-
-  @override
-  Future<dynamic> loadChannels() {
-    return _$loadChannelsAsyncAction.run(() => super.loadChannels());
-  }
-
   final _$_HomeStoreBaseActionController =
       ActionController(name: '_HomeStoreBase');
 

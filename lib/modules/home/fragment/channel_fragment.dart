@@ -21,8 +21,6 @@ class _ChannelFragmentState extends State<ChannelFragment> {
   @override
   void initState() {
     super.initState();
-   
-    _homeStore.loadChannels();
 
   }
 
@@ -32,77 +30,78 @@ class _ChannelFragmentState extends State<ChannelFragment> {
       appBar: AppBar(
         title: Text("CM Sport"),
       ),
-      body: _storelist(),
+      body: Container()
     );
   }
 
-  Widget _storelist() {
-    return Observer(builder: (context) {
-//
-      if (_homeStore.isLoading) {
-        return Center(
-          child: CircularProgressIndicator(
-            valueColor: new AlwaysStoppedAnimation<Color>(Colors.blue),
-          ),
-        );
-      }
-//
-      if (_homeStore.channellist.isEmpty) {
-        return Column(
-          children: [
-            Expanded(
-              child: Text(
-                "Empty",
-              ),
-            ),
-            _homeStore.errorMessage != null
-                ? Padding(
-                    padding: EdgeInsets.only(left: 20.0, right: 20, bottom: 70),
-                    child: Text(
-                      _homeStore.errorMessage!,
-                      style: TextStyle(color: Colors.red),
-                    ),
-                  )
-                : SizedBox()
-          ],
-        );
-      }
-//
-      return ListView.builder(
-        itemCount: _homeStore.channellist.length,
-        itemBuilder: (context, i) {
-          var data = _homeStore.channellist[i];
-          return GestureDetector(
-            onTap: () {
-              RouteUtils.changeRoute<PlayerModule>(PlayerRoute.root,
-                  args: data.link);
-            },
-            child: Card(
-              child: Container(
-                padding: EdgeInsets.all(4),
-                child: Row(
-                  children: [
-                    Image.network(
-                      Config.basefootballUrl + _homeStore.channellist[i].img!,
-                      width: 50,
-                      height: 50,
-                      fit: BoxFit.fill,
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Text(
-                      _homeStore.channellist[i].name,
-                      style:
-                          TextStyle(fontWeight: FontWeight.w700, fontSize: 17),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
-        },
-      );
-    });
-  }
+//   Widget _storelist() {
+//     return Observer(builder: (context) {
+// //
+//       if (_homeStore.isLoading) {
+//         return Center(
+//           child: CircularProgressIndicator(
+//             valueColor: new AlwaysStoppedAnimation<Color>(Colors.blue),
+//           ),
+//         );
+//       }
+// //
+//       if (_homeStore.channellist.isEmpty) {
+//         return Column(
+//           children: [
+//             Expanded(
+//               child: Text(
+//                 "Empty",
+//               ),
+//             ),
+//             _homeStore.errorMessage != null
+//                 ? Padding(
+//                     padding: EdgeInsets.only(left: 20.0, right: 20, bottom: 70),
+//                     child: Text(
+//                       _homeStore.errorMessage!,
+//                       style: TextStyle(color: Colors.red),
+//                     ),
+//                   )
+//                 : SizedBox()
+//           ],
+//         );
+//       }
+// //
+//       return ListView.builder(
+//         itemCount: _homeStore.channellist.length,
+//         itemBuilder: (context, i) {
+//           var data = _homeStore.channellist[i];
+//           return GestureDetector(
+//             onTap: () {
+//               RouteUtils.changeRoute<PlayerModule>(PlayerRoute.root,
+//                   args: data.link);
+//             },
+//             child: Card(
+//               child: Container(
+//                 padding: EdgeInsets.all(4),
+//                 child: Row(
+//                   children: [
+//                     Image.network(
+//                       Config.basefootballUrl + _homeStore.channellist[i].img!,
+//                       width: 50,
+//                       height: 50,
+//                       fit: BoxFit.fill,
+//                     ),
+//                     SizedBox(
+//                       width: 20,
+//                     ),
+//                     Text(
+//                       _homeStore.channellist[i].name,
+//                       style:
+//                           TextStyle(fontWeight: FontWeight.w700, fontSize: 17),
+//                     ),
+//                   ],
+//                 ),
+//               ),
+//             ),
+//           );
+//         },
+//       );
+//     });
+//   }
+
 }
