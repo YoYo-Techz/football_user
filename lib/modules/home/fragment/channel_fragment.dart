@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:myfootball/constant/configs.dart';
 import 'package:myfootball/modules/home/stores/home_store.dart';
-import 'package:myfootball/modules/player/player_module.dart';
-import 'package:myfootball/modules/player/player_route.dart';
-import 'package:myfootball/utils/rotue_utils.dart';
-import 'package:myfootball/version_check/version_check.dart';
 
 class ChannelFragment extends StatefulWidget {
   ChannelFragment({Key? key}) : super(key: key);
@@ -16,7 +10,7 @@ class ChannelFragment extends StatefulWidget {
 }
 
 class _ChannelFragmentState extends State<ChannelFragment> {
-  HomeStore _homeStore = Modular.get<HomeStore>();
+
 
   @override
   void initState() {

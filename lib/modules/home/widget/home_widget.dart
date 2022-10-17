@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myfootball/modules/home/fragment/about_fragment.dart';
 import 'package:myfootball/modules/home/fragment/channel_fragment.dart';
-import 'package:myfootball/modules/home/fragment/event_fragment.dart';
-import 'package:myfootball/modules/home/fragment/home_fragment.dart';
-import 'package:myfootball/modules/home/fragment/match_fragment.dart';
+import 'package:myfootball/modules/home/fragment/index_fragment.dart';
 import 'package:myfootball/modules/home/fragment/new_fragment.dart';
 
 class HomeWidget extends StatefulWidget {
@@ -22,10 +20,9 @@ class _HomeWidgetState extends State<HomeWidget>
   }
 
   List<Widget> _fragment = [
-    EventFragment(),
-    EventFragment(),
-    // NewsFragmet(),
-    EventFragment(),
+    IndexFragment(),
+    NewsFragmet(),
+    ChannelFragment(),
     AboutFragment()
   ];
 
@@ -64,13 +61,7 @@ class Destination {
 
 const List<Destination> allDestinations = <Destination>[
   Destination('Home', Icon(Icons.home), Colors.teal),
-  Destination(
-      'Event',
-      ImageIcon(
-        AssetImage("assets/icon/match.png"),
-      ),
-      Colors.cyan),
-  // Destination('News', Icons.feed, Colors.orange),
+  Destination('News', Icon(Icons.feed), Colors.orange),
   Destination('Channel', Icon(Icons.tv), Colors.orange),
   Destination('About', Icon(Icons.info_outline), Colors.grey),
 ];

@@ -18,7 +18,8 @@ class AppWidget extends StatelessWidget {
         useMaterial3: true,
           primarySwatch: Colors.green,
           appBarTheme: appbarTheme,
-          cardTheme: cardTheme),
+          // cardTheme: cardTheme
+          ),
       routeInformationParser: Modular.routeInformationParser,
       routerDelegate: Modular.routerDelegate,
     );

@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:myfootball/config/serializers.dart';
+import 'package:myfootball/models/data/country.dart';
 
 part 'teams_data.g.dart';
 
@@ -16,8 +17,12 @@ abstract class TeamsData implements Built<TeamsData, TeamsDataBuilder> {
   int? get id;
   @BuiltValueField(wireName: 'name')
   String? get name;
-  @BuiltValueField(wireName: 'img')
-  String? get img;
+  @BuiltValueField(wireName: 'name_mm')
+  String? get nameMm;
+  @BuiltValueField(wireName: 'image')
+  String? get image;
+  @BuiltValueField(wireName: 'country')
+  Country? get country;
   String toJson() {
     return json.encode(serializers.serializeWith(TeamsData.serializer, this));
   }
@@ -29,4 +34,3 @@ abstract class TeamsData implements Built<TeamsData, TeamsDataBuilder> {
 
   static Serializer<TeamsData> get serializer => _$teamsDataSerializer;
 }
-

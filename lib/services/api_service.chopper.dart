@@ -23,4 +23,22 @@ class _$APIService extends APIService {
     return client.send<AllEventResponse, AllEventResponse>($request,
         requestConverter: FormUrlEncodedConverter.requestFactory);
   }
+
+  @override
+  Future<Response<TeamsListResponse>> getTeamsList(int page) {
+    final $url = '/api/teams';
+    final $body = <String, dynamic>{'page': page};
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<TeamsListResponse, TeamsListResponse>($request,
+        requestConverter: FormUrlEncodedConverter.requestFactory);
+  }
+
+  @override
+  Future<Response<LeaguesListResponse>> getLeaguesList(int page) {
+    final $url = '/api/leagues';
+    final $body = <String, dynamic>{'page': page};
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<LeaguesListResponse, LeaguesListResponse>($request,
+        requestConverter: FormUrlEncodedConverter.requestFactory);
+  }
 }

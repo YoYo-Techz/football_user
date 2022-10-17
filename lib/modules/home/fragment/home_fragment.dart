@@ -21,8 +21,7 @@ class _HomeFragmentState extends State<HomeFragment> {
   void initState() {
     super.initState();
     // _homeStore.loadLeagues();
-    _homeStore.initConfig();
-
+    // _homeStore.initConfig();
     checkVersion();
   }
 
@@ -38,9 +37,7 @@ class _HomeFragmentState extends State<HomeFragment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("CM Sport"),
-        ),
+      
         body: Column(
           children: [
             Expanded(

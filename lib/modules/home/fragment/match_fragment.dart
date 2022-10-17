@@ -286,7 +286,7 @@ class _MatchFragmentState extends State<MatchFragment> {
                         child: CircleAvatar(
                             backgroundColor: Colors.transparent,
                             child: Image.network(
-                                Config.basefootballUrl + matchs.teamOne!.img!)),
+                                Config.basefootballUrl + matchs.teamOne!.image!)),
                       ),
                       Text(
                         matchs.teamOne!.name!,
@@ -335,7 +335,7 @@ class _MatchFragmentState extends State<MatchFragment> {
                               backgroundColor: Colors.transparent,
                               child: (matchs.teamTwo != null)
                                   ? Image.network(Config.basefootballUrl +
-                                      matchs.teamTwo!.img!)
+                                      matchs.teamTwo!.image!)
                                   : Icon(Icons.play_arrow)),
                         ),
                         Text(

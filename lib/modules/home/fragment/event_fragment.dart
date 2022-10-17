@@ -6,14 +6,14 @@ import 'package:myfootball/models/data/event.dart';
 import 'package:myfootball/models/data/event_data.dart';
 import 'package:myfootball/modules/home/stores/event_store.dart';
 
-class EventFragment extends StatefulWidget {
-  EventFragment({Key? key}) : super(key: key);
+class TodayEventFragment extends StatefulWidget {
+  TodayEventFragment({Key? key}) : super(key: key);
 
   @override
-  State<EventFragment> createState() => _EventFragmentState();
+  State<TodayEventFragment> createState() => _TodayEventFragmentState();
 }
 
-class _EventFragmentState extends State<EventFragment> {
+class _TodayEventFragmentState extends State<TodayEventFragment> {
   EventStore _eventStore = Modular.get<EventStore>();
 
   @override
@@ -27,9 +27,7 @@ class _EventFragmentState extends State<EventFragment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("CM Sport"),
-        ),
+        
         body: Observer(builder: (context) {
           if (_eventStore.isLoading) {
             return Center(
@@ -245,11 +243,6 @@ class _EventFragmentState extends State<EventFragment> {
                       width: 130,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        // color: (matchs.status == "idle")
-                        //     ? Colors.green
-                        //     : (matchs.status == "started")
-                        //         ? Colors.green
-                        //         : Colors.grey[200]
                       ),
                       child: Text(
                         event.timeStatus.toString(),
