@@ -16,6 +16,7 @@ class _IndexFragmentState extends State<IndexFragment> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 4,
+      initialIndex: 1,
       child: Scaffold(
         appBar: AppBar(
           bottom: TabBar(

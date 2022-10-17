@@ -21,7 +21,7 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
     // ignore: todo
     // TODO: implement initState
     super.initState();
-    _eventStore.getAllEventList();
+    _eventStore.getNowEventList();
   }
 
   @override

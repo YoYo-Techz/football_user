@@ -13,6 +13,8 @@ abstract class _EventStoreBase with Store {
   //
   HomeRepository _repo = Modular.get<HomeRepository>();
 
+  DateTime now = DateTime.now();
+
   @observable
   bool isLoading = false;
 
@@ -23,25 +25,25 @@ abstract class _EventStoreBase with Store {
   ObservableList<EventData> eventlist = ObservableList<EventData>();
 
   @action
-  Future getAllEventList({
+  Future getNowEventList({
     Function? onSuccess,
   }) async {
     try {
       isLoading = true;
       eventlist.clear();
       errorMessage = null;
-      var teams = await _repo.getAllEventResponse();
+      var teams = await _repo.getEventByDate(date: '${now.year}-${now.month}-${now.day}');
       for (var element in teams.data) {
         eventlist.add(element);
       }
       isLoading = false;
       if (onSuccess != null) onSuccess();
     } on SocketException {
-      await _repo.getAllEventResponse();
+      await _repo.getEventByDate(date: '${now.year}-${now.month}-${now.day}');
       isLoading = false;
       errorMessage = "No internet";
     } catch (e) {
-      await _repo.getAllEventResponse();
+      await _repo.getEventByDate(date: '${now.year}-${now.month}-${now.day}');
       isLoading = false;
       errorMessage = e.toString();
     }

@@ -73,11 +73,11 @@ abstract class _TeamsStoreBase with Store {
         totalCount = teams.pagination!.total;
       }
     } on SocketException {
-      await _repo.getAllEventResponse();
+      await _repo.getTemasList(page: currentPage);
       isLoading = false;
       errorMessage = "No internet";
     } catch (e) {
-      await _repo.getAllEventResponse();
+      await _repo.getTemasList(page: currentPage);
       isLoading = false;
       errorMessage = e.toString();
     }

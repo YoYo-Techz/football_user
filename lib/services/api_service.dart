@@ -8,17 +8,18 @@ part 'api_service.chopper.dart';
 abstract class APIService extends ChopperService {
   static APIService create([ChopperClient? client]) => _$APIService(client);
 
+// Get Event By Date
   @Post(path: '/events')
   @FactoryConverter(request: FormUrlEncodedConverter.requestFactory)
-  Future<Response<AllEventResponse>> getAllEvent();
+  Future<Response<AllEventResponse>> getEventByDate(
+      {@Field('date') required String date});
 
   ///
   @Post(path: '/teams')
   @FactoryConverter(request: FormUrlEncodedConverter.requestFactory)
-  Future<Response<TeamsListResponse>> getTeamsList(
-      @Field('page') int page);
+  Future<Response<TeamsListResponse>> getTeamsList(@Field('page') int page);
 
-        ///
+  ///
   @Post(path: '/leagues')
   @FactoryConverter(request: FormUrlEncodedConverter.requestFactory)
   Future<Response<LeaguesListResponse>> getLeaguesList(@Field('page') int page);

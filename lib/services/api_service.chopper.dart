@@ -17,9 +17,10 @@ class _$APIService extends APIService {
   final definitionType = APIService;
 
   @override
-  Future<Response<AllEventResponse>> getAllEvent() {
+  Future<Response<AllEventResponse>> getEventByDate({required String date}) {
     final $url = '/api/events';
-    final $request = Request('POST', $url, client.baseUrl);
+    final $body = <String, dynamic>{'date': date};
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
     return client.send<AllEventResponse, AllEventResponse>($request,
         requestConverter: FormUrlEncodedConverter.requestFactory);
   }

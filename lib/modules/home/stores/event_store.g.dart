@@ -54,13 +54,13 @@ mixin _$EventStore on _EventStoreBase, Store {
     });
   }
 
-  final _$getAllEventListAsyncAction =
-      AsyncAction('_EventStoreBase.getAllEventList');
+  final _$getNowEventListAsyncAction =
+      AsyncAction('_EventStoreBase.getNowEventList');
 
   @override
-  Future<dynamic> getAllEventList({Function? onSuccess}) {
-    return _$getAllEventListAsyncAction
-        .run(() => super.getAllEventList(onSuccess: onSuccess));
+  Future<dynamic> getNowEventList({Function? onSuccess}) {
+    return _$getNowEventListAsyncAction
+        .run(() => super.getNowEventList(onSuccess: onSuccess));
   }
 
   @override
