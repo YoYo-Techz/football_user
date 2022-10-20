@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:myfootball/modules/home/fragment/event_fragment.dart';
-import 'package:myfootball/modules/home/fragment/home_fragment.dart';
 import 'package:myfootball/modules/home/fragment/leagues_list_fragment.dart';
 import 'package:myfootball/modules/home/fragment/team_list_fragment.dart';
 
@@ -15,8 +14,8 @@ class _IndexFragmentState extends State<IndexFragment> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
-      initialIndex: 1,
+      length: 3,
+      initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
           bottom: TabBar(
@@ -25,22 +24,23 @@ class _IndexFragmentState extends State<IndexFragment> {
 
             unselectedLabelStyle: TextStyle(color: Colors.black), //For U
             tabs: [
+              // Tab(
+              //     child: Text(
+              //   "Home",
+              //   style: TextStyle(color: Colors.black),
+              // )),
               Tab(
-                  child: Text(
-                "Home",
-                style: TextStyle(color: Colors.black),
-              )),
-               Tab(
-                  child: Text(
-                "Today",
-                style: TextStyle(color: Colors.black),
-              )),
-               Tab(
+                child: Text(
+                  "Today",
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+              Tab(
                   child: Text(
                 "leagues",
                 style: TextStyle(color: Colors.black),
               )),
-               Tab(
+              Tab(
                   child: Text(
                 "Teams",
                 style: TextStyle(color: Colors.black),
@@ -51,7 +51,7 @@ class _IndexFragmentState extends State<IndexFragment> {
         ),
         body: TabBarView(
           children: [
-            HomeFragment(),
+            // HomeFragment(),
             TodayEventFragment(),
             LeaguesFragment(),
             TeamListFragment()

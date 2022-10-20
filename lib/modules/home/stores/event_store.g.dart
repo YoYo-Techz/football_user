@@ -58,9 +58,10 @@ mixin _$EventStore on _EventStoreBase, Store {
       AsyncAction('_EventStoreBase.getNowEventList');
 
   @override
-  Future<dynamic> getNowEventList({Function? onSuccess}) {
-    return _$getNowEventListAsyncAction
-        .run(() => super.getNowEventList(onSuccess: onSuccess));
+  Future<dynamic> getNowEventList(
+      {Function? onSuccess, required bool isRefresh}) {
+    return _$getNowEventListAsyncAction.run(() =>
+        super.getNowEventList(onSuccess: onSuccess, isRefresh: isRefresh));
   }
 
   @override

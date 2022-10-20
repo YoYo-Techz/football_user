@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:lottie/lottie.dart';
@@ -21,53 +23,57 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
     // ignore: todo
     // TODO: implement initState
     super.initState();
-    _eventStore.getNowEventList();
+    _eventStore.getNowEventList(isRefresh: false);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        
-        body: Observer(builder: (context) {
-          if (_eventStore.isLoading) {
-            return Center(
+        body: EasyRefresh(
+      onRefresh: () => _eventStore.getNowEventList(isRefresh: true),
+      child: Observer(builder: (context) {
+        if (_eventStore.isLoading) {
+          return Expanded(
+            child: Center(
               child: SizedBox(
                 height: 38,
                 child: Lottie.asset('assets/lottie/footbll.json'),
               ),
-            );
-          }
-          if (_eventStore.eventlist.isEmpty) {
-            return Column(
-              children: [
-                Expanded(
-                  child: Text(
-                    "Empty",
-                  ),
-                ),
-                _eventStore.errorMessage != null
-                    ? Padding(
-                        padding:
-                            EdgeInsets.only(left: 20.0, right: 20, bottom: 70),
-                        child: Text(
-                          _eventStore.errorMessage!,
-                          style: TextStyle(color: Colors.red),
-                        ),
-                      )
-                    : SizedBox()
-              ],
-            );
-          }
-          return SingleChildScrollView(
-            child: Column(
-              children: _eventStore.eventlist
-                  .map(
-                    (element) => _mapItem(eventData: element),
-                  )
-                  .toList(),
             ),
           );
-        }));
+        }
+        if (_eventStore.eventlist.isEmpty) {
+          return Column(
+            children: [
+              Expanded(
+                child: Text(
+                  "Empty",
+                ),
+              ),
+              _eventStore.errorMessage != null
+                  ? Padding(
+                      padding:
+                          EdgeInsets.only(left: 20.0, right: 20, bottom: 70),
+                      child: Text(
+                        _eventStore.errorMessage!,
+                        style: TextStyle(color: Colors.red),
+                      ),
+                    )
+                  : SizedBox()
+            ],
+          );
+        }
+        return SingleChildScrollView(
+          child: Column(
+            children: _eventStore.eventlist
+                .map(
+                  (element) => _mapItem(eventData: element),
+                )
+                .toList(),
+          ),
+        );
+      }),
+    ));
   }
 
   Widget _mapItem({required EventData eventData}) {
@@ -141,7 +147,25 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
                                 ? Image.asset(
                                     "assets/logo/icon.png",
                                   )
-                                : Image.network(event.home!.image ?? "")),
+                                : CachedNetworkImage(
+                                    imageUrl: event.home!.image ?? "",
+                                    imageBuilder: (context, imageProvider) =>
+                                        Container(
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: imageProvider,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    placeholder: (context, url) =>
+                                        CircularProgressIndicator(),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
+                                  )
+
+                            //  Image.network(event.home!.image ?? "")
+                            ),
                       ),
                       Text(
                         event.home!.name!,
@@ -195,7 +219,22 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
                                       // width: 165,
                                       // height: 165,
                                     )
-                                  : Image.network(event.away!.image ?? "")),
+                                  : CachedNetworkImage(
+                                      imageUrl: event.away!.image ?? "",
+                                      imageBuilder: (context, imageProvider) =>
+                                          Container(
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            image: imageProvider,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                      placeholder: (context, url) =>
+                                          CircularProgressIndicator(),
+                                      errorWidget: (context, url, error) =>
+                                          Icon(Icons.error),
+                                    )),
                         ),
                         Text(
                           event.away?.name ?? "",

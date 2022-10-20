@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -79,10 +80,28 @@ class _TeamListFragmentState extends State<TeamListFragment> {
                                   width: 40,
                                   height: 40,
                                 )
-                              : Image.network(
-                                  element.image ?? "",
-                                  height: 40,
+                              // : Image.network(
+                              //     element.image ?? "",
+                              //     height: 40,
+                              //     width: 40,
+                              //   ),
+                              : CachedNetworkImage(
+                                  imageUrl: element.image ?? "",
+                                  imageBuilder: (context, imageProvider) =>
+                                      Container(
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: imageProvider,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
                                   width: 40,
+                                  height: 40,
+                                  placeholder: (context, url) =>
+                                      CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) =>
+                                      Icon(Icons.error),
                                 ),
                           SizedBox(
                             width: 10,

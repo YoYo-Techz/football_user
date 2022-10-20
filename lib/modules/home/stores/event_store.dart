@@ -27,12 +27,15 @@ abstract class _EventStoreBase with Store {
   @action
   Future getNowEventList({
     Function? onSuccess,
+    required bool isRefresh,
   }) async {
     try {
-      isLoading = true;
+      (!isRefresh) ? isLoading = true : isLoading = false;
+     
       eventlist.clear();
       errorMessage = null;
-      var teams = await _repo.getEventByDate(date: '${now.year}-${now.month}-${now.day}');
+      var teams = await _repo.getEventByDate(
+          date: '${now.year}-${now.month}-${now.day}');
       for (var element in teams.data) {
         eventlist.add(element);
       }
