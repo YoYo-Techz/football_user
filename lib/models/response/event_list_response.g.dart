@@ -20,14 +20,22 @@ class _$EventListResponseSerializer
   Iterable<Object?> serialize(Serializers serializers, EventListResponse object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      'status',
-      serializers.serialize(object.status, specifiedType: const FullType(bool)),
       'data',
       serializers.serialize(object.data,
           specifiedType:
-              const FullType(BuiltList, const [const FullType(EventData)])),
+              const FullType(BuiltList, const [const FullType(Event)])),
+      'pagination',
+      serializers.serialize(object.pagination,
+          specifiedType: const FullType(Pagination)),
     ];
-
+    Object? value;
+    value = object.status;
+    if (value != null) {
+      result
+        ..add('status')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
     return result;
   }
 
@@ -45,13 +53,17 @@ class _$EventListResponseSerializer
       switch (key) {
         case 'status':
           result.status = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
         case 'data':
           result.data.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(EventData)]))!
+                  specifiedType:
+                      const FullType(BuiltList, const [const FullType(Event)]))!
               as BuiltList<Object?>);
+          break;
+        case 'pagination':
+          result.pagination.replace(serializers.deserialize(value,
+              specifiedType: const FullType(Pagination))! as Pagination);
           break;
       }
     }
@@ -62,19 +74,22 @@ class _$EventListResponseSerializer
 
 class _$EventListResponse extends EventListResponse {
   @override
-  final bool status;
+  final bool? status;
   @override
-  final BuiltList<EventData> data;
+  final BuiltList<Event> data;
+  @override
+  final Pagination pagination;
 
   factory _$EventListResponse(
           [void Function(EventListResponseBuilder)? updates]) =>
       (new EventListResponseBuilder()..update(updates)).build();
 
-  _$EventListResponse._({required this.status, required this.data})
+  _$EventListResponse._(
+      {this.status, required this.data, required this.pagination})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        status, 'EventListResponse', 'status');
     BuiltValueNullFieldError.checkNotNull(data, 'EventListResponse', 'data');
+    BuiltValueNullFieldError.checkNotNull(
+        pagination, 'EventListResponse', 'pagination');
   }
 
   @override
@@ -90,19 +105,22 @@ class _$EventListResponse extends EventListResponse {
     if (identical(other, this)) return true;
     return other is EventListResponse &&
         status == other.status &&
-        data == other.data;
+        data == other.data &&
+        pagination == other.pagination;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, status.hashCode), data.hashCode));
+    return $jf(
+        $jc($jc($jc(0, status.hashCode), data.hashCode), pagination.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('EventListResponse')
           ..add('status', status)
-          ..add('data', data))
+          ..add('data', data)
+          ..add('pagination', pagination))
         .toString();
   }
 }
@@ -115,10 +133,15 @@ class EventListResponseBuilder
   bool? get status => _$this._status;
   set status(bool? status) => _$this._status = status;
 
-  ListBuilder<EventData>? _data;
-  ListBuilder<EventData> get data =>
-      _$this._data ??= new ListBuilder<EventData>();
-  set data(ListBuilder<EventData>? data) => _$this._data = data;
+  ListBuilder<Event>? _data;
+  ListBuilder<Event> get data => _$this._data ??= new ListBuilder<Event>();
+  set data(ListBuilder<Event>? data) => _$this._data = data;
+
+  PaginationBuilder? _pagination;
+  PaginationBuilder get pagination =>
+      _$this._pagination ??= new PaginationBuilder();
+  set pagination(PaginationBuilder? pagination) =>
+      _$this._pagination = pagination;
 
   EventListResponseBuilder();
 
@@ -127,6 +150,7 @@ class EventListResponseBuilder
     if ($v != null) {
       _status = $v.status;
       _data = $v.data.toBuilder();
+      _pagination = $v.pagination.toBuilder();
       _$v = null;
     }
     return this;
@@ -149,14 +173,16 @@ class EventListResponseBuilder
     try {
       _$result = _$v ??
           new _$EventListResponse._(
-              status: BuiltValueNullFieldError.checkNotNull(
-                  status, 'EventListResponse', 'status'),
-              data: data.build());
+              status: status,
+              data: data.build(),
+              pagination: pagination.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'data';
         data.build();
+        _$failedField = 'pagination';
+        pagination.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'EventListResponse', _$failedField, e.toString());

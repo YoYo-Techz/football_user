@@ -34,8 +34,8 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(Event)]),
           () => new ListBuilder<Event>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(EventData)]),
-          () => new ListBuilder<EventData>())
+          const FullType(BuiltList, const [const FullType(Event)]),
+          () => new ListBuilder<Event>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(League)]),
           () => new ListBuilder<League>())

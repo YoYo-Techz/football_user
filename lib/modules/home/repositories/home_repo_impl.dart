@@ -16,8 +16,9 @@ class HomeRepositoryImpl implements HomeRepository {
   static HomeRepository get instance => HomeRepositoryImpl._();
 
   @override
-  Future<EventListResponse> getEventByDate({required String date}) async {
-    var response = await _apiService.getEventByDate(date: date);
+  Future<EventListResponse> getEventByDate(
+      {required String date, required int page}) async {
+    var response = await _apiService.getEventByDate(date: date, page: page);
     var data = response.body;
     return data!;
   }

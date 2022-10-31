@@ -23,14 +23,17 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
     // ignore: todo
     // TODO: implement initState
     super.initState();
-    _eventStore.getNowEventList(isRefresh: false);
+    _eventStore.getNowEventList(isRefresh: false, isInit: true);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: EasyRefresh(
-      onRefresh: () => _eventStore.getNowEventList(isRefresh: true),
+     onLoad: () =>
+          _eventStore.getNowEventList(isRefresh: false, isInit: false),
+      onRefresh: () =>
+          _eventStore.getNowEventList(isRefresh: true, isInit: false),
       child: Observer(builder: (context) {
         if (_eventStore.isLoading) {
           return Expanded(
@@ -66,39 +69,12 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
         return SingleChildScrollView(
           child: Column(
             children: _eventStore.eventlist
-                .map(
-                  (element) => _mapItem(eventData: element),
-                )
+                .map((element) => _evemtItem(event: element))
                 .toList(),
           ),
         );
       }),
     ));
-  }
-
-  Widget _mapItem({required EventData eventData}) {
-    return Container(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            eventData.league!.name!,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Column(
-            children:
-                eventData.event!.map((p0) => _evemtItem(event: p0)).toList(),
-          )
-        ],
-      ),
-    );
   }
 
   Widget _evemtItem({required Event event}) {

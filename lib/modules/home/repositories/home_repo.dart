@@ -4,7 +4,8 @@ import 'package:myfootball/models/response/teams_list_response.dart';
 
 abstract class HomeRepository {
   HomeRepository._();
-  Future<EventListResponse> getEventByDate({required String date});
+  Future<EventListResponse> getEventByDate(
+      {required String date, required int page});
   Future<TeamsListResponse> getTemasList({required int page});
   Future<LeaguesListResponse> getLeagues({required int page});
 }

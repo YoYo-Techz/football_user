@@ -12,7 +12,7 @@ abstract class APIService extends ChopperService {
   @Post(path: '/events')
   @FactoryConverter(request: FormUrlEncodedConverter.requestFactory)
   Future<Response<EventListResponse>> getEventByDate(
-      {@Field('date') required String date});
+      {@Field('date') required String date, @Field('page') required int page});
 
   ///
   @Post(path: '/teams')

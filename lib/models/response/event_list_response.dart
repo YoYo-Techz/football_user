@@ -6,7 +6,9 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:myfootball/config/serializers.dart';
+import 'package:myfootball/models/data/event.dart';
 import 'package:myfootball/models/data/event_data.dart';
+import 'package:myfootball/models/data/pagination.dart';
 
 part 'event_list_response.g.dart';
 
@@ -18,9 +20,11 @@ abstract class EventListResponse
       _$EventListResponse;
 
   @BuiltValueField(wireName: 'status')
-  bool get status;
+  bool? get status;
   @BuiltValueField(wireName: 'data')
-  BuiltList<EventData> get data;
+  BuiltList<Event> get data;
+  @BuiltValueField(wireName: 'pagination')
+  Pagination get pagination;
   String toJson() {
     return json
         .encode(serializers.serializeWith(EventListResponse.serializer, this));

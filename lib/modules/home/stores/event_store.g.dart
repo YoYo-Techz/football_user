@@ -39,16 +39,76 @@ mixin _$EventStore on _EventStoreBase, Store {
     });
   }
 
+  final _$currentPageAtom = Atom(name: '_EventStoreBase.currentPage');
+
+  @override
+  int get currentPage {
+    _$currentPageAtom.reportRead();
+    return super.currentPage;
+  }
+
+  @override
+  set currentPage(int value) {
+    _$currentPageAtom.reportWrite(value, super.currentPage, () {
+      super.currentPage = value;
+    });
+  }
+
+  final _$totalPageAtom = Atom(name: '_EventStoreBase.totalPage');
+
+  @override
+  int? get totalPage {
+    _$totalPageAtom.reportRead();
+    return super.totalPage;
+  }
+
+  @override
+  set totalPage(int? value) {
+    _$totalPageAtom.reportWrite(value, super.totalPage, () {
+      super.totalPage = value;
+    });
+  }
+
+  final _$totalCountAtom = Atom(name: '_EventStoreBase.totalCount');
+
+  @override
+  int? get totalCount {
+    _$totalCountAtom.reportRead();
+    return super.totalCount;
+  }
+
+  @override
+  set totalCount(int? value) {
+    _$totalCountAtom.reportWrite(value, super.totalCount, () {
+      super.totalCount = value;
+    });
+  }
+
+  final _$isPageAvaliableAtom = Atom(name: '_EventStoreBase.isPageAvaliable');
+
+  @override
+  bool get isPageAvaliable {
+    _$isPageAvaliableAtom.reportRead();
+    return super.isPageAvaliable;
+  }
+
+  @override
+  set isPageAvaliable(bool value) {
+    _$isPageAvaliableAtom.reportWrite(value, super.isPageAvaliable, () {
+      super.isPageAvaliable = value;
+    });
+  }
+
   final _$eventlistAtom = Atom(name: '_EventStoreBase.eventlist');
 
   @override
-  ObservableList<EventData> get eventlist {
+  ObservableList<Event> get eventlist {
     _$eventlistAtom.reportRead();
     return super.eventlist;
   }
 
   @override
-  set eventlist(ObservableList<EventData> value) {
+  set eventlist(ObservableList<Event> value) {
     _$eventlistAtom.reportWrite(value, super.eventlist, () {
       super.eventlist = value;
     });
@@ -59,9 +119,9 @@ mixin _$EventStore on _EventStoreBase, Store {
 
   @override
   Future<dynamic> getNowEventList(
-      {Function? onSuccess, required bool isRefresh}) {
-    return _$getNowEventListAsyncAction.run(() =>
-        super.getNowEventList(onSuccess: onSuccess, isRefresh: isRefresh));
+      {required bool isRefresh, required bool isInit}) {
+    return _$getNowEventListAsyncAction
+        .run(() => super.getNowEventList(isRefresh: isRefresh, isInit: isInit));
   }
 
   @override
@@ -69,6 +129,10 @@ mixin _$EventStore on _EventStoreBase, Store {
     return '''
 isLoading: ${isLoading},
 errorMessage: ${errorMessage},
+currentPage: ${currentPage},
+totalPage: ${totalPage},
+totalCount: ${totalCount},
+isPageAvaliable: ${isPageAvaliable},
 eventlist: ${eventlist}
     ''';
   }

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
+import 'package:myfootball/models/data/event.dart';
 import 'package:myfootball/models/data/event_data.dart';
 import 'package:myfootball/modules/home/repositories/home_repo.dart';
 
@@ -21,31 +22,68 @@ abstract class _EventStoreBase with Store {
   @observable
   String? errorMessage;
 
+  // current page
   @observable
-  ObservableList<EventData> eventlist = ObservableList<EventData>();
+  int currentPage = 1;
+
+  // Total page
+  @observable
+  int? totalPage;
+
+  // Total page
+  @observable
+  int? totalCount;
+
+  @observable
+  bool isPageAvaliable = false;
+
+  @observable
+  ObservableList<Event> eventlist = ObservableList<Event>();
 
   @action
   Future getNowEventList({
-    Function? onSuccess,
     required bool isRefresh,
+    required bool isInit,
   }) async {
     try {
-      (!isRefresh) ? isLoading = true : isLoading = false;  
-      eventlist.clear();
-      errorMessage = null;
-      var teams = await _repo.getEventByDate(
-          date: '${now.year}-${now.month}-${now.day}');
-      for (var element in teams.data) {
-        eventlist.add(element);
+      if (isRefresh == true) {
+        eventlist.clear();
+        currentPage = 1;
+        isPageAvaliable = true;
+      } else if (isInit == true) {
+        isLoading = true;
+        currentPage = 1;
+        isPageAvaliable = true;
+      } else if (isInit == false) {
+        isLoading = false;
+        if (totalPage! >= currentPage) {
+          currentPage++;
+          isPageAvaliable = true;
+          print("current page $currentPage");
+        } else {
+          isPageAvaliable = false;
+        }
       }
-      isLoading = false;
-      if (onSuccess != null) onSuccess();
+      errorMessage = null;
+      if (isPageAvaliable == true) {
+        var teams = await _repo.getEventByDate(
+            date: '${now.year}-${now.month}-${now.day}', page: currentPage);
+        for (var element in teams.data) {
+          eventlist.add(element);
+        }
+        isLoading = false;
+        currentPage = teams.pagination.currentPage ?? 1;
+        totalPage = teams.pagination.lastPage;
+        totalCount = teams.pagination.total;
+      }
     } on SocketException {
-      await _repo.getEventByDate(date: '${now.year}-${now.month}-${now.day}');
+      await _repo.getEventByDate(
+          date: '${now.year}-${now.month}-${now.day}', page: currentPage);
       isLoading = false;
       errorMessage = "No internet";
     } catch (e) {
-      await _repo.getEventByDate(date: '${now.year}-${now.month}-${now.day}');
+      await _repo.getEventByDate(
+          date: '${now.year}-${now.month}-${now.day}', page: currentPage);
       isLoading = false;
       errorMessage = e.toString();
     }
