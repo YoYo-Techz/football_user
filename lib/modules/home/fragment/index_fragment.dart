@@ -36,15 +36,17 @@ class _IndexFragmentState extends State<IndexFragment> {
                 ),
               ),
               Tab(
-                  child: Text(
-                "leagues",
-                style: TextStyle(color: Colors.black),
-              )),
+                child: Text(
+                  "leagues",
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
               Tab(
-                  child: Text(
-                "Teams",
-                style: TextStyle(color: Colors.black),
-              )),
+                child: Text(
+                  "Teams",
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
             ],
           ),
           title: Text('CM Sport'),

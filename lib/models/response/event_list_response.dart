@@ -7,7 +7,6 @@ import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:myfootball/config/serializers.dart';
 import 'package:myfootball/models/data/event.dart';
-import 'package:myfootball/models/data/event_data.dart';
 import 'package:myfootball/models/data/pagination.dart';
 
 part 'event_list_response.g.dart';

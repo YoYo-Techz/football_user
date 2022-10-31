@@ -85,8 +85,8 @@ class _NewsFragmetState extends State<NewsFragmet> {
                                       image: imageProvider, fit: BoxFit.cover),
                                 ),
                               ),
-                              errorWidget: (context, url, error) => Icon(
-                                  Icons.error), // TODO: implement errorWidget
+                              errorWidget: (context, url, error) =>
+                                  Icon(Icons.error),
                             ),
                             SizedBox(
                               width: 5,

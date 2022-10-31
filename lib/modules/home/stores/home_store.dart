@@ -9,7 +9,6 @@ import 'package:myfootball/models/data/league.dart';
 import 'package:myfootball/models/data/matchs.dart';
 import 'package:myfootball/models/data/teams_data.dart';
 import 'package:myfootball/models/data/version_check.dart';
-import 'package:myfootball/modules/home/repositories/home_repo.dart';
 
 part 'home_store.g.dart';
 
@@ -18,7 +17,6 @@ class HomeStore = _HomeStoreBase with _$HomeStore;
 abstract class _HomeStoreBase with Store {
   //
 
-  HomeRepository _repo = Modular.get<HomeRepository>();
   FirebaseRemoteConfig _remoteConfig = Modular.get<FirebaseRemoteConfig>();
 
   @observable

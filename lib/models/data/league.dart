@@ -1,12 +1,9 @@
 library league;
 
 import 'dart:convert';
-
-import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:myfootball/config/serializers.dart';
-import 'package:myfootball/models/data/country.dart';
 
 part 'league.g.dart';
 

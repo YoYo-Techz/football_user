@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:myfootball/modules/home/fragment/about_fragment.dart';
-import 'package:myfootball/modules/home/fragment/channel_fragment.dart';
 import 'package:myfootball/modules/home/fragment/index_fragment.dart';
 import 'package:myfootball/modules/home/fragment/new_fragment.dart';
 

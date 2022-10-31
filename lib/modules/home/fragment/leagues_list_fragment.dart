@@ -19,7 +19,6 @@ class _LeaguesFragmentState extends State<LeaguesFragment> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _leaguesStore.getLeaguesList(isRefresh: false, isInit: true);
   }

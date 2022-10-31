@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:myfootball/models/data/event.dart';
-import 'package:myfootball/models/data/event_data.dart';
 import 'package:myfootball/modules/home/repositories/home_repo.dart';
 
 part 'event_store.g.dart';

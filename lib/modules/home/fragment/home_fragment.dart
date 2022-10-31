@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:lottie/lottie.dart';
-import 'package:myfootball/constant/configs.dart';
 import 'package:myfootball/custom/scrollingtext.dart';
 import 'package:myfootball/modules/home/stores/home_store.dart';
 import 'package:myfootball/version_check/version_check.dart';
@@ -35,23 +34,25 @@ class _HomeFragmentState extends State<HomeFragment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
-        body: Column(
-          children: [
-            Expanded(
-              child: _storelist(),
-            ),
-          ],
-        ));
+      body: Column(
+        children: [
+          Expanded(
+            child: _storelist(),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _storelist() {
     return Observer(builder: (context) {
       if (_homeStore.isLoading) {
-        return Center(
-          child: SizedBox(
-            height: 38,
-            child: Lottie.asset('assets/lottie/footbll.json'),
+        return Expanded(
+          child: Center(
+            child: SizedBox(
+              height: 38,
+              child: Lottie.asset('assets/lottie/footbll.json'),
+            ),
           ),
         );
       }

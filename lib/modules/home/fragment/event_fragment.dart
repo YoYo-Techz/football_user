@@ -5,7 +5,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:lottie/lottie.dart';
 import 'package:myfootball/models/data/event.dart';
-import 'package:myfootball/models/data/event_data.dart';
 import 'package:myfootball/modules/home/stores/event_store.dart';
 
 class TodayEventFragment extends StatefulWidget {
@@ -80,24 +79,7 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
   Widget _evemtItem({required Event event}) {
     return GestureDetector(
       onTap: () {
-        // if (matchs.status == "idle") {
-        //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        //     padding: EdgeInsets.all(8),
-        //     content: Text('ပွဲစဥ်မစသေးပါ'),
-        //     backgroundColor: Colors.red.shade500,
-        //   ));
-        // } else if (matchs.status == "started") {
-        //   RouteUtils.changeRoute<PlayerModule>(PlayerRoute.root,
-        //       args: matchs.url);
-        // } else {
-        //   ScaffoldMessenger.of(context).showSnackBar(
-        //     SnackBar(
-        //       padding: EdgeInsets.all(8),
-        //       content: Text('ပွဲစဥ်ပြီးဆုံးသွားပါပြီ'),
-        //       backgroundColor: Colors.red.shade500,
-        //     ),
-        //   );
-        // }
+        // Modular.to.pushNamed('/detail', arguments: event.idEvent);
       },
       child: Card(
         elevation: 0,
@@ -168,7 +150,7 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
                         child: Text(
                           (event.goals!.away != null ||
                                   event.goals!.home != null)
-                              ? "${event.goals!.home}-${event.goals!.away}"
+                              ? " ${event.goals!.home} - ${event.goals!.away} "
                               : event.status!.long ?? "",
                           maxLines: 1,
                           style: TextStyle(
