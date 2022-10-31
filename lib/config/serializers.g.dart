@@ -21,6 +21,8 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(LeaguesListResponse.serializer)
       ..add(Matches.serializer)
       ..add(Matchs.serializer)
+      ..add(NewListResponse.serializer)
+      ..add(News.serializer)
       ..add(Pagination.serializer)
       ..add(Periods.serializer)
       ..add(Teams.serializer)
@@ -45,6 +47,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Matchs)]),
           () => new ListBuilder<Matchs>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(News)]),
+          () => new ListBuilder<News>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(TeamsData)]),
           () => new ListBuilder<TeamsData>())

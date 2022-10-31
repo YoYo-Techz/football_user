@@ -4,6 +4,7 @@ import 'package:myfootball/models/data/matches.dart';
 import 'package:myfootball/models/data/teams.dart';
 import 'package:myfootball/models/response/event_list_response.dart';
 import 'package:myfootball/models/response/channel_response.dart';
+import 'package:myfootball/models/response/new_list_response.dart';
 import 'package:myfootball/models/response/teams_list_response.dart';
 import 'package:myfootball/models/response/leagues_list_response.dart';
 import 'package:myfootball/services/api_service.dart';
@@ -33,6 +34,13 @@ class HomeRepositoryImpl implements HomeRepository {
   @override
   Future<TeamsListResponse> getTemasList({required int page}) async {
     var response = await _apiService.getTeamsList(page);
+    var data = response.body;
+    return data!;
+  }
+
+  @override
+  Future<NewListResponse> getNewList({required int page}) async{
+    var response = await _apiService.getNewsList(page);
     var data = response.body;
     return data!;
   }

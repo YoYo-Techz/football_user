@@ -43,4 +43,13 @@ class _$APIService extends APIService {
     return client.send<LeaguesListResponse, LeaguesListResponse>($request,
         requestConverter: FormUrlEncodedConverter.requestFactory);
   }
+
+  @override
+  Future<Response<NewListResponse>> getNewsList(int page) {
+    final $url = '/api/news';
+    final $body = <String, dynamic>{'page': page};
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<NewListResponse, NewListResponse>($request,
+        requestConverter: FormUrlEncodedConverter.requestFactory);
+  }
 }

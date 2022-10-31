@@ -20,8 +20,6 @@ class _HomeFragmentState extends State<HomeFragment> {
   @override
   void initState() {
     super.initState();
-    // _homeStore.loadLeagues();
-    // _homeStore.initConfig();
     checkVersion();
   }
 

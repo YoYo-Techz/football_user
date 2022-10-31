@@ -12,6 +12,7 @@ import 'package:myfootball/models/data/league.dart';
 import 'package:myfootball/models/data/leagues.dart';
 import 'package:myfootball/models/data/matches.dart';
 import 'package:myfootball/models/data/matchs.dart';
+import 'package:myfootball/models/data/news.dart';
 import 'package:myfootball/models/data/pagination.dart';
 import 'package:myfootball/models/data/periods.dart';
 import 'package:myfootball/models/data/teams.dart';
@@ -20,6 +21,7 @@ import 'package:myfootball/models/data/version_check.dart';
 import 'package:myfootball/models/response/event_list_response.dart';
 import 'package:myfootball/models/response/channel_response.dart';
 import 'package:myfootball/models/response/leagues_list_response.dart';
+import 'package:myfootball/models/response/new_list_response.dart';
 import 'package:myfootball/models/response/teams_list_response.dart';
 
 part 'serializers.g.dart';
@@ -43,12 +45,14 @@ part 'serializers.g.dart';
   League,
   Periods,
   Goals,
+  News,
 
   // Response
   ChannelResponse,
   EventListResponse,
   TeamsListResponse,
-  LeaguesListResponse
+  LeaguesListResponse,
+  NewListResponse
 ])
 final Serializers serializers =
     (_$serializers.toBuilder()..addPlugin(StandardJsonPlugin())).build();

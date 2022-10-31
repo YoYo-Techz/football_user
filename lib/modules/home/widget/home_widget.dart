@@ -22,7 +22,7 @@ class _HomeWidgetState extends State<HomeWidget>
   List<Widget> _fragment = [
     IndexFragment(),
     NewsFragmet(),
-    ChannelFragment(),
+    // ChannelFragment(),
     AboutFragment()
   ];
 
@@ -62,6 +62,6 @@ class Destination {
 const List<Destination> allDestinations = <Destination>[
   Destination('Home', Icon(Icons.home), Colors.teal),
   Destination('News', Icon(Icons.feed), Colors.orange),
-  Destination('Channel', Icon(Icons.tv), Colors.orange),
+  // Destination('Channel', Icon(Icons.tv), Colors.orange),
   Destination('About', Icon(Icons.info_outline), Colors.grey),
 ];
