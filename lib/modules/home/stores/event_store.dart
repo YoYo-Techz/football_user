@@ -30,8 +30,7 @@ abstract class _EventStoreBase with Store {
     required bool isRefresh,
   }) async {
     try {
-      (!isRefresh) ? isLoading = true : isLoading = false;
-     
+      (!isRefresh) ? isLoading = true : isLoading = false;  
       eventlist.clear();
       errorMessage = null;
       var teams = await _repo.getEventByDate(

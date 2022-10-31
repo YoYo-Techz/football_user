@@ -20,7 +20,15 @@ abstract class League implements Built<League, LeagueBuilder> {
   @BuiltValueField(wireName: 'name')
   String? get name;
   @BuiltValueField(wireName: 'country')
-  Country? get country;
+  String? get country;
+  @BuiltValueField(wireName: 'logo')
+  String? get logo;
+  @BuiltValueField(wireName: 'flag')
+  String? get flag;
+  @BuiltValueField(wireName: 'season')
+  String? get season;
+  @BuiltValueField(wireName: 'round')
+  String? get round;
   String toJson() {
     return json.encode(serializers.serializeWith(League.serializer, this));
   }

@@ -36,10 +36,10 @@ class _$AwaySerializer implements StructuredSerializer<Away> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.image;
+    value = object.logo;
     if (value != null) {
       result
-        ..add('image')
+        ..add('logo')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -76,8 +76,8 @@ class _$AwaySerializer implements StructuredSerializer<Away> {
           result.nameMm = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'image':
-          result.image = serializers.deserialize(value,
+        case 'logo':
+          result.logo = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'country':
@@ -99,14 +99,14 @@ class _$Away extends Away {
   @override
   final String? nameMm;
   @override
-  final String? image;
+  final String? logo;
   @override
   final Country? country;
 
   factory _$Away([void Function(AwayBuilder)? updates]) =>
       (new AwayBuilder()..update(updates)).build();
 
-  _$Away._({required this.id, this.name, this.nameMm, this.image, this.country})
+  _$Away._({required this.id, this.name, this.nameMm, this.logo, this.country})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(id, 'Away', 'id');
   }
@@ -125,7 +125,7 @@ class _$Away extends Away {
         id == other.id &&
         name == other.name &&
         nameMm == other.nameMm &&
-        image == other.image &&
+        logo == other.logo &&
         country == other.country;
   }
 
@@ -133,7 +133,7 @@ class _$Away extends Away {
   int get hashCode {
     return $jf($jc(
         $jc($jc($jc($jc(0, id.hashCode), name.hashCode), nameMm.hashCode),
-            image.hashCode),
+            logo.hashCode),
         country.hashCode));
   }
 
@@ -143,7 +143,7 @@ class _$Away extends Away {
           ..add('id', id)
           ..add('name', name)
           ..add('nameMm', nameMm)
-          ..add('image', image)
+          ..add('logo', logo)
           ..add('country', country))
         .toString();
   }
@@ -164,9 +164,9 @@ class AwayBuilder implements Builder<Away, AwayBuilder> {
   String? get nameMm => _$this._nameMm;
   set nameMm(String? nameMm) => _$this._nameMm = nameMm;
 
-  String? _image;
-  String? get image => _$this._image;
-  set image(String? image) => _$this._image = image;
+  String? _logo;
+  String? get logo => _$this._logo;
+  set logo(String? logo) => _$this._logo = logo;
 
   CountryBuilder? _country;
   CountryBuilder get country => _$this._country ??= new CountryBuilder();
@@ -180,7 +180,7 @@ class AwayBuilder implements Builder<Away, AwayBuilder> {
       _id = $v.id;
       _name = $v.name;
       _nameMm = $v.nameMm;
-      _image = $v.image;
+      _logo = $v.logo;
       _country = $v.country?.toBuilder();
       _$v = null;
     }
@@ -207,7 +207,7 @@ class AwayBuilder implements Builder<Away, AwayBuilder> {
               id: BuiltValueNullFieldError.checkNotNull(id, 'Away', 'id'),
               name: name,
               nameMm: nameMm,
-              image: image,
+              logo: logo,
               country: _country?.build());
     } catch (_) {
       late String _$failedField;

@@ -140,15 +140,15 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
                         padding: const EdgeInsets.all(5.0),
                         child: CircleAvatar(
                             backgroundColor: Colors.transparent,
-                            child: (event.home!.image == null ||
-                                    event.home!.image!.isEmpty ||
-                                    event.home!.image!.contains("null") ||
+                            child: (event.home!.logo == null ||
+                                    event.home!.logo!.isEmpty ||
+                                    event.home!.logo!.contains("null") ||
                                     event.home == null)
                                 ? Image.asset(
                                     "assets/logo/icon.png",
                                   )
                                 : CachedNetworkImage(
-                                    imageUrl: event.home!.image ?? "",
+                                    imageUrl: event.home!.logo ?? "",
                                     imageBuilder: (context, imageProvider) =>
                                         Container(
                                       decoration: BoxDecoration(
@@ -193,7 +193,7 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
                           color: Colors.grey[200],
                         ),
                         child: Text(
-                          event.ss ?? "0-0",
+                          "${event.goals!.home}-${event.goals!.away}",
                           maxLines: 1,
                           style: TextStyle(
                               color: Colors.blue,
@@ -210,9 +210,9 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
                           padding: const EdgeInsets.all(5.0),
                           child: CircleAvatar(
                               backgroundColor: Colors.transparent,
-                              child: (event.away!.image == null ||
-                                      event.away!.image!.isEmpty ||
-                                      event.away!.image!.contains("null") ||
+                              child: (event.away!.logo == null ||
+                                      event.away!.logo!.isEmpty ||
+                                      event.away!.logo!.contains("null") ||
                                       event.away == null)
                                   ? Image.asset(
                                       "assets/logo/icon.png",
@@ -220,7 +220,7 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
                                       // height: 165,
                                     )
                                   : CachedNetworkImage(
-                                      imageUrl: event.away!.image ?? "",
+                                      imageUrl: event.away!.logo ?? "",
                                       imageBuilder: (context, imageProvider) =>
                                           Container(
                                         decoration: BoxDecoration(

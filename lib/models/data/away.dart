@@ -21,8 +21,8 @@ abstract class Away implements Built<Away, AwayBuilder> {
   String? get name;
   @BuiltValueField(wireName: 'name_mm')
   String? get nameMm;
-  @BuiltValueField(wireName: 'image')
-  String? get image;
+  @BuiltValueField(wireName: 'logo')
+  String? get logo;
   @BuiltValueField(wireName: 'country')
   Country? get country;
   String toJson() {

@@ -1,23 +1,23 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of all_event_response;
+part of event_list_response;
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<AllEventResponse> _$allEventResponseSerializer =
-    new _$AllEventResponseSerializer();
+Serializer<EventListResponse> _$eventListResponseSerializer =
+    new _$EventListResponseSerializer();
 
-class _$AllEventResponseSerializer
-    implements StructuredSerializer<AllEventResponse> {
+class _$EventListResponseSerializer
+    implements StructuredSerializer<EventListResponse> {
   @override
-  final Iterable<Type> types = const [AllEventResponse, _$AllEventResponse];
+  final Iterable<Type> types = const [EventListResponse, _$EventListResponse];
   @override
-  final String wireName = 'AllEventResponse';
+  final String wireName = 'EventListResponse';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, AllEventResponse object,
+  Iterable<Object?> serialize(Serializers serializers, EventListResponse object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       'status',
@@ -32,10 +32,10 @@ class _$AllEventResponseSerializer
   }
 
   @override
-  AllEventResponse deserialize(
+  EventListResponse deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new AllEventResponseBuilder();
+    final result = new EventListResponseBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -60,33 +60,35 @@ class _$AllEventResponseSerializer
   }
 }
 
-class _$AllEventResponse extends AllEventResponse {
+class _$EventListResponse extends EventListResponse {
   @override
   final bool status;
   @override
   final BuiltList<EventData> data;
 
-  factory _$AllEventResponse(
-          [void Function(AllEventResponseBuilder)? updates]) =>
-      (new AllEventResponseBuilder()..update(updates)).build();
+  factory _$EventListResponse(
+          [void Function(EventListResponseBuilder)? updates]) =>
+      (new EventListResponseBuilder()..update(updates)).build();
 
-  _$AllEventResponse._({required this.status, required this.data}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(status, 'AllEventResponse', 'status');
-    BuiltValueNullFieldError.checkNotNull(data, 'AllEventResponse', 'data');
+  _$EventListResponse._({required this.status, required this.data})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        status, 'EventListResponse', 'status');
+    BuiltValueNullFieldError.checkNotNull(data, 'EventListResponse', 'data');
   }
 
   @override
-  AllEventResponse rebuild(void Function(AllEventResponseBuilder) updates) =>
+  EventListResponse rebuild(void Function(EventListResponseBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  AllEventResponseBuilder toBuilder() =>
-      new AllEventResponseBuilder()..replace(this);
+  EventListResponseBuilder toBuilder() =>
+      new EventListResponseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is AllEventResponse &&
+    return other is EventListResponse &&
         status == other.status &&
         data == other.data;
   }
@@ -98,16 +100,16 @@ class _$AllEventResponse extends AllEventResponse {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('AllEventResponse')
+    return (newBuiltValueToStringHelper('EventListResponse')
           ..add('status', status)
           ..add('data', data))
         .toString();
   }
 }
 
-class AllEventResponseBuilder
-    implements Builder<AllEventResponse, AllEventResponseBuilder> {
-  _$AllEventResponse? _$v;
+class EventListResponseBuilder
+    implements Builder<EventListResponse, EventListResponseBuilder> {
+  _$EventListResponse? _$v;
 
   bool? _status;
   bool? get status => _$this._status;
@@ -118,9 +120,9 @@ class AllEventResponseBuilder
       _$this._data ??= new ListBuilder<EventData>();
   set data(ListBuilder<EventData>? data) => _$this._data = data;
 
-  AllEventResponseBuilder();
+  EventListResponseBuilder();
 
-  AllEventResponseBuilder get _$this {
+  EventListResponseBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _status = $v.status;
@@ -131,24 +133,24 @@ class AllEventResponseBuilder
   }
 
   @override
-  void replace(AllEventResponse other) {
+  void replace(EventListResponse other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$AllEventResponse;
+    _$v = other as _$EventListResponse;
   }
 
   @override
-  void update(void Function(AllEventResponseBuilder)? updates) {
+  void update(void Function(EventListResponseBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$AllEventResponse build() {
-    _$AllEventResponse _$result;
+  _$EventListResponse build() {
+    _$EventListResponse _$result;
     try {
       _$result = _$v ??
-          new _$AllEventResponse._(
+          new _$EventListResponse._(
               status: BuiltValueNullFieldError.checkNotNull(
-                  status, 'AllEventResponse', 'status'),
+                  status, 'EventListResponse', 'status'),
               data: data.build());
     } catch (_) {
       late String _$failedField;
@@ -157,7 +159,7 @@ class AllEventResponseBuilder
         data.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'AllEventResponse', _$failedField, e.toString());
+            'EventListResponse', _$failedField, e.toString());
       }
       rethrow;
     }

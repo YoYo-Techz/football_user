@@ -34,7 +34,35 @@ class _$LeagueSerializer implements StructuredSerializer<League> {
       result
         ..add('country')
         ..add(serializers.serialize(value,
-            specifiedType: const FullType(Country)));
+            specifiedType: const FullType(String)));
+    }
+    value = object.logo;
+    if (value != null) {
+      result
+        ..add('logo')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.flag;
+    if (value != null) {
+      result
+        ..add('flag')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.season;
+    if (value != null) {
+      result
+        ..add('season')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.round;
+    if (value != null) {
+      result
+        ..add('round')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
     }
     return result;
   }
@@ -59,8 +87,24 @@ class _$LeagueSerializer implements StructuredSerializer<League> {
               specifiedType: const FullType(String)) as String?;
           break;
         case 'country':
-          result.country.replace(serializers.deserialize(value,
-              specifiedType: const FullType(Country))! as Country);
+          result.country = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'logo':
+          result.logo = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'flag':
+          result.flag = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'season':
+          result.season = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'round':
+          result.round = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -75,12 +119,28 @@ class _$League extends League {
   @override
   final String? name;
   @override
-  final Country? country;
+  final String? country;
+  @override
+  final String? logo;
+  @override
+  final String? flag;
+  @override
+  final String? season;
+  @override
+  final String? round;
 
   factory _$League([void Function(LeagueBuilder)? updates]) =>
       (new LeagueBuilder()..update(updates)).build();
 
-  _$League._({required this.id, this.name, this.country}) : super._() {
+  _$League._(
+      {required this.id,
+      this.name,
+      this.country,
+      this.logo,
+      this.flag,
+      this.season,
+      this.round})
+      : super._() {
     BuiltValueNullFieldError.checkNotNull(id, 'League', 'id');
   }
 
@@ -97,12 +157,25 @@ class _$League extends League {
     return other is League &&
         id == other.id &&
         name == other.name &&
-        country == other.country;
+        country == other.country &&
+        logo == other.logo &&
+        flag == other.flag &&
+        season == other.season &&
+        round == other.round;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc($jc(0, id.hashCode), name.hashCode), country.hashCode));
+    return $jf($jc(
+        $jc(
+            $jc(
+                $jc(
+                    $jc($jc($jc(0, id.hashCode), name.hashCode),
+                        country.hashCode),
+                    logo.hashCode),
+                flag.hashCode),
+            season.hashCode),
+        round.hashCode));
   }
 
   @override
@@ -110,7 +183,11 @@ class _$League extends League {
     return (newBuiltValueToStringHelper('League')
           ..add('id', id)
           ..add('name', name)
-          ..add('country', country))
+          ..add('country', country)
+          ..add('logo', logo)
+          ..add('flag', flag)
+          ..add('season', season)
+          ..add('round', round))
         .toString();
   }
 }
@@ -126,9 +203,25 @@ class LeagueBuilder implements Builder<League, LeagueBuilder> {
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
 
-  CountryBuilder? _country;
-  CountryBuilder get country => _$this._country ??= new CountryBuilder();
-  set country(CountryBuilder? country) => _$this._country = country;
+  String? _country;
+  String? get country => _$this._country;
+  set country(String? country) => _$this._country = country;
+
+  String? _logo;
+  String? get logo => _$this._logo;
+  set logo(String? logo) => _$this._logo = logo;
+
+  String? _flag;
+  String? get flag => _$this._flag;
+  set flag(String? flag) => _$this._flag = flag;
+
+  String? _season;
+  String? get season => _$this._season;
+  set season(String? season) => _$this._season = season;
+
+  String? _round;
+  String? get round => _$this._round;
+  set round(String? round) => _$this._round = round;
 
   LeagueBuilder();
 
@@ -137,7 +230,11 @@ class LeagueBuilder implements Builder<League, LeagueBuilder> {
     if ($v != null) {
       _id = $v.id;
       _name = $v.name;
-      _country = $v.country?.toBuilder();
+      _country = $v.country;
+      _logo = $v.logo;
+      _flag = $v.flag;
+      _season = $v.season;
+      _round = $v.round;
       _$v = null;
     }
     return this;
@@ -156,24 +253,15 @@ class LeagueBuilder implements Builder<League, LeagueBuilder> {
 
   @override
   _$League build() {
-    _$League _$result;
-    try {
-      _$result = _$v ??
-          new _$League._(
-              id: BuiltValueNullFieldError.checkNotNull(id, 'League', 'id'),
-              name: name,
-              country: _country?.build());
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'country';
-        _country?.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'League', _$failedField, e.toString());
-      }
-      rethrow;
-    }
+    final _$result = _$v ??
+        new _$League._(
+            id: BuiltValueNullFieldError.checkNotNull(id, 'League', 'id'),
+            name: name,
+            country: country,
+            logo: logo,
+            flag: flag,
+            season: season,
+            round: round);
     replace(_$result);
     return _$result;
   }

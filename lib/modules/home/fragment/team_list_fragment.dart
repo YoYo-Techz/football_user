@@ -71,10 +71,10 @@ class _TeamListFragmentState extends State<TeamListFragment> {
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         children: [
-                          (element.image == null ||
-                                  element.image!.isEmpty ||
-                                  element.image!.contains("null") ||
-                                  element.image == "")
+                          (element.logo == null ||
+                                  element.logo!.isEmpty ||
+                                  element.logo!.contains("null") ||
+                                  element.logo == "")
                               ? Image.asset(
                                   "assets/logo/icon.png",
                                   width: 40,
@@ -86,7 +86,7 @@ class _TeamListFragmentState extends State<TeamListFragment> {
                               //     width: 40,
                               //   ),
                               : CachedNetworkImage(
-                                  imageUrl: element.image ?? "",
+                                  imageUrl: element.logo ?? "",
                                   imageBuilder: (context, imageProvider) =>
                                       Container(
                                     decoration: BoxDecoration(

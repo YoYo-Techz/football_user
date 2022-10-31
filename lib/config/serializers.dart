@@ -6,16 +6,18 @@ import 'package:myfootball/models/data/channel.dart';
 import 'package:myfootball/models/data/country.dart';
 import 'package:myfootball/models/data/event.dart';
 import 'package:myfootball/models/data/event_data.dart';
+import 'package:myfootball/models/data/goals.dart';
 import 'package:myfootball/models/data/home.dart';
 import 'package:myfootball/models/data/league.dart';
 import 'package:myfootball/models/data/leagues.dart';
 import 'package:myfootball/models/data/matches.dart';
 import 'package:myfootball/models/data/matchs.dart';
 import 'package:myfootball/models/data/pagination.dart';
+import 'package:myfootball/models/data/periods.dart';
 import 'package:myfootball/models/data/teams.dart';
 import 'package:myfootball/models/data/teams_data.dart';
 import 'package:myfootball/models/data/version_check.dart';
-import 'package:myfootball/models/response/all_event_response.dart';
+import 'package:myfootball/models/response/event_list_response.dart';
 import 'package:myfootball/models/response/channel_response.dart';
 import 'package:myfootball/models/response/leagues_list_response.dart';
 import 'package:myfootball/models/response/teams_list_response.dart';
@@ -39,10 +41,12 @@ part 'serializers.g.dart';
   Country,
   Pagination,
   League,
+  Periods,
+  Goals,
 
   // Response
   ChannelResponse,
-  AllEventResponse,
+  EventListResponse,
   TeamsListResponse,
   LeaguesListResponse
 ])

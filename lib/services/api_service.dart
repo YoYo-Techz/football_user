@@ -1,5 +1,5 @@
 import 'package:chopper/chopper.dart';
-import 'package:myfootball/models/response/all_event_response.dart';
+import 'package:myfootball/models/response/event_list_response.dart';
 import 'package:myfootball/models/response/leagues_list_response.dart';
 import 'package:myfootball/models/response/teams_list_response.dart';
 part 'api_service.chopper.dart';
@@ -11,7 +11,7 @@ abstract class APIService extends ChopperService {
 // Get Event By Date
   @Post(path: '/events')
   @FactoryConverter(request: FormUrlEncodedConverter.requestFactory)
-  Future<Response<AllEventResponse>> getEventByDate(
+  Future<Response<EventListResponse>> getEventByDate(
       {@Field('date') required String date});
 
   ///

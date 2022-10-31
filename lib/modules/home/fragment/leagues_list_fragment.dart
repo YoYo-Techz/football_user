@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -25,12 +26,12 @@ class _LeaguesFragmentState extends State<LeaguesFragment> {
   @override
   Widget build(BuildContext context) {
     return EasyRefresh(
-        onLoad: () => _leaguesStore.getLeaguesList(isRefresh: false, isInit: false),
+      onLoad: () =>
+          _leaguesStore.getLeaguesList(isRefresh: false, isInit: false),
       onRefresh: () =>
           _leaguesStore.getLeaguesList(isRefresh: true, isInit: false),
-      child: Observer(
-        builder: (context) {
-          if (_leaguesStore.isLoading) {
+      child: Observer(builder: (context) {
+        if (_leaguesStore.isLoading) {
           return Center(
             child: SizedBox(
               height: 38,
@@ -50,7 +51,8 @@ class _LeaguesFragmentState extends State<LeaguesFragment> {
               ),
               _leaguesStore.errorMessage != null
                   ? Padding(
-                      padding: EdgeInsets.only(left: 20.0, right: 20, bottom: 70),
+                      padding:
+                          EdgeInsets.only(left: 20.0, right: 20, bottom: 70),
                       child: Text(
                         _leaguesStore.errorMessage!,
                         style: TextStyle(color: Colors.red),
@@ -64,13 +66,55 @@ class _LeaguesFragmentState extends State<LeaguesFragment> {
           child: Column(
             children: _leaguesStore.leauagelist
                 .map(
-                  (element) => ListTile(title: Text(element.name ?? ""),)
+                  (element) => Card(
+                    elevation: 0.5,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          (element.logo == null ||
+                                  element.logo!.isEmpty ||
+                                  element.logo!.contains("null") ||
+                                  element.logo == "")
+                              ? Image.asset(
+                                  "assets/logo/icon.png",
+                                  width: 40,
+                                  height: 40,
+                                )
+                              : CachedNetworkImage(
+                                  imageUrl: element.logo ?? "",
+                                  imageBuilder: (context, imageProvider) =>
+                                      Container(
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: imageProvider,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  width: 40,
+                                  height: 40,
+                                  placeholder: (context, url) =>
+                                      CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) =>
+                                      Icon(Icons.error),
+                                ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            element.name ?? "",
+                            style: TextStyle(fontSize: 15),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
                 )
                 .toList(),
           ),
         );
-        }
-      ),
+      }),
     );
   }
 }

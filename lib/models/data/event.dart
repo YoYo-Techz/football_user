@@ -7,7 +7,9 @@ import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:myfootball/config/serializers.dart';
 import 'package:myfootball/models/data/away.dart';
+import 'package:myfootball/models/data/goals.dart';
 import 'package:myfootball/models/data/home.dart';
+import 'package:myfootball/models/data/periods.dart';
 
 part 'event.g.dart';
 
@@ -19,17 +21,19 @@ abstract class Event implements Built<Event, EventBuilder> {
   @BuiltValueField(wireName: 'id')
   int get id;
   @BuiltValueField(wireName: 'time')
-  String ?get time;
+  String? get time;
   @BuiltValueField(wireName: 'time_readable')
   String? get timeReadable;
   @BuiltValueField(wireName: 'time_status')
   int? get timeStatus;
-  @BuiltValueField(wireName: 'ss')
-  String? get ss;
   @BuiltValueField(wireName: 'home')
   Home? get home;
   @BuiltValueField(wireName: 'away')
   Away? get away;
+  @BuiltValueField(wireName: 'goals')
+  Goals? get goals;
+  @BuiltValueField(wireName: 'periods')
+  Periods get periods;
   String toJson() {
     return json.encode(serializers.serializeWith(Event.serializer, this));
   }

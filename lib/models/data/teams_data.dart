@@ -17,12 +17,10 @@ abstract class TeamsData implements Built<TeamsData, TeamsDataBuilder> {
   int? get id;
   @BuiltValueField(wireName: 'name')
   String? get name;
-  @BuiltValueField(wireName: 'name_mm')
-  String? get nameMm;
-  @BuiltValueField(wireName: 'image')
-  String? get image;
+  @BuiltValueField(wireName: 'logo')
+  String? get logo;
   @BuiltValueField(wireName: 'country')
-  Country? get country;
+  String? get country;
   String toJson() {
     return json.encode(serializers.serializeWith(TeamsData.serializer, this));
   }

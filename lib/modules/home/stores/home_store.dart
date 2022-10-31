@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
-import 'dart:io';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
@@ -8,13 +6,9 @@ import 'package:myfootball/config/serializers.dart';
 import 'package:package_info/package_info.dart';
 import 'package:myfootball/models/data/channel.dart';
 import 'package:myfootball/models/data/league.dart';
-import 'package:myfootball/models/data/leagues.dart';
-import 'package:myfootball/models/data/matches.dart';
 import 'package:myfootball/models/data/matchs.dart';
-import 'package:myfootball/models/data/teams.dart';
 import 'package:myfootball/models/data/teams_data.dart';
 import 'package:myfootball/models/data/version_check.dart';
-import 'package:myfootball/models/response/channel_response.dart';
 import 'package:myfootball/modules/home/repositories/home_repo.dart';
 
 part 'home_store.g.dart';

@@ -32,17 +32,10 @@ class _$TeamsDataSerializer implements StructuredSerializer<TeamsData> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.nameMm;
+    value = object.logo;
     if (value != null) {
       result
-        ..add('name_mm')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
-    value = object.image;
-    if (value != null) {
-      result
-        ..add('image')
+        ..add('logo')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -51,7 +44,7 @@ class _$TeamsDataSerializer implements StructuredSerializer<TeamsData> {
       result
         ..add('country')
         ..add(serializers.serialize(value,
-            specifiedType: const FullType(Country)));
+            specifiedType: const FullType(String)));
     }
     return result;
   }
@@ -75,17 +68,13 @@ class _$TeamsDataSerializer implements StructuredSerializer<TeamsData> {
           result.name = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'name_mm':
-          result.nameMm = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'image':
-          result.image = serializers.deserialize(value,
+        case 'logo':
+          result.logo = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'country':
-          result.country.replace(serializers.deserialize(value,
-              specifiedType: const FullType(Country))! as Country);
+          result.country = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -100,17 +89,14 @@ class _$TeamsData extends TeamsData {
   @override
   final String? name;
   @override
-  final String? nameMm;
+  final String? logo;
   @override
-  final String? image;
-  @override
-  final Country? country;
+  final String? country;
 
   factory _$TeamsData([void Function(TeamsDataBuilder)? updates]) =>
       (new TeamsDataBuilder()..update(updates)).build();
 
-  _$TeamsData._({this.id, this.name, this.nameMm, this.image, this.country})
-      : super._();
+  _$TeamsData._({this.id, this.name, this.logo, this.country}) : super._();
 
   @override
   TeamsData rebuild(void Function(TeamsDataBuilder) updates) =>
@@ -125,16 +111,13 @@ class _$TeamsData extends TeamsData {
     return other is TeamsData &&
         id == other.id &&
         name == other.name &&
-        nameMm == other.nameMm &&
-        image == other.image &&
+        logo == other.logo &&
         country == other.country;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc($jc($jc($jc(0, id.hashCode), name.hashCode), nameMm.hashCode),
-            image.hashCode),
+    return $jf($jc($jc($jc($jc(0, id.hashCode), name.hashCode), logo.hashCode),
         country.hashCode));
   }
 
@@ -143,8 +126,7 @@ class _$TeamsData extends TeamsData {
     return (newBuiltValueToStringHelper('TeamsData')
           ..add('id', id)
           ..add('name', name)
-          ..add('nameMm', nameMm)
-          ..add('image', image)
+          ..add('logo', logo)
           ..add('country', country))
         .toString();
   }
@@ -161,17 +143,13 @@ class TeamsDataBuilder implements Builder<TeamsData, TeamsDataBuilder> {
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
 
-  String? _nameMm;
-  String? get nameMm => _$this._nameMm;
-  set nameMm(String? nameMm) => _$this._nameMm = nameMm;
+  String? _logo;
+  String? get logo => _$this._logo;
+  set logo(String? logo) => _$this._logo = logo;
 
-  String? _image;
-  String? get image => _$this._image;
-  set image(String? image) => _$this._image = image;
-
-  CountryBuilder? _country;
-  CountryBuilder get country => _$this._country ??= new CountryBuilder();
-  set country(CountryBuilder? country) => _$this._country = country;
+  String? _country;
+  String? get country => _$this._country;
+  set country(String? country) => _$this._country = country;
 
   TeamsDataBuilder();
 
@@ -180,9 +158,8 @@ class TeamsDataBuilder implements Builder<TeamsData, TeamsDataBuilder> {
     if ($v != null) {
       _id = $v.id;
       _name = $v.name;
-      _nameMm = $v.nameMm;
-      _image = $v.image;
-      _country = $v.country?.toBuilder();
+      _logo = $v.logo;
+      _country = $v.country;
       _$v = null;
     }
     return this;
@@ -201,26 +178,8 @@ class TeamsDataBuilder implements Builder<TeamsData, TeamsDataBuilder> {
 
   @override
   _$TeamsData build() {
-    _$TeamsData _$result;
-    try {
-      _$result = _$v ??
-          new _$TeamsData._(
-              id: id,
-              name: name,
-              nameMm: nameMm,
-              image: image,
-              country: _country?.build());
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'country';
-        _country?.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'TeamsData', _$failedField, e.toString());
-      }
-      rethrow;
-    }
+    final _$result = _$v ??
+        new _$TeamsData._(id: id, name: name, logo: logo, country: country);
     replace(_$result);
     return _$result;
   }

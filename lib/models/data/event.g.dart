@@ -20,6 +20,9 @@ class _$EventSerializer implements StructuredSerializer<Event> {
     final result = <Object?>[
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(int)),
+      'periods',
+      serializers.serialize(object.periods,
+          specifiedType: const FullType(Periods)),
     ];
     Object? value;
     value = object.time;
@@ -42,13 +45,6 @@ class _$EventSerializer implements StructuredSerializer<Event> {
         ..add('time_status')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
-    value = object.ss;
-    if (value != null) {
-      result
-        ..add('ss')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     value = object.home;
     if (value != null) {
       result
@@ -62,6 +58,13 @@ class _$EventSerializer implements StructuredSerializer<Event> {
         ..add('away')
         ..add(
             serializers.serialize(value, specifiedType: const FullType(Away)));
+    }
+    value = object.goals;
+    if (value != null) {
+      result
+        ..add('goals')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(Goals)));
     }
     return result;
   }
@@ -93,10 +96,6 @@ class _$EventSerializer implements StructuredSerializer<Event> {
           result.timeStatus = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int?;
           break;
-        case 'ss':
-          result.ss = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
         case 'home':
           result.home.replace(serializers.deserialize(value,
               specifiedType: const FullType(Home))! as Home);
@@ -104,6 +103,14 @@ class _$EventSerializer implements StructuredSerializer<Event> {
         case 'away':
           result.away.replace(serializers.deserialize(value,
               specifiedType: const FullType(Away))! as Away);
+          break;
+        case 'goals':
+          result.goals.replace(serializers.deserialize(value,
+              specifiedType: const FullType(Goals))! as Goals);
+          break;
+        case 'periods':
+          result.periods.replace(serializers.deserialize(value,
+              specifiedType: const FullType(Periods))! as Periods);
           break;
       }
     }
@@ -122,11 +129,13 @@ class _$Event extends Event {
   @override
   final int? timeStatus;
   @override
-  final String? ss;
-  @override
   final Home? home;
   @override
   final Away? away;
+  @override
+  final Goals? goals;
+  @override
+  final Periods periods;
 
   factory _$Event([void Function(EventBuilder)? updates]) =>
       (new EventBuilder()..update(updates)).build();
@@ -136,11 +145,13 @@ class _$Event extends Event {
       this.time,
       this.timeReadable,
       this.timeStatus,
-      this.ss,
       this.home,
-      this.away})
+      this.away,
+      this.goals,
+      required this.periods})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(id, 'Event', 'id');
+    BuiltValueNullFieldError.checkNotNull(periods, 'Event', 'periods');
   }
 
   @override
@@ -158,9 +169,10 @@ class _$Event extends Event {
         time == other.time &&
         timeReadable == other.timeReadable &&
         timeStatus == other.timeStatus &&
-        ss == other.ss &&
         home == other.home &&
-        away == other.away;
+        away == other.away &&
+        goals == other.goals &&
+        periods == other.periods;
   }
 
   @override
@@ -169,12 +181,14 @@ class _$Event extends Event {
         $jc(
             $jc(
                 $jc(
-                    $jc($jc($jc(0, id.hashCode), time.hashCode),
-                        timeReadable.hashCode),
-                    timeStatus.hashCode),
-                ss.hashCode),
-            home.hashCode),
-        away.hashCode));
+                    $jc(
+                        $jc($jc($jc(0, id.hashCode), time.hashCode),
+                            timeReadable.hashCode),
+                        timeStatus.hashCode),
+                    home.hashCode),
+                away.hashCode),
+            goals.hashCode),
+        periods.hashCode));
   }
 
   @override
@@ -184,9 +198,10 @@ class _$Event extends Event {
           ..add('time', time)
           ..add('timeReadable', timeReadable)
           ..add('timeStatus', timeStatus)
-          ..add('ss', ss)
           ..add('home', home)
-          ..add('away', away))
+          ..add('away', away)
+          ..add('goals', goals)
+          ..add('periods', periods))
         .toString();
   }
 }
@@ -210,10 +225,6 @@ class EventBuilder implements Builder<Event, EventBuilder> {
   int? get timeStatus => _$this._timeStatus;
   set timeStatus(int? timeStatus) => _$this._timeStatus = timeStatus;
 
-  String? _ss;
-  String? get ss => _$this._ss;
-  set ss(String? ss) => _$this._ss = ss;
-
   HomeBuilder? _home;
   HomeBuilder get home => _$this._home ??= new HomeBuilder();
   set home(HomeBuilder? home) => _$this._home = home;
@@ -221,6 +232,14 @@ class EventBuilder implements Builder<Event, EventBuilder> {
   AwayBuilder? _away;
   AwayBuilder get away => _$this._away ??= new AwayBuilder();
   set away(AwayBuilder? away) => _$this._away = away;
+
+  GoalsBuilder? _goals;
+  GoalsBuilder get goals => _$this._goals ??= new GoalsBuilder();
+  set goals(GoalsBuilder? goals) => _$this._goals = goals;
+
+  PeriodsBuilder? _periods;
+  PeriodsBuilder get periods => _$this._periods ??= new PeriodsBuilder();
+  set periods(PeriodsBuilder? periods) => _$this._periods = periods;
 
   EventBuilder();
 
@@ -231,9 +250,10 @@ class EventBuilder implements Builder<Event, EventBuilder> {
       _time = $v.time;
       _timeReadable = $v.timeReadable;
       _timeStatus = $v.timeStatus;
-      _ss = $v.ss;
       _home = $v.home?.toBuilder();
       _away = $v.away?.toBuilder();
+      _goals = $v.goals?.toBuilder();
+      _periods = $v.periods.toBuilder();
       _$v = null;
     }
     return this;
@@ -260,9 +280,10 @@ class EventBuilder implements Builder<Event, EventBuilder> {
               time: time,
               timeReadable: timeReadable,
               timeStatus: timeStatus,
-              ss: ss,
               home: _home?.build(),
-              away: _away?.build());
+              away: _away?.build(),
+              goals: _goals?.build(),
+              periods: periods.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -270,6 +291,10 @@ class EventBuilder implements Builder<Event, EventBuilder> {
         _home?.build();
         _$failedField = 'away';
         _away?.build();
+        _$failedField = 'goals';
+        _goals?.build();
+        _$failedField = 'periods';
+        periods.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'Event', _$failedField, e.toString());
