@@ -15,6 +15,7 @@ import 'package:myfootball/models/data/matchs.dart';
 import 'package:myfootball/models/data/news.dart';
 import 'package:myfootball/models/data/pagination.dart';
 import 'package:myfootball/models/data/periods.dart';
+import 'package:myfootball/models/data/status.dart';
 import 'package:myfootball/models/data/teams.dart';
 import 'package:myfootball/models/data/teams_data.dart';
 import 'package:myfootball/models/data/version_check.dart';
@@ -46,6 +47,7 @@ part 'serializers.g.dart';
   Periods,
   Goals,
   News,
+  Status,
 
   // Response
   ChannelResponse,

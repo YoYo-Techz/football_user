@@ -45,6 +45,13 @@ class _$EventSerializer implements StructuredSerializer<Event> {
         ..add('time_status')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
+    value = object.status;
+    if (value != null) {
+      result
+        ..add('status')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(Status)));
+    }
     value = object.home;
     if (value != null) {
       result
@@ -96,6 +103,10 @@ class _$EventSerializer implements StructuredSerializer<Event> {
           result.timeStatus = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int?;
           break;
+        case 'status':
+          result.status.replace(serializers.deserialize(value,
+              specifiedType: const FullType(Status))! as Status);
+          break;
         case 'home':
           result.home.replace(serializers.deserialize(value,
               specifiedType: const FullType(Home))! as Home);
@@ -129,6 +140,8 @@ class _$Event extends Event {
   @override
   final int? timeStatus;
   @override
+  final Status? status;
+  @override
   final Home? home;
   @override
   final Away? away;
@@ -145,6 +158,7 @@ class _$Event extends Event {
       this.time,
       this.timeReadable,
       this.timeStatus,
+      this.status,
       this.home,
       this.away,
       this.goals,
@@ -169,6 +183,7 @@ class _$Event extends Event {
         time == other.time &&
         timeReadable == other.timeReadable &&
         timeStatus == other.timeStatus &&
+        status == other.status &&
         home == other.home &&
         away == other.away &&
         goals == other.goals &&
@@ -182,9 +197,11 @@ class _$Event extends Event {
             $jc(
                 $jc(
                     $jc(
-                        $jc($jc($jc(0, id.hashCode), time.hashCode),
-                            timeReadable.hashCode),
-                        timeStatus.hashCode),
+                        $jc(
+                            $jc($jc($jc(0, id.hashCode), time.hashCode),
+                                timeReadable.hashCode),
+                            timeStatus.hashCode),
+                        status.hashCode),
                     home.hashCode),
                 away.hashCode),
             goals.hashCode),
@@ -198,6 +215,7 @@ class _$Event extends Event {
           ..add('time', time)
           ..add('timeReadable', timeReadable)
           ..add('timeStatus', timeStatus)
+          ..add('status', status)
           ..add('home', home)
           ..add('away', away)
           ..add('goals', goals)
@@ -225,6 +243,10 @@ class EventBuilder implements Builder<Event, EventBuilder> {
   int? get timeStatus => _$this._timeStatus;
   set timeStatus(int? timeStatus) => _$this._timeStatus = timeStatus;
 
+  StatusBuilder? _status;
+  StatusBuilder get status => _$this._status ??= new StatusBuilder();
+  set status(StatusBuilder? status) => _$this._status = status;
+
   HomeBuilder? _home;
   HomeBuilder get home => _$this._home ??= new HomeBuilder();
   set home(HomeBuilder? home) => _$this._home = home;
@@ -250,6 +272,7 @@ class EventBuilder implements Builder<Event, EventBuilder> {
       _time = $v.time;
       _timeReadable = $v.timeReadable;
       _timeStatus = $v.timeStatus;
+      _status = $v.status?.toBuilder();
       _home = $v.home?.toBuilder();
       _away = $v.away?.toBuilder();
       _goals = $v.goals?.toBuilder();
@@ -280,6 +303,7 @@ class EventBuilder implements Builder<Event, EventBuilder> {
               time: time,
               timeReadable: timeReadable,
               timeStatus: timeStatus,
+              status: _status?.build(),
               home: _home?.build(),
               away: _away?.build(),
               goals: _goals?.build(),
@@ -287,6 +311,8 @@ class EventBuilder implements Builder<Event, EventBuilder> {
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'status';
+        _status?.build();
         _$failedField = 'home';
         _home?.build();
         _$failedField = 'away';

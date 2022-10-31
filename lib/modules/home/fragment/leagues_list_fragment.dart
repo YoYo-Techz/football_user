@@ -3,6 +3,7 @@ import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
 import 'package:myfootball/modules/home/stores/leagues_store.dart';
 
@@ -67,7 +68,7 @@ class _LeaguesFragmentState extends State<LeaguesFragment> {
             children: _leaguesStore.leauagelist
                 .map(
                   (element) => Card(
-                    elevation: 0.5,
+                    elevation: 0.3,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
@@ -78,8 +79,8 @@ class _LeaguesFragmentState extends State<LeaguesFragment> {
                                   element.logo == "")
                               ? Image.asset(
                                   "assets/logo/icon.png",
-                                  width: 40,
-                                  height: 40,
+                                  width: 43,
+                                  height: 43,
                                 )
                               : CachedNetworkImage(
                                   imageUrl: element.logo ?? "",
@@ -88,12 +89,12 @@ class _LeaguesFragmentState extends State<LeaguesFragment> {
                                     decoration: BoxDecoration(
                                       image: DecorationImage(
                                         image: imageProvider,
-                                        fit: BoxFit.cover,
+                                        fit: BoxFit.contain,
                                       ),
                                     ),
                                   ),
-                                  width: 40,
-                                  height: 40,
+                                  width: 43,
+                                  height: 43,
                                   placeholder: (context, url) =>
                                       CircularProgressIndicator(),
                                   errorWidget: (context, url, error) =>
@@ -102,9 +103,36 @@ class _LeaguesFragmentState extends State<LeaguesFragment> {
                           SizedBox(
                             width: 10,
                           ),
-                          Text(
-                            element.name ?? "",
-                            style: TextStyle(fontSize: 15),
+                          Expanded(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  element.name ?? "",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.grey.shade900,
+                                  ),
+                                ),
+                                Text(
+                                  element.round ?? "",
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.grey.shade700,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SvgPicture.network(
+                            element.flag ?? "",
+                            width: 30,
+                            height: 30,
+                            placeholderBuilder: (BuildContext context) =>
+                                Container(
+                                    padding: const EdgeInsets.all(0.0),
+                                    child: const CircularProgressIndicator()),
                           )
                         ],
                       ),

@@ -4,7 +4,6 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:lottie/lottie.dart';
-import 'package:myfootball/modules/home/stores/home_store.dart';
 import 'package:myfootball/modules/home/stores/news_store.dart';
 
 class NewsFragmet extends StatefulWidget {

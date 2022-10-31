@@ -92,7 +92,7 @@ class _TeamListFragmentState extends State<TeamListFragment> {
                                     decoration: BoxDecoration(
                                       image: DecorationImage(
                                         image: imageProvider,
-                                        fit: BoxFit.cover,
+                                        fit: BoxFit.contain,
                                       ),
                                     ),
                                   ),

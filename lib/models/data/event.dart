@@ -10,6 +10,7 @@ import 'package:myfootball/models/data/away.dart';
 import 'package:myfootball/models/data/goals.dart';
 import 'package:myfootball/models/data/home.dart';
 import 'package:myfootball/models/data/periods.dart';
+import 'package:myfootball/models/data/status.dart';
 
 part 'event.g.dart';
 
@@ -26,6 +27,8 @@ abstract class Event implements Built<Event, EventBuilder> {
   String? get timeReadable;
   @BuiltValueField(wireName: 'time_status')
   int? get timeStatus;
+  @BuiltValueField(wireName: 'status')
+  Status? get status;
   @BuiltValueField(wireName: 'home')
   Home? get home;
   @BuiltValueField(wireName: 'away')

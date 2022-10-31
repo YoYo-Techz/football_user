@@ -30,7 +30,7 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: EasyRefresh(
-     onLoad: () =>
+      onLoad: () =>
           _eventStore.getNowEventList(isRefresh: false, isInit: false),
       onRefresh: () =>
           _eventStore.getNowEventList(isRefresh: true, isInit: false),
@@ -130,7 +130,7 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
                                       decoration: BoxDecoration(
                                         image: DecorationImage(
                                           image: imageProvider,
-                                          fit: BoxFit.cover,
+                                          fit: BoxFit.contain,
                                         ),
                                       ),
                                     ),
@@ -138,10 +138,7 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
                                         CircularProgressIndicator(),
                                     errorWidget: (context, url, error) =>
                                         Icon(Icons.error),
-                                  )
-
-                            //  Image.network(event.home!.image ?? "")
-                            ),
+                                  )),
                       ),
                       Text(
                         event.home!.name!,
@@ -169,10 +166,16 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
                           color: Colors.grey[200],
                         ),
                         child: Text(
-                          "${event.goals!.home}-${event.goals!.away}",
+                          (event.goals!.away != null ||
+                                  event.goals!.home != null)
+                              ? "${event.goals!.home}-${event.goals!.away}"
+                              : event.status!.long ?? "",
                           maxLines: 1,
                           style: TextStyle(
-                              color: Colors.blue,
+                              color:(event.goals!.away != null ||
+                                  event.goals!.home != null)
+                              ? Colors.blue
+                              : Colors.red,
                               fontWeight: FontWeight.w700,
                               fontSize: 13),
                         ),
@@ -202,7 +205,7 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
                                         decoration: BoxDecoration(
                                           image: DecorationImage(
                                             image: imageProvider,
-                                            fit: BoxFit.cover,
+                                            fit: BoxFit.contain,
                                           ),
                                         ),
                                       ),
