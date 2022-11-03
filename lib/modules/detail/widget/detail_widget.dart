@@ -253,4 +253,11 @@ class _DetailWidgetState extends State<DetailWidget> {
       );
     });
   }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _detailStore.dispose();
+    super.dispose();
+  }
 }

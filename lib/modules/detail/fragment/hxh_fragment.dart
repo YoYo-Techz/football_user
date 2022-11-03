@@ -21,104 +21,127 @@ class H2HFragment extends StatelessWidget {
                   children: _detailStore.h2hlist
                       .map(
                         (element) => Card(
-                          elevation: 0.1,
+                            elevation: 0.1,
                             child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: [
-                              Row(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
                                 children: [
-                                  Expanded(
-                                    child: Column(
-                                      children: [
-                                        Row(
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Column(
                                           children: [
                                             Row(
                                               children: [
-                                                CachedNetworkImage(
-                                                  imageUrl: element.home!.logo ?? "",
-                                                  imageBuilder:
-                                                      (context, imageProvider) =>
+                                                Row(
+                                                  children: [
+                                                    CachedNetworkImage(
+                                                      imageUrl:
+                                                          element.home!.logo ??
+                                                              "",
+                                                      imageBuilder: (context,
+                                                              imageProvider) =>
                                                           Container(
-                                                    decoration: BoxDecoration(
-                                                      image: DecorationImage(
-                                                        image: imageProvider,
-                                                        fit: BoxFit.contain,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          image:
+                                                              DecorationImage(
+                                                            image:
+                                                                imageProvider,
+                                                            fit: BoxFit.contain,
+                                                          ),
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ),
-                                                  width: 35,
-                                                  height: 35,
-                                                  placeholder: (context, url) =>
-                                                      CircularProgressIndicator(),
-                                                  errorWidget:
-                                                      (context, url, error) =>
+                                                      width: 35,
+                                                      height: 35,
+                                                      placeholder: (context,
+                                                              url) =>
+                                                          CircularProgressIndicator(),
+                                                      errorWidget: (context,
+                                                              url, error) =>
                                                           Icon(Icons.error),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 4,
+                                                    ),
+                                                    Text(
+                                                      element.home!.name ?? "",
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w700),
+                                                    ),
+                                                  ],
                                                 ),
                                                 Text(
-                                                  element.home!.name ?? "",
+                                                  element.goals!.home ?? "",
                                                   style: TextStyle(
-                                                      fontWeight: FontWeight.w700),
-                                                ),
+                                                      fontWeight:
+                                                          FontWeight.w700),
+                                                )
                                               ],
                                             ),
-                                            Text(
-                                              element.goals!.home ?? "",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w700),
-                                            )
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
                                             Row(
                                               children: [
-                                                CachedNetworkImage(
-                                                  imageUrl: element.away!.logo ?? "",
-                                                  imageBuilder:
-                                                      (context, imageProvider) =>
+                                                Row(
+                                                  children: [
+                                                    CachedNetworkImage(
+                                                      imageUrl:
+                                                          element.away!.logo ??
+                                                              "",
+                                                      imageBuilder: (context,
+                                                              imageProvider) =>
                                                           Container(
-                                                    decoration: BoxDecoration(
-                                                      image: DecorationImage(
-                                                        image: imageProvider,
-                                                        fit: BoxFit.contain,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          image:
+                                                              DecorationImage(
+                                                            image:
+                                                                imageProvider,
+                                                            fit: BoxFit.contain,
+                                                          ),
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ),
-                                                  width: 35,
-                                                  height: 35,
-                                                  placeholder: (context, url) =>
-                                                      CircularProgressIndicator(),
-                                                  errorWidget:
-                                                      (context, url, error) =>
+                                                      width: 35,
+                                                      height: 35,
+                                                      placeholder: (context,
+                                                              url) =>
+                                                          CircularProgressIndicator(),
+                                                      errorWidget: (context,
+                                                              url, error) =>
                                                           Icon(Icons.error),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 4,
+                                                    ),
+                                                    Text(
+                                                      element.away!.name ?? "",
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w700),
+                                                    ),
+                                                  ],
                                                 ),
                                                 Text(
-                                                  element.away!.name ?? "",
+                                                  element.goals!.away ?? "",
                                                   style: TextStyle(
-                                                      fontWeight: FontWeight.w700),
-                                                ),
+                                                      fontWeight:
+                                                          FontWeight.w700),
+                                                )
                                               ],
                                             ),
-                                            Text(
-                                              element.goals!.away ?? "",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w700),
-                                            )
                                           ],
                                         ),
-                                      ],
-                                    ),
-                                  ),
-                                  Text(
-                                    element.status!.long.toString(),
-                                    style: TextStyle(fontWeight: FontWeight.w700),
+                                      ),
+                                      Text(
+                                        element.status!.long.toString(),
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
-                            ],
-                          ),
-                        )),
+                            )),
                       )
                       .toList(),
                 ),
