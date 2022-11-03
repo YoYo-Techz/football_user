@@ -85,7 +85,7 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
         ]);
       },
       child: Card(
-        elevation: 0,
+        // elevation: 0,
         child: Container(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -130,7 +130,7 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
                         maxLines: 1,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            color: Colors.grey[600],
+                            // color: Colors.grey[600],
                             fontWeight: FontWeight.w600,
                             fontSize: 15),
                       )
@@ -206,7 +206,7 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
                           maxLines: 1,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              color: Colors.grey[600],
+                              // color: Colors.grey[600],
                               fontWeight: FontWeight.w600,
                               fontSize: 15),
                         ),

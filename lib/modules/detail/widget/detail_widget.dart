@@ -100,7 +100,7 @@ class _DetailWidgetState extends State<DetailWidget> {
                                 maxLines: 1,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    color: Colors.grey[600],
+                                    // color: Colors.grey[600],
                                     fontWeight: FontWeight.w600,
                                     fontSize: 15),
                               )
@@ -202,7 +202,7 @@ class _DetailWidgetState extends State<DetailWidget> {
                                   maxLines: 1,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                      color: Colors.grey[600],
+                                      // color: Colors.grey[600],
                                       fontWeight: FontWeight.w600,
                                       fontSize: 15),
                                 ),
