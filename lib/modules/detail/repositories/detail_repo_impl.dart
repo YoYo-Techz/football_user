@@ -12,7 +12,16 @@ class DetailRepositoryImpl implements DetailRepository {
   Future<EventDetailResponse> getEventDetail(
       {required int id, required String season}) async {
     var response = await _apiService.getEventDetails(id: id, season: season);
-    var data = response.body;
-    return data!;
+    // if (response.body!.error != null) {
+    //   throw response.body.error;
+    // } else {
+    //   await _profileBox.saveProfile(response.body);
+    // }
+    if (response.error != null) {
+      throw response.error.toString();
+    } else {
+      var data = response.body;
+      return data!;
+    }
   }
 }

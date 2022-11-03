@@ -42,13 +42,13 @@ mixin _$DetailStore on _DetailStoreBase, Store {
   final _$errorMessageAtom = Atom(name: '_DetailStoreBase.errorMessage');
 
   @override
-  String? get errorMessage {
+  String get errorMessage {
     _$errorMessageAtom.reportRead();
     return super.errorMessage;
   }
 
   @override
-  set errorMessage(String? value) {
+  set errorMessage(String value) {
     _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
       super.errorMessage = value;
     });
@@ -69,6 +69,51 @@ mixin _$DetailStore on _DetailStoreBase, Store {
     });
   }
 
+  final _$h2hlistAtom = Atom(name: '_DetailStoreBase.h2hlist');
+
+  @override
+  ObservableList<Event> get h2hlist {
+    _$h2hlistAtom.reportRead();
+    return super.h2hlist;
+  }
+
+  @override
+  set h2hlist(ObservableList<Event> value) {
+    _$h2hlistAtom.reportWrite(value, super.h2hlist, () {
+      super.h2hlist = value;
+    });
+  }
+
+  final _$tablelistAtom = Atom(name: '_DetailStoreBase.tablelist');
+
+  @override
+  ObservableList<Table> get tablelist {
+    _$tablelistAtom.reportRead();
+    return super.tablelist;
+  }
+
+  @override
+  set tablelist(ObservableList<Table> value) {
+    _$tablelistAtom.reportWrite(value, super.tablelist, () {
+      super.tablelist = value;
+    });
+  }
+
+  final _$summarylistAtom = Atom(name: '_DetailStoreBase.summarylist');
+
+  @override
+  ObservableList<Summary> get summarylist {
+    _$summarylistAtom.reportRead();
+    return super.summarylist;
+  }
+
+  @override
+  set summarylist(ObservableList<Summary> value) {
+    _$summarylistAtom.reportWrite(value, super.summarylist, () {
+      super.summarylist = value;
+    });
+  }
+
   final _$getEventDetailAsyncAction =
       AsyncAction('_DetailStoreBase.getEventDetail');
 
@@ -78,13 +123,30 @@ mixin _$DetailStore on _DetailStoreBase, Store {
         .run(() => super.getEventDetail(id: id, season: season));
   }
 
+  final _$_DetailStoreBaseActionController =
+      ActionController(name: '_DetailStoreBase');
+
+  @override
+  void dispose() {
+    final _$actionInfo = _$_DetailStoreBaseActionController.startAction(
+        name: '_DetailStoreBase.dispose');
+    try {
+      return super.dispose();
+    } finally {
+      _$_DetailStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
 isLoading: ${isLoading},
 tablength: ${tablength},
 errorMessage: ${errorMessage},
-eventDetail: ${eventDetail}
+eventDetail: ${eventDetail},
+h2hlist: ${h2hlist},
+tablelist: ${tablelist},
+summarylist: ${summarylist}
     ''';
   }
 }

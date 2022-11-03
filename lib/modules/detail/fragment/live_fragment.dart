@@ -7,32 +7,31 @@ class LiveFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Observer(builder: (context) {
-      return Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Card(
-              elevation: 0.5,
-              child: Container(
-                height: 45,
-                width: double.infinity,
-                padding: EdgeInsets.all(5),
-                child: Center(child: Text("1080P")),
-              ),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          Card(
+            elevation: 0.5,
+            child: Container(
+              height: 45,
+              width: double.infinity,
+              padding: EdgeInsets.all(5),
+              child: Center(child: Text("1080P")),
             ),
-            Card(
-              elevation: 0.5,
-              child: Container(
-                height: 45,
-                width: double.infinity,
-                padding: EdgeInsets.all(5),
-                child: Center(child: Text("720P")),
-              ),
+          ),
+          Card(
+            elevation: 0.5,
+            child: Container(
+              height: 45,
+              width: double.infinity,
+              padding: EdgeInsets.all(5),
+              child: Center(child: Text("720P")),
             ),
-          ],
-        ),
-      );
-    });
+          ),
+        ],
+      ),
+    );
+   
   }
 }

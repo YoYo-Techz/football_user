@@ -38,6 +38,16 @@ class _DetailWidgetState extends State<DetailWidget> {
             child: CircularProgressIndicator(),
           ),
         );
+      } else if (_detailStore.errorMessage.isNotEmpty) {
+        return Scaffold(
+          appBar: AppBar(),
+          body: Center(
+              child: Text(
+            _detailStore.errorMessage,
+            style: const TextStyle(
+                color: Colors.red, fontWeight: FontWeight.w700, fontSize: 15),
+          )),
+        );
       }
       return DefaultTabController(
         length: _detailStore.tablength,
@@ -53,101 +63,104 @@ class _DetailWidgetState extends State<DetailWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
-                            flex: 1,
+                              flex: 1,
                               child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: CircleAvatar(
-                                    backgroundColor: Colors.transparent,
-                                    child: (_detailStore.eventDetail!.data!
-                                                    .home!.logo ==
-                                                null ||
-                                            _detailStore.eventDetail!.data!
-                                                .home!.logo!.isEmpty ||
-                                            _detailStore
-                                                .eventDetail!.data!.home!.logo!
-                                                .contains("null") ||
-                                            _detailStore
-                                                    .eventDetail!.data!.home ==
-                                                null)
-                                        ? Image.asset(
-                                            "assets/logo/icon.png",
-                                          )
-                                        : CachedNetworkImage(
-                                            imageUrl: _detailStore.eventDetail!
-                                                    .data!.home!.logo ??
-                                                "",
-                                            imageBuilder:
-                                                (context, imageProvider) =>
-                                                    Container(
-                                              decoration: BoxDecoration(
-                                                image: DecorationImage(
-                                                  image: imageProvider,
-                                                  fit: BoxFit.contain,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: CircleAvatar(
+                                        backgroundColor: Colors.transparent,
+                                        child: (_detailStore.eventDetail!.data!
+                                                        .home!.logo ==
+                                                    null ||
+                                                _detailStore.eventDetail!.data!
+                                                    .home!.logo!.isEmpty ||
+                                                _detailStore.eventDetail!.data!
+                                                    .home!.logo!
+                                                    .contains("null") ||
+                                                _detailStore.eventDetail!.data!
+                                                        .home ==
+                                                    null)
+                                            ? Image.asset(
+                                                "assets/logo/icon.png",
+                                              )
+                                            : CachedNetworkImage(
+                                                imageUrl: _detailStore
+                                                        .eventDetail!
+                                                        .data!
+                                                        .home!
+                                                        .logo ??
+                                                    "",
+                                                imageBuilder:
+                                                    (context, imageProvider) =>
+                                                        Container(
+                                                  decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                      image: imageProvider,
+                                                      fit: BoxFit.contain,
+                                                    ),
+                                                  ),
                                                 ),
-                                              ),
-                                            ),
-                                            placeholder: (context, url) =>
-                                                CircularProgressIndicator(),
-                                            errorWidget:
-                                                (context, url, error) =>
-                                                    Icon(Icons.error),
-                                          )),
-                              ),
-                              Text(
-                                _detailStore.eventDetail!.data!.home!.name!,
-                                maxLines: 1,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    // color: Colors.grey[600],
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 15),
-                              )
-                            ],
-                          )),
+                                                placeholder: (context, url) =>
+                                                    CircularProgressIndicator(),
+                                                errorWidget:
+                                                    (context, url, error) =>
+                                                        Icon(Icons.error),
+                                              )),
+                                  ),
+                                  Text(
+                                    _detailStore.eventDetail!.data!.home!.name!,
+                                    maxLines: 1,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        // color: Colors.grey[600],
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 15),
+                                  )
+                                ],
+                              )),
                           Expanded(
-                            flex: 2,
+                              flex: 2,
                               child: Center(
                                   child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text("VS"),
-                              ),
-                              Container(
-                                padding: EdgeInsets.all(5),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: Colors.grey[200],
-                                ),
-                                child: Text(
-                                  (_detailStore.eventDetail!.data!.goals!
-                                                  .away !=
-                                              null ||
-                                          _detailStore.eventDetail!.data!.goals!
-                                                  .home !=
-                                              null)
-                                      ? " ${_detailStore.eventDetail!.data!.goals!.home} - ${_detailStore.eventDetail!.data!.goals!.away} "
-                                      : _detailStore.eventDetail!.data!.status!
-                                              .long ??
-                                          "",
-                                  maxLines: 1,
-                                  style: TextStyle(
-                                      color: (_detailStore.eventDetail!.data!
-                                                      .goals!.away !=
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text("VS"),
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.all(5),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: Colors.grey[200],
+                                    ),
+                                    child: Text(
+                                      (_detailStore.eventDetail!.data!.goals!
+                                                      .away !=
                                                   null ||
                                               _detailStore.eventDetail!.data!
                                                       .goals!.home !=
                                                   null)
-                                          ? Colors.blue
-                                          : Colors.red,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 13),
-                                ),
-                              )
-                            ],
-                          ))),
+                                          ? " ${_detailStore.eventDetail!.data!.goals!.home} - ${_detailStore.eventDetail!.data!.goals!.away} "
+                                          : _detailStore.eventDetail!.data!
+                                                  .status!.long ??
+                                              "",
+                                      maxLines: 1,
+                                      style: TextStyle(
+                                          color: (_detailStore.eventDetail!
+                                                          .data!.goals!.away !=
+                                                      null ||
+                                                  _detailStore.eventDetail!
+                                                          .data!.goals!.home !=
+                                                      null)
+                                              ? Colors.blue
+                                              : Colors.red,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 13),
+                                    ),
+                                  )
+                                ],
+                              ))),
                           Expanded(
                             flex: 1,
                             child: Column(

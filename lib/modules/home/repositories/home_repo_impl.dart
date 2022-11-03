@@ -16,28 +16,44 @@ class HomeRepositoryImpl implements HomeRepository {
   Future<EventListResponse> getEventByDate(
       {required String date, required int page}) async {
     var response = await _apiService.getEventByDate(date: date, page: page);
-    var data = response.body;
-    return data!;
+    if (response.error != null) {
+      throw response.error.toString();
+    } else {
+      var data = response.body;
+      return data!;
+    }
   }
 
   @override
   Future<LeaguesListResponse> getLeagues({required int page}) async {
     var response = await _apiService.getLeaguesList(page);
-    var data = response.body;
-    return data!;
+    if (response.error != null) {
+      throw response.error.toString();
+    } else {
+      var data = response.body;
+      return data!;
+    }
   }
 
   @override
   Future<TeamsListResponse> getTemasList({required int page}) async {
     var response = await _apiService.getTeamsList(page);
-    var data = response.body;
-    return data!;
+    if (response.error != null) {
+      throw response.error.toString();
+    } else {
+      var data = response.body;
+      return data!;
+    }
   }
 
   @override
-  Future<NewListResponse> getNewList({required int page}) async{
+  Future<NewListResponse> getNewList({required int page}) async {
     var response = await _apiService.getNewsList(page);
-    var data = response.body;
-    return data!;
+    if (response.error != null) {
+      throw response.error.toString();
+    } else {
+      var data = response.body;
+      return data!;
+    }
   }
 }

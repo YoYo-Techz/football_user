@@ -44,8 +44,7 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
               child: Lottie.asset('assets/lottie/footbll.json'),
             ),
           );
-        }
-        if (_eventStore.eventlist.isEmpty) {
+        } else if (_eventStore.eventlist.isEmpty) {
           return Column(
             children: [
               Expanded(
@@ -80,9 +79,8 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
   Widget _evemtItem({required Event event}) {
     return GestureDetector(
       onTap: () {
-        RouteUtils.changeRoute<DetailModule>(DetailRoutes.root,args: [
-          event.id,event.league?.season ?? ""
-        ]);
+        RouteUtils.changeRoute<DetailModule>(DetailRoutes.root,
+            args: [event.id, event.league?.season ?? ""]);
       },
       child: Card(
         // elevation: 0,
@@ -91,6 +89,30 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Row(
+                children: [
+                  CachedNetworkImage(
+                    imageUrl: event.league!.logo ?? "",
+                    imageBuilder: (context, imageProvider) => Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ),
+                    width: 25,
+                    height: 25,
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(event.league!.name ?? ""),
+                ],
+              ),
+              Divider(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -137,37 +159,37 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
                     ],
                   )),
                   Expanded(
-                    flex: 2,
+                      flex: 2,
                       child: Center(
                           child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text("VS"),
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: Colors.grey[200],
-                        ),
-                        child: Text(
-                          (event.goals!.away != null ||
-                                  event.goals!.home != null)
-                              ? " ${event.goals!.home} - ${event.goals!.away} "
-                              : event.status!.long ?? "",
-                          maxLines: 1,
-                          style: TextStyle(
-                              color: (event.goals!.away != null ||
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text("VS"),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color: Colors.grey[200],
+                            ),
+                            child: Text(
+                              (event.goals!.away != null ||
                                       event.goals!.home != null)
-                                  ? Colors.blue
-                                  : Colors.red,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 13),
-                        ),
-                      )
-                    ],
-                  ))),
+                                  ? " ${event.goals!.home} - ${event.goals!.away} "
+                                  : event.status!.long ?? "",
+                              maxLines: 1,
+                              style: TextStyle(
+                                  color: (event.goals!.away != null ||
+                                          event.goals!.home != null)
+                                      ? Colors.blue
+                                      : Colors.red,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 13),
+                            ),
+                          )
+                        ],
+                      ))),
                   Expanded(
                     child: Column(
                       children: [
