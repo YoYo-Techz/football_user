@@ -13,6 +13,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(Country.serializer)
       ..add(Event.serializer)
       ..add(EventData.serializer)
+      ..add(EventDetailResponse.serializer)
       ..add(EventListResponse.serializer)
       ..add(Goals.serializer)
       ..add(Home.serializer)
@@ -59,6 +60,15 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(TeamsData)]),
           () => new ListBuilder<TeamsData>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType.nullable(Event)]),
+          () => new ListBuilder<Event?>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType.nullable(Table)]),
+          () => new ListBuilder<Table?>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType.nullable(Summary)]),
+          () => new ListBuilder<Summary?>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType.nullable(String)]),
           () => new ListBuilder<String?>()))

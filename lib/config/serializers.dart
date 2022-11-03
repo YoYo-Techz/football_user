@@ -21,6 +21,7 @@ import 'package:myfootball/models/data/table.dart';
 import 'package:myfootball/models/data/teams.dart';
 import 'package:myfootball/models/data/teams_data.dart';
 import 'package:myfootball/models/data/version_check.dart';
+import 'package:myfootball/models/response/event_detail_response.dart';
 import 'package:myfootball/models/response/event_list_response.dart';
 import 'package:myfootball/models/response/channel_response.dart';
 import 'package:myfootball/models/response/leagues_list_response.dart';
@@ -59,7 +60,7 @@ part 'serializers.g.dart';
   TeamsListResponse,
   LeaguesListResponse,
   NewListResponse,
-  EventListResponse
+  EventDetailResponse
 ])
 final Serializers serializers =
     (_$serializers.toBuilder()..addPlugin(StandardJsonPlugin())).build();

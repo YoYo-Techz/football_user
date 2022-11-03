@@ -38,12 +38,10 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
           _eventStore.getNowEventList(isRefresh: true, isInit: false),
       child: Observer(builder: (context) {
         if (_eventStore.isLoading) {
-          return Expanded(
-            child: Center(
-              child: SizedBox(
-                height: 38,
-                child: Lottie.asset('assets/lottie/footbll.json'),
-              ),
+          return Center(
+            child: SizedBox(
+              height: 38,
+              child: Lottie.asset('assets/lottie/footbll.json'),
             ),
           );
         }
@@ -139,6 +137,7 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
                     ],
                   )),
                   Expanded(
+                    flex: 2,
                       child: Center(
                           child: Column(
                     children: [

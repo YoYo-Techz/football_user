@@ -24,33 +24,26 @@ class _$EventDetailResponseSerializer
       Serializers serializers, EventDetailResponse object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      'data',
-      serializers.serialize(object.data, specifiedType: const FullType(Event)),
+      'h2h',
+      serializers.serialize(object.h2h,
+          specifiedType: const FullType(
+              BuiltList, const [const FullType.nullable(Event)])),
+      'table',
+      serializers.serialize(object.table,
+          specifiedType: const FullType(
+              BuiltList, const [const FullType.nullable(Table)])),
+      'summary',
+      serializers.serialize(object.summary,
+          specifiedType: const FullType(
+              BuiltList, const [const FullType.nullable(Summary)])),
     ];
     Object? value;
-    value = object.h2h;
+    value = object.data;
     if (value != null) {
       result
-        ..add('h2h')
-        ..add(serializers.serialize(value,
-            specifiedType:
-                const FullType(BuiltList, const [const FullType(Event)])));
-    }
-    value = object.table;
-    if (value != null) {
-      result
-        ..add('table')
-        ..add(serializers.serialize(value,
-            specifiedType:
-                const FullType(BuiltList, const [const FullType(Table)])));
-    }
-    value = object.summary;
-    if (value != null) {
-      result
-        ..add('summary')
-        ..add(serializers.serialize(value,
-            specifiedType:
-                const FullType(BuiltList, const [const FullType(Summary)])));
+        ..add('data')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(Event)));
     }
     return result;
   }
@@ -73,20 +66,20 @@ class _$EventDetailResponseSerializer
           break;
         case 'h2h':
           result.h2h.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(BuiltList, const [const FullType(Event)]))!
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType.nullable(Event)]))!
               as BuiltList<Object?>);
           break;
         case 'table':
           result.table.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(BuiltList, const [const FullType(Table)]))!
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType.nullable(Table)]))!
               as BuiltList<Object?>);
           break;
         case 'summary':
           result.summary.replace(serializers.deserialize(value,
                   specifiedType: const FullType(
-                      BuiltList, const [const FullType(Summary)]))!
+                      BuiltList, const [const FullType.nullable(Summary)]))!
               as BuiltList<Object?>);
           break;
       }
@@ -98,22 +91,29 @@ class _$EventDetailResponseSerializer
 
 class _$EventDetailResponse extends EventDetailResponse {
   @override
-  final Event data;
+  final Event? data;
   @override
-  final BuiltList<Event>? h2h;
+  final BuiltList<Event?> h2h;
   @override
-  final BuiltList<Table>? table;
+  final BuiltList<Table?> table;
   @override
-  final BuiltList<Summary>? summary;
+  final BuiltList<Summary?> summary;
 
   factory _$EventDetailResponse(
           [void Function(EventDetailResponseBuilder)? updates]) =>
       (new EventDetailResponseBuilder()..update(updates)).build();
 
   _$EventDetailResponse._(
-      {required this.data, this.h2h, this.table, this.summary})
+      {this.data,
+      required this.h2h,
+      required this.table,
+      required this.summary})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(data, 'EventDetailResponse', 'data');
+    BuiltValueNullFieldError.checkNotNull(h2h, 'EventDetailResponse', 'h2h');
+    BuiltValueNullFieldError.checkNotNull(
+        table, 'EventDetailResponse', 'table');
+    BuiltValueNullFieldError.checkNotNull(
+        summary, 'EventDetailResponse', 'summary');
   }
 
   @override
@@ -161,28 +161,28 @@ class EventDetailResponseBuilder
   EventBuilder get data => _$this._data ??= new EventBuilder();
   set data(EventBuilder? data) => _$this._data = data;
 
-  ListBuilder<Event>? _h2h;
-  ListBuilder<Event> get h2h => _$this._h2h ??= new ListBuilder<Event>();
-  set h2h(ListBuilder<Event>? h2h) => _$this._h2h = h2h;
+  ListBuilder<Event?>? _h2h;
+  ListBuilder<Event?> get h2h => _$this._h2h ??= new ListBuilder<Event?>();
+  set h2h(ListBuilder<Event?>? h2h) => _$this._h2h = h2h;
 
-  ListBuilder<Table>? _table;
-  ListBuilder<Table> get table => _$this._table ??= new ListBuilder<Table>();
-  set table(ListBuilder<Table>? table) => _$this._table = table;
+  ListBuilder<Table?>? _table;
+  ListBuilder<Table?> get table => _$this._table ??= new ListBuilder<Table?>();
+  set table(ListBuilder<Table?>? table) => _$this._table = table;
 
-  ListBuilder<Summary>? _summary;
-  ListBuilder<Summary> get summary =>
-      _$this._summary ??= new ListBuilder<Summary>();
-  set summary(ListBuilder<Summary>? summary) => _$this._summary = summary;
+  ListBuilder<Summary?>? _summary;
+  ListBuilder<Summary?> get summary =>
+      _$this._summary ??= new ListBuilder<Summary?>();
+  set summary(ListBuilder<Summary?>? summary) => _$this._summary = summary;
 
   EventDetailResponseBuilder();
 
   EventDetailResponseBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _data = $v.data.toBuilder();
-      _h2h = $v.h2h?.toBuilder();
-      _table = $v.table?.toBuilder();
-      _summary = $v.summary?.toBuilder();
+      _data = $v.data?.toBuilder();
+      _h2h = $v.h2h.toBuilder();
+      _table = $v.table.toBuilder();
+      _summary = $v.summary.toBuilder();
       _$v = null;
     }
     return this;
@@ -205,21 +205,21 @@ class EventDetailResponseBuilder
     try {
       _$result = _$v ??
           new _$EventDetailResponse._(
-              data: data.build(),
-              h2h: _h2h?.build(),
-              table: _table?.build(),
-              summary: _summary?.build());
+              data: _data?.build(),
+              h2h: h2h.build(),
+              table: table.build(),
+              summary: summary.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'data';
-        data.build();
+        _data?.build();
         _$failedField = 'h2h';
-        _h2h?.build();
+        h2h.build();
         _$failedField = 'table';
-        _table?.build();
+        table.build();
         _$failedField = 'summary';
-        _summary?.build();
+        summary.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'EventDetailResponse', _$failedField, e.toString());

@@ -43,12 +43,13 @@ class _NewsFragmetState extends State<NewsFragmet> {
             }
             if (_newsStore.newlist.isEmpty) {
               return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
                 children: [
-                  Expanded(
-                    child: Center(
-                      child: Text(
-                        "Empty",
-                      ),
+                  Center(
+                    child: Text(
+                      "Empty",
                     ),
                   ),
                   _newsStore.errorMessage != null

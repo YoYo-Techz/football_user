@@ -20,13 +20,13 @@ abstract class EventDetailResponse
       _$EventDetailResponse;
 
   @BuiltValueField(wireName: 'data')
-  Event get data;
+  Event? get data;
   @BuiltValueField(wireName: 'h2h')
-  BuiltList<Event>? get h2h;
+  BuiltList<Event?> get h2h;
   @BuiltValueField(wireName: 'table')
-  BuiltList<Table>? get table;
+  BuiltList<Table?> get table;
   @BuiltValueField(wireName: 'summary')
-  BuiltList<Summary>? get summary;
+  BuiltList<Summary?> get summary;
   String toJson() {
     return json.encode(
         serializers.serializeWith(EventDetailResponse.serializer, this));
