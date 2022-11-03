@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:myfootball/app_routes.dart';
+import 'package:myfootball/modules/detail/detail_module.dart';
 import 'package:myfootball/modules/home/home_module.dart';
 import 'package:myfootball/modules/home/home_route.dart';
 import 'package:myfootball/modules/player/player_module.dart';
@@ -49,14 +50,17 @@ class RouteUtils {
     // assert(M);
     String tempRoute = "";
     switch (M) {
-       case AuthModule:
+      case AuthModule:
         tempRoute = AppRoutes.auth;
         break;
       case HomeModule:
         tempRoute = AppRoutes.home;
         break;
-       case PlayerModule:
+      case PlayerModule:
         tempRoute = AppRoutes.home + HomeRoute.player;
+        break;
+      case DetailModule:
+        tempRoute = AppRoutes.home + HomeRoute.detail;
         break;
     }
     _goNextPage(

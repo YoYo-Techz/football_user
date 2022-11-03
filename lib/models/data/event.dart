@@ -11,6 +11,7 @@ import 'package:myfootball/config/serializers.dart';
 import 'package:myfootball/models/data/away.dart';
 import 'package:myfootball/models/data/goals.dart';
 import 'package:myfootball/models/data/home.dart';
+import 'package:myfootball/models/data/league.dart';
 import 'package:myfootball/models/data/periods.dart';
 import 'package:myfootball/models/data/status.dart';
 
@@ -39,6 +40,8 @@ abstract class Event implements Built<Event, EventBuilder> {
   Goals? get goals;
   @BuiltValueField(wireName: 'periods')
   Periods get periods;
+  @BuiltValueField(wireName: 'league')
+  League? get league;
   String toJson() {
     return json.encode(serializers.serializeWith(Event.serializer, this));
   }

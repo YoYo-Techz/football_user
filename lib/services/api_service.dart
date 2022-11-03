@@ -1,4 +1,5 @@
 import 'package:chopper/chopper.dart';
+import 'package:myfootball/models/response/event_detail_response.dart';
 import 'package:myfootball/models/response/event_list_response.dart';
 import 'package:myfootball/models/response/leagues_list_response.dart';
 import 'package:myfootball/models/response/new_list_response.dart';
@@ -15,6 +16,11 @@ abstract class APIService extends ChopperService {
   Future<Response<EventListResponse>> getEventByDate(
       {@Field('date') required String date, @Field('page') required int page});
 
+  @Post(path: '/events/detail')
+  @FactoryConverter(request: FormUrlEncodedConverter.requestFactory)
+  Future<Response<EventDetailResponse>> getEventDetails(
+      {@Field('id') required int id, @Field('season') required String season});
+
   ///
   @Post(path: '/teams')
   @FactoryConverter(request: FormUrlEncodedConverter.requestFactory)
@@ -25,8 +31,7 @@ abstract class APIService extends ChopperService {
   @FactoryConverter(request: FormUrlEncodedConverter.requestFactory)
   Future<Response<LeaguesListResponse>> getLeaguesList(@Field('page') int page);
 
-
-    ///
+  ///
   @Post(path: '/news')
   @FactoryConverter(request: FormUrlEncodedConverter.requestFactory)
   Future<Response<NewListResponse>> getNewsList(@Field('page') int page);

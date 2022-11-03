@@ -73,6 +73,13 @@ class _$EventSerializer implements StructuredSerializer<Event> {
         ..add(
             serializers.serialize(value, specifiedType: const FullType(Goals)));
     }
+    value = object.league;
+    if (value != null) {
+      result
+        ..add('league')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(League)));
+    }
     return result;
   }
 
@@ -123,6 +130,10 @@ class _$EventSerializer implements StructuredSerializer<Event> {
           result.periods.replace(serializers.deserialize(value,
               specifiedType: const FullType(Periods))! as Periods);
           break;
+        case 'league':
+          result.league.replace(serializers.deserialize(value,
+              specifiedType: const FullType(League))! as League);
+          break;
       }
     }
 
@@ -149,6 +160,8 @@ class _$Event extends Event {
   final Goals? goals;
   @override
   final Periods periods;
+  @override
+  final League? league;
 
   factory _$Event([void Function(EventBuilder)? updates]) =>
       (new EventBuilder()..update(updates)).build();
@@ -162,7 +175,8 @@ class _$Event extends Event {
       this.home,
       this.away,
       this.goals,
-      required this.periods})
+      required this.periods,
+      this.league})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(id, 'Event', 'id');
     BuiltValueNullFieldError.checkNotNull(periods, 'Event', 'periods');
@@ -187,7 +201,8 @@ class _$Event extends Event {
         home == other.home &&
         away == other.away &&
         goals == other.goals &&
-        periods == other.periods;
+        periods == other.periods &&
+        league == other.league;
   }
 
   @override
@@ -198,14 +213,16 @@ class _$Event extends Event {
                 $jc(
                     $jc(
                         $jc(
-                            $jc($jc($jc(0, id.hashCode), time.hashCode),
-                                timeReadable.hashCode),
-                            timeStatus.hashCode),
-                        status.hashCode),
-                    home.hashCode),
-                away.hashCode),
-            goals.hashCode),
-        periods.hashCode));
+                            $jc(
+                                $jc($jc($jc(0, id.hashCode), time.hashCode),
+                                    timeReadable.hashCode),
+                                timeStatus.hashCode),
+                            status.hashCode),
+                        home.hashCode),
+                    away.hashCode),
+                goals.hashCode),
+            periods.hashCode),
+        league.hashCode));
   }
 
   @override
@@ -219,7 +236,8 @@ class _$Event extends Event {
           ..add('home', home)
           ..add('away', away)
           ..add('goals', goals)
-          ..add('periods', periods))
+          ..add('periods', periods)
+          ..add('league', league))
         .toString();
   }
 }
@@ -263,6 +281,10 @@ class EventBuilder implements Builder<Event, EventBuilder> {
   PeriodsBuilder get periods => _$this._periods ??= new PeriodsBuilder();
   set periods(PeriodsBuilder? periods) => _$this._periods = periods;
 
+  LeagueBuilder? _league;
+  LeagueBuilder get league => _$this._league ??= new LeagueBuilder();
+  set league(LeagueBuilder? league) => _$this._league = league;
+
   EventBuilder();
 
   EventBuilder get _$this {
@@ -277,6 +299,7 @@ class EventBuilder implements Builder<Event, EventBuilder> {
       _away = $v.away?.toBuilder();
       _goals = $v.goals?.toBuilder();
       _periods = $v.periods.toBuilder();
+      _league = $v.league?.toBuilder();
       _$v = null;
     }
     return this;
@@ -307,7 +330,8 @@ class EventBuilder implements Builder<Event, EventBuilder> {
               home: _home?.build(),
               away: _away?.build(),
               goals: _goals?.build(),
-              periods: periods.build());
+              periods: periods.build(),
+              league: _league?.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -321,6 +345,8 @@ class EventBuilder implements Builder<Event, EventBuilder> {
         _goals?.build();
         _$failedField = 'periods';
         periods.build();
+        _$failedField = 'league';
+        _league?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'Event', _$failedField, e.toString());

@@ -27,6 +27,16 @@ class _$APIService extends APIService {
   }
 
   @override
+  Future<Response<EventDetailResponse>> getEventDetails(
+      {required int id, required String season}) {
+    final $url = '/api/events/detail';
+    final $body = <String, dynamic>{'id': id, 'season': season};
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<EventDetailResponse, EventDetailResponse>($request,
+        requestConverter: FormUrlEncodedConverter.requestFactory);
+  }
+
+  @override
   Future<Response<TeamsListResponse>> getTeamsList(int page) {
     final $url = '/api/teams';
     final $body = <String, dynamic>{'page': page};

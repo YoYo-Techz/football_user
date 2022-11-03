@@ -5,7 +5,10 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:lottie/lottie.dart';
 import 'package:myfootball/models/data/event.dart';
+import 'package:myfootball/modules/detail/detail_module.dart';
+import 'package:myfootball/modules/detail/detail_routes.dart';
 import 'package:myfootball/modules/home/stores/event_store.dart';
+import 'package:myfootball/utils/rotue_utils.dart';
 
 class TodayEventFragment extends StatefulWidget {
   TodayEventFragment({Key? key}) : super(key: key);
@@ -79,7 +82,9 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
   Widget _evemtItem({required Event event}) {
     return GestureDetector(
       onTap: () {
-        // Modular.to.pushNamed('/detail', arguments: event.idEvent);
+        RouteUtils.changeRoute<DetailModule>(DetailRoutes.root,args: [
+          event.id,event.league?.season ?? ""
+        ]);
       },
       child: Card(
         elevation: 0,
@@ -154,10 +159,10 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
                               : event.status!.long ?? "",
                           maxLines: 1,
                           style: TextStyle(
-                              color:(event.goals!.away != null ||
-                                  event.goals!.home != null)
-                              ? Colors.blue
-                              : Colors.red,
+                              color: (event.goals!.away != null ||
+                                      event.goals!.home != null)
+                                  ? Colors.blue
+                                  : Colors.red,
                               fontWeight: FontWeight.w700,
                               fontSize: 13),
                         ),

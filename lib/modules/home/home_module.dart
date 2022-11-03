@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:myfootball/modules/detail/detail_module.dart';
 import 'package:myfootball/modules/home/stores/leagues_store.dart';
 import 'package:myfootball/modules/home/stores/news_store.dart';
 import 'package:myfootball/modules/home/stores/teams_store.dart';
@@ -22,6 +23,11 @@ class HomeModule extends Module {
     ModuleRoute(
       HomeRoute.player,
       module: PlayerModule(),
+      guards: [],
+    ),
+    ModuleRoute(
+      HomeRoute.detail,
+      module: DetailModule(),
       guards: [],
     ),
   ];

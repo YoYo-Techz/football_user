@@ -16,6 +16,8 @@ import 'package:myfootball/models/data/news.dart';
 import 'package:myfootball/models/data/pagination.dart';
 import 'package:myfootball/models/data/periods.dart';
 import 'package:myfootball/models/data/status.dart';
+import 'package:myfootball/models/data/summary.dart';
+import 'package:myfootball/models/data/table.dart';
 import 'package:myfootball/models/data/teams.dart';
 import 'package:myfootball/models/data/teams_data.dart';
 import 'package:myfootball/models/data/version_check.dart';
@@ -48,13 +50,16 @@ part 'serializers.g.dart';
   Goals,
   News,
   Status,
+  Summary,
+  Table,
 
   // Response
   ChannelResponse,
   EventListResponse,
   TeamsListResponse,
   LeaguesListResponse,
-  NewListResponse
+  NewListResponse,
+  EventListResponse
 ])
 final Serializers serializers =
     (_$serializers.toBuilder()..addPlugin(StandardJsonPlugin())).build();
