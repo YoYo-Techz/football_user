@@ -76,13 +76,9 @@ abstract class _EventStoreBase with Store {
         totalCount = teams.pagination.total;
       }
     } on SocketException {
-      await _repo.getEventByDate(
-          date: '${now.year}-${now.month}-${now.day}', page: currentPage);
       isLoading = false;
       errorMessage = "No internet";
     } catch (e) {
-      await _repo.getEventByDate(
-          date: '${now.year}-${now.month}-${now.day}', page: currentPage);
       isLoading = false;
       errorMessage = e.toString();
     }

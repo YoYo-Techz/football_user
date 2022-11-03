@@ -74,11 +74,11 @@ abstract class _LeaguesStoreBase with Store {
         totalCount = leagues.pagination.total;
       }
     } on SocketException {
-      await _repo.getLeagues(page: currentPage);
+     
       isLoading = false;
       errorMessage = "No internet";
     } catch (e) {
-      await _repo.getLeagues(page: currentPage);
+    
       isLoading = false;
       errorMessage = e.toString();
     }

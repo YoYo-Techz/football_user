@@ -22,7 +22,7 @@ abstract class _DetailStoreBase with Store {
   int tablength = 4;
 
   @observable
-  String errorMessage ="";
+  String errorMessage = "";
 
   @observable
   EventDetailResponse? eventDetail;
@@ -56,11 +56,9 @@ abstract class _DetailStoreBase with Store {
       print("tablelist: ${tablelist.length}");
       isLoading = false;
     } on SocketException {
-      await _repo.getEventDetail(id: id, season: season);
       isLoading = false;
       errorMessage = "No internet";
     } catch (e) {
-      await _repo.getEventDetail(id: id, season: season);
       isLoading = false;
       errorMessage = e.toString();
     }
