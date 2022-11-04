@@ -80,6 +80,7 @@ class H2HFragment extends StatelessWidget {
                                                 )
                                               ],
                                             ),
+                                            SizedBox(height: 3,),
                                             Row(
                                               children: [
                                                 Row(

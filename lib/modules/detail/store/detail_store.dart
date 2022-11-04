@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
+import 'package:myfootball/constant/configs.dart';
 import 'package:myfootball/models/data/event.dart';
 import 'package:myfootball/models/data/summary.dart';
 import 'package:myfootball/models/data/table.dart';
@@ -62,6 +63,29 @@ abstract class _DetailStoreBase with Store {
       isLoading = false;
       errorMessage = e.toString();
     }
+  }
+
+  @action
+  String getTeamName({required int id}) {
+    // Get teams Name from home or away
+    String teamName = "";
+    print("id $id");
+    if (id == eventDetail!.data!.away!.id) {
+      teamName = eventDetail!.data!.away!.name ?? "Away Team";
+    } else if (id == eventDetail!.data!.home!.id) {
+      teamName = eventDetail!.data!.home!.name ?? "Home Team";
+    } else {
+      teamName = "$id Team";
+    }
+    return teamName;
+  }
+
+  @action
+  String getTeamLogo({required int id}) {
+    print("id $id");
+    String teamLogo = Config.logourl + "$id.png";
+    print("team logo $teamLogo");
+    return teamLogo;
   }
 
   @action

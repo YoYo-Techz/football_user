@@ -127,6 +127,28 @@ mixin _$DetailStore on _DetailStoreBase, Store {
       ActionController(name: '_DetailStoreBase');
 
   @override
+  String getTeamName({required int id}) {
+    final _$actionInfo = _$_DetailStoreBaseActionController.startAction(
+        name: '_DetailStoreBase.getTeamName');
+    try {
+      return super.getTeamName(id: id);
+    } finally {
+      _$_DetailStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String getTeamLogo({required int id}) {
+    final _$actionInfo = _$_DetailStoreBaseActionController.startAction(
+        name: '_DetailStoreBase.getTeamLogo');
+    try {
+      return super.getTeamLogo(id: id);
+    } finally {
+      _$_DetailStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void dispose() {
     final _$actionInfo = _$_DetailStoreBaseActionController.startAction(
         name: '_DetailStoreBase.dispose');
