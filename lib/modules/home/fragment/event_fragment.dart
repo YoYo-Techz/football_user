@@ -74,6 +74,8 @@ class _TodayEventFragmentState extends State<TodayEventFragment> {
         );
       }),
     ));
+  
+  
   }
 
   Widget _evemtItem({required Event event}) {

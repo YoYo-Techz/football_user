@@ -33,12 +33,59 @@ class OverviewFragment extends StatelessWidget {
                               (element) => Container(
                                   width: double.infinity,
                                   padding: EdgeInsets.all(5),
+                                  margin: EdgeInsets.all(2),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
                                     // color: Colors.greenAccent,
                                   ),
-                                  child: Text(_detailStore.getTeamName(
-                                      id: element.teamId!))),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        child: Row(
+                                          children: [
+                                            CachedNetworkImage(
+                                              imageUrl:
+                                                  _detailStore.getTeamLogo(
+                                                      id: element.teamId!),
+                                              imageBuilder:
+                                                  (context, imageProvider) =>
+                                                      Container(
+                                                decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                    image: imageProvider,
+                                                    fit: BoxFit.contain,
+                                                  ),
+                                                ),
+                                              ),
+                                              width: 32,
+                                              height: 32,
+                                              placeholder: (context, url) =>
+                                                  CircularProgressIndicator(),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      Icon(Icons.error),
+                                            ),
+                                            SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(_detailStore.getTeamName(
+                                                id: element.teamId!)),
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                          padding: EdgeInsets.only(
+                                              left: 5,
+                                              right: 5,
+                                              top: 3,
+                                              bottom: 3),
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              color: Colors.white),
+                                          child: Text(element.type ?? ""))
+                                    ],
+                                  )),
                             )
                             .toList(),
                       )
